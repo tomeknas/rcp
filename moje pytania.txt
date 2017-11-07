@@ -1,0 +1,10 @@
+1. Czy pracowac na bazie z po³¹czeniem czy na kopii i je¿eli zdalnie to cyz nie zjebie bazy a je¿eli na kopi lokalnej to czy musze zmieniac linki w kodzie.
+2. te pliki poza folderem rcp?
+3. Jak moge znajdowaæ funkcje php w inspektorze , czy wogole sie da.
+4. Ogólne wskazówki czy móg³by mi powiedziec?
+5. Zapytania do bazy gdzie s¹ w jakich plikach?
+6. kolejne kroki do napisania obs³ugi przycisku edytuj przyk³adowo?
+7. Mejl od miœka
+
+
+plink -N -P 22273 -L mysql:kpgeo.pl:mysql rcp@kpgeo.pl -pw c79lvnnq

@@ -1,0 +1,158 @@
+
+body {
+        font-family: verdana,arial,sans-serif;
+        font-size:11px;
+        margin: 0;
+        padding: 0;
+}
+
+#menu_div {
+    display: block;
+    top:20px;
+    left:10px;
+    width: 150px;
+    height: 80%;
+    position: fixed;
+    border-right: 2px solid black;
+}
+
+#content_div {
+    display: block;
+    top: 20px;
+    left: 162px;
+    right: 0;
+    position: absolute;
+}
+
+.centre {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.gridtable {
+        font-size:11px;
+        color:#333333;
+        border-width: 1px;
+        border-color: #666666;
+        border-collapse: collapse;
+}
+
+table.gridtable th {
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #666666;
+        background-color: #dedede;
+}
+
+table.gridtable td {
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #666666;
+        background-color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: #009999;
+}
+
+#calendar tbody:nth-child(even) td, tr.summaryProjectRow td {
+    background-color: #efefef;
+}
+
+tbody.today > tr {
+  border-left: 3px solid;
+  border-right: 3px solid;
+}
+
+tbody.today > tr:first-child {
+  border-top: 3px solid;
+}
+
+tbody.today > tr:last-child {
+  border-bottom: 3px solid;
+}
+
+tbody.holiday1 td {
+    /*background-color: #9ab1ec;*/
+    font-style: italic;
+    font-weight: bold;
+}
+
+tbody.holiday2 td {
+    background-color: #eeeeff;
+    font-style: italic;
+    font-weight: bold;
+}
+
+#menu_div hr {
+    height: 1px;
+    width: 80%;
+    background-color: black;
+}
+
+#menu_div ul {
+    padding-left: 15px;
+}
+
+#menu_div > ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+#menu_div li {
+    padding-top: 5px;
+}
+
+#menu_div > ul > li {
+    padding-top: 30px;
+}
+
+.badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: #777;
+  border-radius: 10px;
+}
+.badge:empty {
+  display: none;
+}
+.badge.green {
+    background-color: green;
+}
+
+div#quarter {
+    width: 50%;
+    /*height: 50%;*/
+    float: left;
+}
+
+div#half {
+    width: 100%;
+    float: left;
+}
+
+.centered-box {
+    position: fixed; 
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+}
