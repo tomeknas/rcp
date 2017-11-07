@@ -14,10 +14,8 @@
     <tbody>
 {foreach $userList as $_user}
         <tr>
-            <td>
-                <a href='{$SITE_URL}UserMonth/index/{$_user->id}/'>
-                    {$_user->lastName} {$_user->firstName}
-                </a>
+            <td class="cell-name" id="{$_user->id}">
+                <a href='{$SITE_URL}UserMonth/index/{$_user->id}/'>{$_user->lastName} {$_user->firstName}</a>
             </td>
             <td class="cell-hours-daily" id="{$_user->id}">{$_user->hoursDaily}</td>
             <td>
@@ -46,6 +44,28 @@
                 document.location.replace("{$SITE_URL}");
             });
     });
+
+$('.cell-name').dblclick( function(event) {
+    event.preventDefault();
+    // target = '.' + $(event.target).attr('class') + " " + "a"; 
+    
+    evtarget = $(event.target.lastElementChild).html();
+    console.log(evtarget);
+    newValue = prompt("Podaj nowe nazwisko i imię:", evtarget);
+    if(null === newValue || isNaN(newValue))
+    {
+        return;
+    }
+    var userId = event.target.id;
+    $.post('{$SITE_URL}Users/updateName/' + userId + '/',
+                                            {literal}{ "new_value" : newValue }{/literal})
+        .fail(function(v1, v2, text) {
+            alert(text);
+        })
+        .done(function(text){
+            document.location.reload();
+        });
+});
     
 $('.cell-hours-daily').dblclick( function(event) {
     event.preventDefault();

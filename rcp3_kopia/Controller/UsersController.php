@@ -102,6 +102,13 @@ class UsersController extends ControllerBase
         $user->hoursDaily = $_POST['new_value'];
         $user->update();
     }
+     public function updateName()
+    {
+        $user = new User();
+        $user->loadById($this->args[0]);
+        $user->hoursDaily = $_POST['new_value'];
+        $user->update();
+    }
     
     public function updateOverHours()
     {

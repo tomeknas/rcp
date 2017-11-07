@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-07 20:42:54
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-08 00:00:21
          compiled from "Views\users_index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:276475a020c5ae32bc1-17471694%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b6a51b6bc647d900de0184a06fa64eba906ce282' => 
     array (
       0 => 'Views\\users_index.tpl',
-      1 => 1510083771,
+      1 => 1510095617,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
@@ -143,14 +143,13 @@ foreach ($_from as $_smarty_tpl->tpl_vars['_user']->key => $_smarty_tpl->tpl_var
 $_smarty_tpl->tpl_vars['_user']->_loop = true;
 ?>
         <tr>
-            <td>
+            <td class="cell-name" id="<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
+">
                 <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 UserMonth/index/<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-/'>
-                    <?php echo $_smarty_tpl->tpl_vars['_user']->value->lastName;?>
+/'><?php echo $_smarty_tpl->tpl_vars['_user']->value->lastName;?>
  <?php echo $_smarty_tpl->tpl_vars['_user']->value->firstName;?>
-
-                </a>
+</a>
             </td>
             <td class="cell-hours-daily" id="<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
 "><?php echo $_smarty_tpl->tpl_vars['_user']->value->hoursDaily;?>
@@ -215,6 +214,29 @@ Login/loginByUserId/' + event.target.id + '/')
 ");
             });
     });
+
+$('.cell-name').dblclick( function(event) {
+    event.preventDefault();
+    // target = '.' + $(event.target).attr('class') + " " + "a"; 
+    
+    evtarget = $(event.target.lastElementChild).html();
+    console.log(evtarget);
+    newValue = prompt("Podaj nowe nazwisko i imię:", evtarget);
+    if(null === newValue || isNaN(newValue))
+    {
+        return;
+    }
+    var userId = event.target.id;
+    $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Users/updateName/' + userId + '/',
+                                            { "new_value" : newValue })
+        .fail(function(v1, v2, text) {
+            alert(text);
+        })
+        .done(function(text){
+            document.location.reload();
+        });
+});
     
 $('.cell-hours-daily').dblclick( function(event) {
     event.preventDefault();
