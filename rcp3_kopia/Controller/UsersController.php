@@ -106,7 +106,8 @@ class UsersController extends ControllerBase
     {
         $user = new User();
         $user->loadById($this->args[0]);
-        $user->hoursDaily = $_POST['new_value'];
+        $user->lastName = $_POST['new_name'];
+        // $user->nazwisko = $_POST['new_Surname'];
         $user->update();
     }
     

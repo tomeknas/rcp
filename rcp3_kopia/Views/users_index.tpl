@@ -33,7 +33,33 @@
 {/block}
 {block name='body_end'}
 <script>
-    $(".link-user-login").click( function(event) {
+    
+
+$('.cell-name').dblclick( function(event) {
+    event.preventDefault();
+    // target = '.' + $(event.target).attr('class') + " " + "a"; 
+    
+    evtarget = $(event.target.lastElementChild).html();
+    tableName = evtarget.split(" ", 2);
+    console.log(tableName);
+    // newSurname = prompt("Podaj nowe nazwisko:", tableName[0]);
+    newName = prompt("Podaj nowe imię:", tableName[1]);
+    if( newName === "" )
+    {
+      
+        return;
+    }
+    var userId = event.target.id;
+    $.post('{$SITE_URL}Users/updateName/' + userId + '/',{ "new_name" : newName })
+        .fail(function(v1, v2, text) {
+            alert(text);
+        })
+        .done(function(text){
+            document.location.reload();
+        });
+});
+
+$(".link-user-login").click( function(event) {
        event.preventDefault();
         $.get('{$SITE_URL}Login/loginByUserId/' + event.target.id + '/')
             .fail(function(v1, v2, text) {
@@ -44,28 +70,6 @@
                 document.location.replace("{$SITE_URL}");
             });
     });
-
-$('.cell-name').dblclick( function(event) {
-    event.preventDefault();
-    // target = '.' + $(event.target).attr('class') + " " + "a"; 
-    
-    evtarget = $(event.target.lastElementChild).html();
-    console.log(evtarget);
-    newValue = prompt("Podaj nowe nazwisko i imię:", evtarget);
-    if(null === newValue || isNaN(newValue))
-    {
-        return;
-    }
-    var userId = event.target.id;
-    $.post('{$SITE_URL}Users/updateName/' + userId + '/',
-                                            {literal}{ "new_value" : newValue }{/literal})
-        .fail(function(v1, v2, text) {
-            alert(text);
-        })
-        .done(function(text){
-            document.location.reload();
-        });
-});
     
 $('.cell-hours-daily').dblclick( function(event) {
     event.preventDefault();
