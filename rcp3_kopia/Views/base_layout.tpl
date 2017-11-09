@@ -3,7 +3,10 @@
     <head>
         {block name=defines}{/block}
         <title>{block name=title}KPGeo - Rejestracja Czasu Pracy{/block}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src='{$SITE_URL}Includes/jquery.js'></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
         <link rel='stylesheet' type='text/css' href='{$SITE_URL}Includes/base_style.css'>
         <link rel='stylesheet' type='text/css' href='{$SITE_URL}Includes/loading_indicator.css'>

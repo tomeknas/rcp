@@ -92,7 +92,7 @@ $('.cell-hours-daily').dblclick( function(event) {
     $(".link_delete_user").click( function(event) {
         event.preventDefault();
         
-        if (!confirm('Na pewno usunąć użytkownika?')) {
+        if (!confirm('Na pewno usunąć użytkownika?  Kliknięcie Ok spowoduje nieodwracalne zmiany')) {
             return;
         };
         

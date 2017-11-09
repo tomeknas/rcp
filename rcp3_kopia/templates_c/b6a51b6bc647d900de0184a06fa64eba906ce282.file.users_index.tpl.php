@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-09 21:46:54
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-09 22:53:06
          compiled from "Views\users_index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:276475a020c5ae32bc1-17471694%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b6a51b6bc647d900de0184a06fa64eba906ce282' => 
     array (
       0 => 'Views\\users_index.tpl',
-      1 => 1510260411,
+      1 => 1510260568,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1509805529,
+      1 => 1510264380,
       2 => 'file',
     ),
   ),
@@ -38,10 +38,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <head>
         
         <title>KPGeo - Rejestracja Czasu Pracy</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <?php echo '<script'; ?>
  src='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/jquery.js'><?php echo '</script'; ?>
 >
+        <?php echo '<script'; ?>
+ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
+>
+        
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
         <link rel='stylesheet' type='text/css' href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/base_style.css'>
@@ -264,7 +269,7 @@ Users/updateHoursDaily/' + userId + '/',
     $(".link_delete_user").click( function(event) {
         event.preventDefault();
         
-        if (!confirm('Na pewno usunąć użytkownika?')) {
+        if (!confirm('Na pewno usunąć użytkownika?  Kliknięcie Ok spowoduje nieodwracalne zmiany')) {
             return;
         };
         
@@ -274,7 +279,6 @@ Users/delete/' + event.target.id + '/')
                 alert($.parseJSON(text));
             })
             .done(function(text){
-                alert(text);
                 document.location.reload();
             });
     });
