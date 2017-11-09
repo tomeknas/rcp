@@ -110,6 +110,14 @@ class UsersController extends ControllerBase
         $user->lastName = $_POST['new_lastname'];
         $user->update();
     }
+
+    public function delete()
+    {
+        $user = new User();
+        $user->loadById($this->args[0]);
+        $user->delete();
+
+    }
     
     public function updateOverHours()
     {

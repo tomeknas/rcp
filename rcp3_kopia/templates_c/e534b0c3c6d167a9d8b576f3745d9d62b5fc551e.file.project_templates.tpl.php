@@ -1,13 +1,13 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-09 21:46:54
-         compiled from "Views\users_index.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:276475a020c5ae32bc1-17471694%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-09 12:00:44
+         compiled from "Views\project_templates.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:268115a04355c8df7e9-91665821%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'b6a51b6bc647d900de0184a06fa64eba906ce282' => 
+    'e534b0c3c6d167a9d8b576f3745d9d62b5fc551e' => 
     array (
-      0 => 'Views\\users_index.tpl',
-      1 => 1510260411,
+      0 => 'Views\\project_templates.tpl',
+      1 => 1509805532,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
@@ -17,12 +17,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '276475a020c5ae32bc1-17471694',
+  'nocache_hash' => '268115a04355c8df7e9-91665821',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_5a020c5b189bf2_63284581',
   'variables' => 
   array (
     'SITE_URL' => 0,
@@ -32,8 +30,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'projectBadge2' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_5a04355cb38bf5_74732986',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5a020c5b189bf2_63284581')) {function content_5a020c5b189bf2_63284581($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_5a04355cb38bf5_74732986')) {function content_5a04355cb38bf5_74732986($_smarty_tpl) {?><!DOCTYPE html>
 <html>
     <head>
         
@@ -48,6 +48,11 @@ Includes/base_style.css'>
         <link rel='stylesheet' type='text/css' href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/loading_indicator.css'>
         
+    <link rel='stylesheet' type='text/css' href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Includes/notification-boxes.css'>
+    <link rel='stylesheet' type='text/css' href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Includes/hint.css'>
+
     </head>
     <body>
         <div id='menu_div'>
@@ -126,48 +131,49 @@ Users/addUser/'>Dodaj użytkownika</a>
         </div>
         <div id='content_div' style="height: 100%;">
             
-
     
-    <h2 align='center'>Użytkownicy</h2>
-<table class="gridtable centre">
-    <thead>
-        <tr>
-            <th>Imie i nazwisko</th>
-            <th>Godzin dziennie (h) *</th>
-        </tr>
-    </thead>
-    <tbody>
-<?php  $_smarty_tpl->tpl_vars['_user'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['_user']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['userList']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['_user']->key => $_smarty_tpl->tpl_vars['_user']->value) {
-$_smarty_tpl->tpl_vars['_user']->_loop = true;
+    
+        
+    <h2 align='center'>Szablony projektów</h2>
+    <h3 align='center'><a id='link_new_template' href='#'>> Nowy szablon <</a></h3>
+    <?php  $_smarty_tpl->tpl_vars['template'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['template']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['templates']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['template']->key => $_smarty_tpl->tpl_vars['template']->value) {
+$_smarty_tpl->tpl_vars['template']->_loop = true;
 ?>
+        <table class='gridtable centre'>
+        
         <tr>
-            <td class="cell-name" id="<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-">
-                <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-UserMonth/index/<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-/'><?php echo $_smarty_tpl->tpl_vars['_user']->value->lastName;?>
- <?php echo $_smarty_tpl->tpl_vars['_user']->value->firstName;?>
-</a>
-            </td>
-            <td class="cell-hours-daily" id="<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-"><?php echo $_smarty_tpl->tpl_vars['_user']->value->hoursDaily;?>
-</td>
-            <td>
-                <a href="#" id="<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-" class="link-user-login">Zaloguj</a>
-            </td>
-            <td>
-                <a id='<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-' class='link_delete_user' href='#'>Usuń</a>
-            </td>
-            
+            <th>
+                <a class='link_delete_template' id='<?php echo $_smarty_tpl->tpl_vars['template']->value->id;?>
+' href='#'>x</a>
+                <span class='template_name' id='<?php echo $_smarty_tpl->tpl_vars['template']->value->id;?>
+'><?php echo $_smarty_tpl->tpl_vars['template']->value->name;?>
+</span>
+            </th>
         </tr>
-<?php } ?>
-    </tbody>
-</table>
-    
+        <?php  $_smarty_tpl->tpl_vars['task'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['task']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['template']->value->getTasks(); if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['task']->key => $_smarty_tpl->tpl_vars['task']->value) {
+$_smarty_tpl->tpl_vars['task']->_loop = true;
+?>
+            <tr>
+                <td>
+                    <a class='link_delete_task' id='<?php echo $_smarty_tpl->tpl_vars['task']->value->id;?>
+' href='#'>x</a>
+                    <span class='task_name' id='<?php echo $_smarty_tpl->tpl_vars['task']->value->id;?>
+'><?php echo $_smarty_tpl->tpl_vars['task']->value->name;?>
+</span>
+                </td>
+            </tr>
+            <?php } ?>
+                    <tr><td>
+                <a class='link_new_task' id='<?php echo $_smarty_tpl->tpl_vars['template']->value->id;?>
+' href='#'>> Dodaj zadanie <</a>
+                </td></tr>
+        </table><br>
+        <?php } ?>
+        <h5 align='center'>* podwójne kliknięcie nazwy szablonu lub zadania aby zmienić nazwę</h5>
 
             <br><br><br><br><br><br>
             
@@ -201,58 +207,49 @@ Login/logout/")
     
 <?php echo '<script'; ?>
 >
-    
-
-$('.cell-name').dblclick( function(event) {
+$('#link_new_template').click( function(event) {
     event.preventDefault();
-    // target = '.' + $(event.target).attr('class') + " " + "a"; 
-    
-    evtarget = $(event.target.lastElementChild).html();
-    tableName = evtarget.split(" ", 2);
-    console.log(tableName);
-    newLastName = prompt("Podaj nowe nazwisko:", tableName[0]);
-    newName = prompt("Podaj nowe imię:", tableName[1]);
-    if( newName == "" || newLastName == "" || newName == null || newLastName == null ){
-      
-        return;
-    }else{
-    var userId = event.target.id;
-    console.log(newName);
-    $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Users/updateName/' + userId + '/',{ "new_name" : newName, "new_lastname" : newLastName })
-        .fail(function(v1, v2, text) {
-            alert(text);
-        })
-        .done(function(text){
-            document.location.reload();
-        });};
-});
-
-$(".link-user-login").click( function(event) {
-       event.preventDefault();
-        $.get('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Login/loginByUserId/' + event.target.id + '/')
-            .fail(function(v1, v2, text) {
-                alert($.parseJSON(text));
-            })
-            .done(function(text){
-                alert(text);
-                document.location.replace("<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-");
-            });
-    });
-    
-$('.cell-hours-daily').dblclick( function(event) {
-    event.preventDefault();
-    newValue = prompt("Podaj nową wartość:", $(event.target).html());
-    if(null === newValue || isNaN(newValue))
+    var templateName = prompt("Podaj nazwę szablonu");
+    if(null === templateName || templateName.length < 2)
     {
         return;
     }
-    var userId = event.target.id;
     $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Users/updateHoursDaily/' + userId + '/',
-                                            { "new_value" : newValue })
+ProjectTemplates/addTemplate/', { "template_name" : templateName })
+            .fail(function(v1, v2, text) {
+                alert(text);
+            })
+            .done(function(text){
+                document.location.reload();
+            });
+});
+
+
+$('.link_delete_template').click( function(event) {
+    event.preventDefault();
+    if (!confirm('Na pewno usunąć szablon?')) {
+        return;
+    };
+    $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+ProjectTemplates/deleteTemplate/' + event.target.id + '/')
+            .fail(function(v1, v2, text) {
+                alert(text);
+            })
+            .done(function(text){
+                document.location.reload();
+            });
+});
+
+$('.template_name').dblclick( function(event) {
+    event.preventDefault();
+    var templateName = $(event.target).html();
+    templateName = prompt("Podaj nową nazwę", templateName);
+    if(null === templateName || templateName.length < 2)
+    {
+        return;
+    }
+    $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+ProjectTemplates/renameTemplate/' + event.target.id + '/', { "template_new_name" : templateName })
         .fail(function(v1, v2, text) {
             alert(text);
         })
@@ -260,28 +257,59 @@ Users/updateHoursDaily/' + userId + '/',
             document.location.reload();
         });
 });
-    
-    $(".link_delete_user").click( function(event) {
-        event.preventDefault();
-        
-        if (!confirm('Na pewno usunąć użytkownika?')) {
-            return;
-        };
-        
-        $.get('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Users/delete/' + event.target.id + '/')
+
+$('.link_new_task').click( function(event) {
+    event.preventDefault();
+    var taskName = prompt("Podaj nazwę zadania");
+    if(null === taskName || taskName.length < 2)
+    {
+        return;
+    }
+    $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+ProjectTemplates/addTask/' + event.target.id + '/', { "task_name" : taskName })
             .fail(function(v1, v2, text) {
-                alert($.parseJSON(text));
+                alert(text);
             })
             .done(function(text){
-                alert(text);
                 document.location.reload();
             });
-    });
+});
 
+$('.link_delete_task').click( function(event) {
+    event.preventDefault();
+    if (!confirm('Na pewno usunąć zadanie z szablonu?')) {
+        return;
+    };
+    $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+ProjectTemplates/deleteTask/' + event.target.id + '/')
+            .fail(function(v1, v2, text) {
+                alert(text);
+            })
+            .done(function(text){
+                document.location.reload();
+            });
+});
+
+$('.task_name').dblclick( function(event) {
+    event.preventDefault();
+    var taskName = $(event.target).html();
+    taskName = prompt("Podaj nową nazwę", taskName);
+    if(null === taskName || taskName.length < 2)
+    {
+        return;
+    }
+    $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+ProjectTemplates/renameTask/' + event.target.id + '/', { "task_new_name" : taskName })
+        .fail(function(v1, v2, text) {
+            alert(text);
+        })
+        .done(function(text){
+            document.location.reload();
+        });
+});
 <?php echo '</script'; ?>
 >
-    
+
 
     </body>
 </html><?php }} ?>

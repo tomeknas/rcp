@@ -101,7 +101,6 @@ $('.cell-hours-daily').dblclick( function(event) {
                 alert($.parseJSON(text));
             })
             .done(function(text){
-                alert(text);
                 document.location.reload();
             });
     });

@@ -1,13 +1,13 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-09 21:46:54
-         compiled from "Views\users_index.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:276475a020c5ae32bc1-17471694%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-09 12:03:00
+         compiled from "Views\users_add.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:327635a0435e4cb94b7-27148455%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'b6a51b6bc647d900de0184a06fa64eba906ce282' => 
+    '7432f6b5244b15a68e5cfde0816dac9296e8596f' => 
     array (
-      0 => 'Views\\users_index.tpl',
-      1 => 1510260411,
+      0 => 'Views\\users_add.tpl',
+      1 => 1509805530,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
@@ -17,12 +17,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '276475a020c5ae32bc1-17471694',
+  'nocache_hash' => '327635a0435e4cb94b7-27148455',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_5a020c5b189bf2_63284581',
   'variables' => 
   array (
     'SITE_URL' => 0,
@@ -32,8 +30,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'projectBadge2' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_5a0435e53ce750_66806719',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5a020c5b189bf2_63284581')) {function content_5a020c5b189bf2_63284581($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_5a0435e53ce750_66806719')) {function content_5a0435e53ce750_66806719($_smarty_tpl) {?><!DOCTYPE html>
 <html>
     <head>
         
@@ -48,6 +48,8 @@ Includes/base_style.css'>
         <link rel='stylesheet' type='text/css' href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/loading_indicator.css'>
         
+    
+
     </head>
     <body>
         <div id='menu_div'>
@@ -126,48 +128,39 @@ Users/addUser/'>Dodaj użytkownika</a>
         </div>
         <div id='content_div' style="height: 100%;">
             
-
+    <h2 align='center'>Nowy użytkownik</h2>
+    <br><br>
     
-    <h2 align='center'>Użytkownicy</h2>
-<table class="gridtable centre">
-    <thead>
-        <tr>
-            <th>Imie i nazwisko</th>
-            <th>Godzin dziennie (h) *</th>
-        </tr>
-    </thead>
-    <tbody>
-<?php  $_smarty_tpl->tpl_vars['_user'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['_user']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['userList']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['_user']->key => $_smarty_tpl->tpl_vars['_user']->value) {
-$_smarty_tpl->tpl_vars['_user']->_loop = true;
-?>
-        <tr>
-            <td class="cell-name" id="<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-">
-                <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-UserMonth/index/<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-/'><?php echo $_smarty_tpl->tpl_vars['_user']->value->lastName;?>
- <?php echo $_smarty_tpl->tpl_vars['_user']->value->firstName;?>
-</a>
-            </td>
-            <td class="cell-hours-daily" id="<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-"><?php echo $_smarty_tpl->tpl_vars['_user']->value->hoursDaily;?>
-</td>
-            <td>
-                <a href="#" id="<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-" class="link-user-login">Zaloguj</a>
-            </td>
-            <td>
-                <a id='<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-' class='link_delete_user' href='#'>Usuń</a>
-            </td>
-            
-        </tr>
-<?php } ?>
-    </tbody>
-</table>
-    
+    <form id='user-add-form' align='center'>
+        <table class='gridtable centre'>
+            <tr>
+                <th>Imię</th>
+                <td><input id="first-name-input" name='first_name' required></td>
+            </tr>
+            <tr>
+                <th>Nazwisko</th>
+                <td><input id="last-name-input" name='last_name'></td>
+            </tr> 
+            <tr>
+                <th>Nazwa użytkownika</th>
+                <td><input id="username-input" name='username'></td>
+            </tr> 
+            <tr>
+                <th>Hasło</th>
+                <td><input id="password-input" name='password'></td>
+            </tr>    
+            <tr>
+                <th>Godzin dziennie</th>
+                <td><input type="number" name='hours_daily' value="8"></td>
+            </tr>
+            <tr>
+                <td style='border: none'>&nbsp;</td>
+                <td><input type='submit' value='Dodaj użytkownika'></td>
+            </tr>
+        </table>
+        
+    </form>
+ 
 
             <br><br><br><br><br><br>
             
@@ -199,89 +192,64 @@ Login/logout/")
         <?php echo '</script'; ?>
 >
     
-<?php echo '<script'; ?>
+    <?php echo '<script'; ?>
 >
-    
-
-$('.cell-name').dblclick( function(event) {
-    event.preventDefault();
-    // target = '.' + $(event.target).attr('class') + " " + "a"; 
-    
-    evtarget = $(event.target.lastElementChild).html();
-    tableName = evtarget.split(" ", 2);
-    console.log(tableName);
-    newLastName = prompt("Podaj nowe nazwisko:", tableName[0]);
-    newName = prompt("Podaj nowe imię:", tableName[1]);
-    if( newName == "" || newLastName == "" || newName == null || newLastName == null ){
-      
-        return;
-    }else{
-    var userId = event.target.id;
-    console.log(newName);
-    $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Users/updateName/' + userId + '/',{ "new_name" : newName, "new_lastname" : newLastName })
-        .fail(function(v1, v2, text) {
-            alert(text);
-        })
-        .done(function(text){
-            document.location.reload();
-        });};
-});
-
-$(".link-user-login").click( function(event) {
-       event.preventDefault();
-        $.get('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Login/loginByUserId/' + event.target.id + '/')
+        
+    $( "#user-add-form" ).submit( function( event ){
+        event.preventDefault();
+        
+        $.post( "<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Users/newUser/", $("#user-add-form").serialize() )
             .fail(function(v1, v2, text) {
-                alert($.parseJSON(text));
+                alert(text);
             })
             .done(function(text){
                 alert(text);
                 document.location.replace("<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-");
-            });
+Users/addUser");
+            })
+            ;
     });
     
-$('.cell-hours-daily').dblclick( function(event) {
-    event.preventDefault();
-    newValue = prompt("Podaj nową wartość:", $(event.target).html());
-    if(null === newValue || isNaN(newValue))
-    {
-        return;
-    }
-    var userId = event.target.id;
-    $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Users/updateHoursDaily/' + userId + '/',
-                                            { "new_value" : newValue })
-        .fail(function(v1, v2, text) {
-            alert(text);
-        })
-        .done(function(text){
-            document.location.reload();
-        });
-});
-    
-    $(".link_delete_user").click( function(event) {
-        event.preventDefault();
-        
-        if (!confirm('Na pewno usunąć użytkownika?')) {
-            return;
+        String.prototype.escapeDiacritics = function()
+        {
+            return this.replace(/ą/g, 'a').replace(/Ą/g, 'A')
+                .replace(/ć/g, 'c').replace(/Ć/g, 'C')
+                .replace(/ę/g, 'e').replace(/Ę/g, 'E')
+                .replace(/ł/g, 'l').replace(/Ł/g, 'L')
+                .replace(/ń/g, 'n').replace(/Ń/g, 'N')
+                .replace(/ó/g, 'o').replace(/Ó/g, 'O')
+                .replace(/ś/g, 's').replace(/Ś/g, 'S')
+                .replace(/ż/g, 'z').replace(/Ż/g, 'Z')
+                .replace(/ź/g, 'z').replace(/Ź/g, 'Z');
         };
         
-        $.get('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Users/delete/' + event.target.id + '/')
-            .fail(function(v1, v2, text) {
-                alert($.parseJSON(text));
-            })
-            .done(function(text){
-                alert(text);
-                document.location.reload();
-            });
-    });
-
-<?php echo '</script'; ?>
+        function generatePassword() {
+            var vov = "aeiouy";
+            var con = "rwtpsdfghjklzcbnm";
+            var result = "";
+            for (var i = 0; i < 3; ++i) {
+                result += con[Math.floor((Math.random() * 17))];
+                result += vov[Math.floor((Math.random() * 6))];
+            }
+            result += con[Math.floor((Math.random() * 17))];
+            return result;
+        }
+        
+        $(document).ready(function(){
+            $("#password-input").val(generatePassword());
+        });
+        
+        
+        var firstName = "", lastName = "";
+        
+        $("#first-name-input, #last-name-input").keyup(function() {
+            firstName = $("#first-name-input").val();
+            lastName = $("#last-name-input").val();
+            $("#username-input").val((firstName.substr(0, 1) + lastName).toLowerCase().escapeDiacritics());
+        });
+    <?php echo '</script'; ?>
 >
-    
 
     </body>
 </html><?php }} ?>
