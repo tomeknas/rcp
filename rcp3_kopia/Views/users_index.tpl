@@ -44,19 +44,19 @@ $('.cell-name').dblclick( function(event) {
     console.log(tableName);
     newLastName = prompt("Podaj nowe nazwisko:", tableName[0]);
     newName = prompt("Podaj nowe imię:", tableName[1]);
-    if( newName === "" )
-    {
+    if( newName == "" || newLastName == "" || newName == null || newLastName == null ){
       
         return;
-    }
+    }else{
     var userId = event.target.id;
+    console.log(newName);
     $.post('{$SITE_URL}Users/updateName/' + userId + '/',{ "new_name" : newName, "new_lastname" : newLastName })
         .fail(function(v1, v2, text) {
             alert(text);
         })
         .done(function(text){
             document.location.reload();
-        });
+        });};
 });
 
 $(".link-user-login").click( function(event) {
