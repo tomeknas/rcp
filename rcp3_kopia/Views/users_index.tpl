@@ -42,7 +42,7 @@ $('.cell-name').dblclick( function(event) {
     evtarget = $(event.target.lastElementChild).html();
     tableName = evtarget.split(" ", 2);
     console.log(tableName);
-    // newSurname = prompt("Podaj nowe nazwisko:", tableName[0]);
+    newLastName = prompt("Podaj nowe nazwisko:", tableName[0]);
     newName = prompt("Podaj nowe imię:", tableName[1]);
     if( newName === "" )
     {
@@ -50,7 +50,7 @@ $('.cell-name').dblclick( function(event) {
         return;
     }
     var userId = event.target.id;
-    $.post('{$SITE_URL}Users/updateName/' + userId + '/',{ "new_name" : newName })
+    $.post('{$SITE_URL}Users/updateName/' + userId + '/',{ "new_name" : newName, "new_lastname" : newLastName })
         .fail(function(v1, v2, text) {
             alert(text);
         })

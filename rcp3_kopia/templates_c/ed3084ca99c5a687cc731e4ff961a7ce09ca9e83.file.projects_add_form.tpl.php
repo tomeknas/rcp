@@ -1,13 +1,13 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-09 09:17:30
-         compiled from "Views\users_index.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:276475a020c5ae32bc1-17471694%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-08 08:50:13
+         compiled from "Views\projects_add_form.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:135445a02b7353847c1-33618751%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'b6a51b6bc647d900de0184a06fa64eba906ce282' => 
+    'ed3084ca99c5a687cc731e4ff961a7ce09ca9e83' => 
     array (
-      0 => 'Views\\users_index.tpl',
-      1 => 1510215446,
+      0 => 'Views\\projects_add_form.tpl',
+      1 => 1509805530,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
@@ -17,12 +17,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '276475a020c5ae32bc1-17471694',
+  'nocache_hash' => '135445a02b7353847c1-33618751',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_5a020c5b189bf2_63284581',
   'variables' => 
   array (
     'SITE_URL' => 0,
@@ -32,8 +30,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'projectBadge2' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_5a02b737026a18_70917725',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5a020c5b189bf2_63284581')) {function content_5a020c5b189bf2_63284581($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_5a02b737026a18_70917725')) {function content_5a02b737026a18_70917725($_smarty_tpl) {?><!DOCTYPE html>
 <html>
     <head>
         
@@ -126,47 +126,98 @@ Users/addUser/'>Dodaj użytkownika</a>
         </div>
         <div id='content_div' style="height: 100%;">
             
-
+    <h2 align='center'>Nowy projekt</h2>
+    <br><br>
     
-    <h2 align='center'>Użytkownicy</h2>
-<table class="gridtable centre">
-    <thead>
-        <tr>
-            <th>Imie i nazwisko</th>
-            <th>Godzin dziennie (h) *</th>
-        </tr>
-    </thead>
-    <tbody>
-<?php  $_smarty_tpl->tpl_vars['_user'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['_user']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['userList']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['_user']->key => $_smarty_tpl->tpl_vars['_user']->value) {
-$_smarty_tpl->tpl_vars['_user']->_loop = true;
+    <form id='project_add_form' align='center'>
+        <table class='gridtable centre'>
+            <tr>
+                <th>Nazwa projektu</th>
+                <td><input name='name' required></td>
+            </tr>
+            <tr>
+                <th>Opis</th>
+                <td><input name='description'></td>
+            </tr>
+            <tr>
+                <th>Grupa</th>
+                <td>
+                    <select name='group'>
+<?php  $_smarty_tpl->tpl_vars['group'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['group']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['groupList']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['group']->key => $_smarty_tpl->tpl_vars['group']->value) {
+$_smarty_tpl->tpl_vars['group']->_loop = true;
 ?>
-        <tr>
-            <td class="cell-name" id="<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-">
-                <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-UserMonth/index/<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-/'><?php echo $_smarty_tpl->tpl_vars['_user']->value->lastName;?>
- <?php echo $_smarty_tpl->tpl_vars['_user']->value->firstName;?>
-</a>
-            </td>
-            <td class="cell-hours-daily" id="<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-"><?php echo $_smarty_tpl->tpl_vars['_user']->value->hoursDaily;?>
-</td>
-            <td>
-                <a href="#" id="<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-" class="link-user-login">Zaloguj</a>
-            </td>
-            <td>
-                <a id='<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-' class='link_delete_user' href='#'>Usuń</a>
-            </td>
-            
-        </tr>
+                        <option value='<?php echo $_smarty_tpl->tpl_vars['group']->value->id;?>
+'><?php echo $_smarty_tpl->tpl_vars['group']->value->name;?>
+</option>
 <?php } ?>
-    </tbody>
-</table>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Numer zlecenia</th>
+                <td><input name='order_number'></td>
+            </tr>
+            <tr>
+                <th>Klient</th>
+                <td><input name='client'></td>
+            </tr>
+            <tr>
+                <th>Data rozpoczęcia</th>
+                <td><input name='begin' type='date'></td>
+            </tr>
+            <tr>
+                <th>Data zakończenia</th>
+                <td><input name='end' type='date'></td>
+            </tr>
+            <tr>
+                <th>Kierownik projektu</th>
+                <td>
+                    <select name='project_manager'>
+<?php  $_smarty_tpl->tpl_vars['user'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['user']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['userList']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['user']->key => $_smarty_tpl->tpl_vars['user']->value) {
+$_smarty_tpl->tpl_vars['user']->_loop = true;
+?>
+                        <option value='<?php echo $_smarty_tpl->tpl_vars['user']->value->id;?>
+'><?php echo $_smarty_tpl->tpl_vars['user']->value->getFullName();?>
+</option>
+<?php } ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Budżet (dni robocze)</th>
+                <td><input name='budget' type='number' min='0'></td>
+            </tr>
+            <tr>
+                <th>Budżet (zł)</th>
+                <td><input name='budgetPLN' type='number' min='0'></td>
+            </tr>
+            <tr>
+                <th>Szablon</th>
+                <td>
+                    <select name='project_template'>
+<?php  $_smarty_tpl->tpl_vars['template'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['template']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['templates']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['template']->key => $_smarty_tpl->tpl_vars['template']->value) {
+$_smarty_tpl->tpl_vars['template']->_loop = true;
+?>
+                        <option value='<?php echo $_smarty_tpl->tpl_vars['template']->value->id;?>
+'><?php echo $_smarty_tpl->tpl_vars['template']->value->name;?>
+</option>
+<?php } ?>
+                    </select>
+                </td>
+            </tr>        
+            <tr>
+                <td style='border: none'>&nbsp;</td>
+                <td><input type='submit' value='Dodaj projekt'></td>
+            </tr>
+        </table>
+        
+    </form>
     
 
             <br><br><br><br><br><br>
@@ -202,86 +253,24 @@ Login/logout/")
 <?php echo '<script'; ?>
 >
     
-
-$('.cell-name').dblclick( function(event) {
-    event.preventDefault();
-    // target = '.' + $(event.target).attr('class') + " " + "a"; 
-    
-    evtarget = $(event.target.lastElementChild).html();
-    tableName = evtarget.split(" ", 2);
-    console.log(tableName);
-    newLastName = prompt("Podaj nowe nazwisko:", tableName[0]);
-    newName = prompt("Podaj nowe imię:", tableName[1]);
-    if( newName === "" )
-    {
-      
-        return;
-    }
-    var userId = event.target.id;
-    $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Users/updateName/' + userId + '/',{ "new_name" : newName, "new_lastname" : newLastName })
-        .fail(function(v1, v2, text) {
-            alert(text);
-        })
-        .done(function(text){
-            document.location.reload();
-        });
-});
-
-$(".link-user-login").click( function(event) {
-       event.preventDefault();
-        $.get('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Login/loginByUserId/' + event.target.id + '/')
+    $( "#project_add_form" ).submit( function( event ){
+        event.preventDefault();
+        
+        $.post( "<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+ProjectAction/add/", $("#project_add_form").serialize() )
             .fail(function(v1, v2, text) {
-                alert($.parseJSON(text));
+                alert(text);
             })
             .done(function(text){
                 alert(text);
                 document.location.replace("<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-");
-            });
-    });
-    
-$('.cell-hours-daily').dblclick( function(event) {
-    event.preventDefault();
-    newValue = prompt("Podaj nową wartość:", $(event.target).html());
-    if(null === newValue || isNaN(newValue))
-    {
-        return;
-    }
-    var userId = event.target.id;
-    $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Users/updateHoursDaily/' + userId + '/',
-                                            { "new_value" : newValue })
-        .fail(function(v1, v2, text) {
-            alert(text);
-        })
-        .done(function(text){
-            document.location.reload();
-        });
-});
-    
-    $(".link_delete_user").click( function(event) {
-        event.preventDefault();
-        
-        if (!confirm('Na pewno usunąć użytkownika?')) {
-            return;
-        };
-        
-        $.get('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Users/delete/' + event.target.id + '/')
-            .fail(function(v1, v2, text) {
-                alert($.parseJSON(text));
+Projects");
             })
-            .done(function(text){
-                alert(text);
-                document.location.reload();
-            });
+            ;
     });
-
+    
 <?php echo '</script'; ?>
 >
-    
 
     </body>
 </html><?php }} ?>
