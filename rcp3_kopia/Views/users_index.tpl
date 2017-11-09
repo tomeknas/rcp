@@ -15,7 +15,7 @@
 {foreach $userList as $_user}
         <tr>
             <td class="cell-name" id="{$_user->id}">
-                <a href='{$SITE_URL}UserMonth/index/{$_user->id}/'>{$_user->lastName} {$_user->firstName}</a>
+                <a href='{$SITE_URL}UserMonth/index/{$_user->id}/' data-toggle="tooltip" data-placement="top" title="{$_user->username}">{$_user->lastName} {$_user->firstName}</a>
             </td>
             <td class="cell-hours-daily" id="{$_user->id}">{$_user->hoursDaily}</td>
             <td>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-09 22:53:06
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-09 23:09:18
          compiled from "Views\users_index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:276475a020c5ae32bc1-17471694%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b6a51b6bc647d900de0184a06fa64eba906ce282' => 
     array (
       0 => 'Views\\users_index.tpl',
-      1 => 1510260568,
+      1 => 1510265350,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
@@ -152,7 +152,8 @@ $_smarty_tpl->tpl_vars['_user']->_loop = true;
 ">
                 <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 UserMonth/index/<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-/'><?php echo $_smarty_tpl->tpl_vars['_user']->value->lastName;?>
+/' data-toggle="tooltip" data-placement="top" title="<?php echo $_smarty_tpl->tpl_vars['_user']->value->username;?>
+"><?php echo $_smarty_tpl->tpl_vars['_user']->value->lastName;?>
  <?php echo $_smarty_tpl->tpl_vars['_user']->value->firstName;?>
 </a>
             </td>
