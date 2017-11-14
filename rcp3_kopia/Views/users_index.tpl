@@ -42,17 +42,22 @@ $('.cell-name').dblclick( function(event) {
     evtarget = $(event.target.lastElementChild).html();
     tableName = evtarget.split(" ", 2);
     console.log(tableName);
+    login = ($(event.target.lastElementChild.getAttribute("title")).selector);
     newLastName = prompt("Podaj nowe nazwisko:", tableName[0]);
     newName = prompt("Podaj nowe imię:", tableName[1]);
-    if ( confirm("Czy chcesz zmienić login?")){
-       newLogin = prompt("Podaj nowy login:"); 
-   }else{
-    return;
-        };
-    if( newName == "" || newLastName == "" || newLogin == ""|| newName == null || newLastName == null || newLogin == null  ){
-      
-        return;
-    }else{
+
+    newLogin = prompt("Podaj nowy login:", login ); 
+   
+        if( newName == "" || newName == null){
+                alert ("Błąd, nie wpisano imienia");
+                return;
+            } else if ( newLastName == "" || newLastName == null){
+                alert ("Błąd, nie wpisano nazwiska");
+                return;
+            } else if( newLogin == "" || newLogin == null){
+                alert ("Błąd, nie wpisano loginu");
+                return;
+            }else{
     var userId = event.target.id;
     console.log(newName);
     $.post('{$SITE_URL}Users/updateName/' + userId + '/',{ "new_name" : newName, "new_lastname" : newLastName, "new_login":newLogin })

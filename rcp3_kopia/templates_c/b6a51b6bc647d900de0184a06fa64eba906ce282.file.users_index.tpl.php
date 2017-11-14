@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-14 20:32:35
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-14 21:37:21
          compiled from "Views\users_index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:276475a020c5ae32bc1-17471694%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b6a51b6bc647d900de0184a06fa64eba906ce282' => 
     array (
       0 => 'Views\\users_index.tpl',
-      1 => 1510687952,
+      1 => 1510691838,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
@@ -216,17 +216,22 @@ $('.cell-name').dblclick( function(event) {
     evtarget = $(event.target.lastElementChild).html();
     tableName = evtarget.split(" ", 2);
     console.log(tableName);
+    login = ($(event.target.lastElementChild.getAttribute("title")).selector);
     newLastName = prompt("Podaj nowe nazwisko:", tableName[0]);
     newName = prompt("Podaj nowe imię:", tableName[1]);
-    if ( confirm("Czy chcesz zmienić login?")){
-       newLogin = prompt("Podaj nowy login:"); 
-   }else{
-    return;
-        };
-    if( newName == "" || newLastName == "" || newLogin == ""|| newName == null || newLastName == null || newLogin == null  ){
-      
-        return;
-    }else{
+
+    newLogin = prompt("Podaj nowy login:", login ); 
+   
+        if( newName == "" || newName == null){
+                alert ("Błąd, nie wpisano imienia");
+                return;
+            } else if ( newLastName == "" || newLastName == null){
+                alert ("Błąd, nie wpisano nazwiska");
+                return;
+            } else if( newLogin == "" || newLogin == null){
+                alert ("Błąd, nie wpisano loginu");
+                return;
+            }else{
     var userId = event.target.id;
     console.log(newName);
     $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
