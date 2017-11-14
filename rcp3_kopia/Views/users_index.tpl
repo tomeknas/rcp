@@ -44,13 +44,18 @@ $('.cell-name').dblclick( function(event) {
     console.log(tableName);
     newLastName = prompt("Podaj nowe nazwisko:", tableName[0]);
     newName = prompt("Podaj nowe imię:", tableName[1]);
-    if( newName == "" || newLastName == "" || newName == null || newLastName == null ){
+    if ( confirm("Czy chcesz zmienić login?")){
+       newLogin = prompt("Podaj nowy login:"); 
+   }else{
+    return;
+        };
+    if( newName == "" || newLastName == "" || newLogin == ""|| newName == null || newLastName == null || newLogin == null  ){
       
         return;
     }else{
     var userId = event.target.id;
     console.log(newName);
-    $.post('{$SITE_URL}Users/updateName/' + userId + '/',{ "new_name" : newName, "new_lastname" : newLastName })
+    $.post('{$SITE_URL}Users/updateName/' + userId + '/',{ "new_name" : newName, "new_lastname" : newLastName, "new_login":newLogin })
         .fail(function(v1, v2, text) {
             alert(text);
         })

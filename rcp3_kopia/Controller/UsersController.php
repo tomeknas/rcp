@@ -108,6 +108,7 @@ class UsersController extends ControllerBase
         $user->loadById($this->args[0]);
         $user->firstName = $_POST['new_name'];
         $user->lastName = $_POST['new_lastname'];
+        $user->username = $_POST['new_login'];
         $user->update();
     }
 

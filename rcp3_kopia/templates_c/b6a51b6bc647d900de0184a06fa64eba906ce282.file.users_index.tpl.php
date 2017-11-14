@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-09 23:09:18
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-14 20:32:35
          compiled from "Views\users_index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:276475a020c5ae32bc1-17471694%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b6a51b6bc647d900de0184a06fa64eba906ce282' => 
     array (
       0 => 'Views\\users_index.tpl',
-      1 => 1510265350,
+      1 => 1510687952,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
@@ -218,14 +218,19 @@ $('.cell-name').dblclick( function(event) {
     console.log(tableName);
     newLastName = prompt("Podaj nowe nazwisko:", tableName[0]);
     newName = prompt("Podaj nowe imię:", tableName[1]);
-    if( newName == "" || newLastName == "" || newName == null || newLastName == null ){
+    if ( confirm("Czy chcesz zmienić login?")){
+       newLogin = prompt("Podaj nowy login:"); 
+   }else{
+    return;
+        };
+    if( newName == "" || newLastName == "" || newLogin == ""|| newName == null || newLastName == null || newLogin == null  ){
       
         return;
     }else{
     var userId = event.target.id;
     console.log(newName);
     $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Users/updateName/' + userId + '/',{ "new_name" : newName, "new_lastname" : newLastName })
+Users/updateName/' + userId + '/',{ "new_name" : newName, "new_lastname" : newLastName, "new_login":newLogin })
         .fail(function(v1, v2, text) {
             alert(text);
         })
