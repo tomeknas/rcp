@@ -156,3 +156,7 @@ div#half {
     padding: 20px;
     background-color: white;
 }
+
+.archive{
+  display:none;
+}

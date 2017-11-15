@@ -25,10 +25,12 @@ class UsersController extends ControllerBase
     {
         $user = self::$auth->getUser();
         
-        $userList = $user->getWhere('TRUE ORDER BY nazwisko ASC');
-        
+        $userList = $user->getWhere('archives="0" ORDER BY nazwisko ASC');
+        $userArchives = $user->getWhere('archives="1" ORDER BY nazwisko ASC');
+
         self::$view->assign('user', $user);
         self::$view->assign('userList', $userList);
+        self::$view->assign('userArchives', $userArchives);
         self::$view->display('Views/users_index.tpl');
     }
     

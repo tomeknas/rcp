@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-14 21:37:21
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-15 21:22:31
          compiled from "Views\users_index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:276475a020c5ae32bc1-17471694%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b6a51b6bc647d900de0184a06fa64eba906ce282' => 
     array (
       0 => 'Views\\users_index.tpl',
-      1 => 1510691838,
+      1 => 1510777348,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
@@ -133,7 +133,7 @@ Users/addUser/'>Dodaj użytkownika</a>
             
 
     
-    <h2 align='center'>Użytkownicy</h2>
+    <h3 align='center'>Pracownicy</h3>
 <table class="gridtable centre">
     <thead>
         <tr>
@@ -173,6 +173,53 @@ UserMonth/index/<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
 <?php } ?>
     </tbody>
 </table>
+
+
+    <h4 align='center'>Archiwum <button align="right" type="button" class="btn btn-default btn-sm toggle-archives">
+          <span class="glyphicon glyphicon-resize-vertical"></span>
+    </button> </h4>
+
+    <div class="archive">
+    <table class="gridtable centre">
+        <thead>
+            <tr>
+                <th>Imie i nazwisko</th>
+                <th>Godzin dziennie (h) *</th>
+            </tr>
+        </thead>
+    <tbody>
+<?php  $_smarty_tpl->tpl_vars['_user'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['_user']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['userArchives']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['_user']->key => $_smarty_tpl->tpl_vars['_user']->value) {
+$_smarty_tpl->tpl_vars['_user']->_loop = true;
+?>
+        <tr>
+            <td class="cell-name" id="<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
+">
+                <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+UserMonth/index/<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
+/' data-toggle="tooltip" data-placement="top" title="<?php echo $_smarty_tpl->tpl_vars['_user']->value->username;?>
+"><?php echo $_smarty_tpl->tpl_vars['_user']->value->lastName;?>
+ <?php echo $_smarty_tpl->tpl_vars['_user']->value->firstName;?>
+</a>
+            </td>
+            <td class="cell-hours-daily" id="<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
+"><?php echo $_smarty_tpl->tpl_vars['_user']->value->hoursDaily;?>
+</td>
+            <td>
+                <a href="#" id="<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
+" class="link-user-login">Zaloguj</a>
+            </td>
+            <td>
+                <a id='<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
+' class='link_delete_user' href='#'>Usuń</a>
+            </td>
+            
+        </tr>
+<?php } ?>
+    </tbody>
+</table>
+</div>
     
 
             <br><br><br><br><br><br>
@@ -207,19 +254,22 @@ Login/logout/")
     
 <?php echo '<script'; ?>
 >
+$('.toggle-archives').click( function() {
+    $('.archive').toggle();
+});
+    
     
 
 $('.cell-name').dblclick( function(event) {
     event.preventDefault();
-    // target = '.' + $(event.target).attr('class') + " " + "a"; 
     
     evtarget = $(event.target.lastElementChild).html();
     tableName = evtarget.split(" ", 2);
     console.log(tableName);
-    login = ($(event.target.lastElementChild.getAttribute("title")).selector);
+    
     newLastName = prompt("Podaj nowe nazwisko:", tableName[0]);
     newName = prompt("Podaj nowe imię:", tableName[1]);
-
+    login = ($(event.target.lastElementChild.getAttribute("title")).selector);
     newLogin = prompt("Podaj nowy login:", login ); 
    
         if( newName == "" || newName == null){
@@ -241,7 +291,8 @@ Users/updateName/' + userId + '/',{ "new_name" : newName, "new_lastname" : newLa
         })
         .done(function(text){
             document.location.reload();
-        });};
+        });
+    };
 });
 
 $(".link-user-login").click( function(event) {
