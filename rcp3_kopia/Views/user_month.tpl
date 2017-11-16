@@ -95,8 +95,8 @@
     <table id="hidden_table" hidden="hidden">
     <tr id='form_row'>
     <form id='add_form'>
-        <td>{html_select_time display_seconds=false minute_interval=30 field_separator=' : ' prefix='begin_' hour_extra='id="beginHourEdit"' minute_extra='id="beginMinuteEdit"'}</td>
-        <td>{html_select_time display_seconds=false minute_interval=30 field_separator=' : ' prefix='end_' hour_extra='id="endHourEdit"' minute_extra='id="endMinuteEdit"'}</td>
+        <td>{html_select_time display_seconds=false minute_interval=15 field_separator=' : ' prefix='begin_' hour_extra='id="beginHourEdit"' minute_extra='id="beginMinuteEdit"'}</td>
+        <td>{html_select_time display_seconds=false minute_interval=15 field_separator=' : ' prefix='end_' hour_extra='id="endHourEdit"' minute_extra='id="endMinuteEdit"'}</td>
         <td></td>
         <td>
             <select id='group_select' style='width: 280px'>

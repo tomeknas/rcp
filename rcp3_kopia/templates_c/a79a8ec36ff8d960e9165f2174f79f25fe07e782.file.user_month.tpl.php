@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-16 20:52:34
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-16 21:16:25
          compiled from "Views\user_month.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:267875a020c2d6edbd3-81111419%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a79a8ec36ff8d960e9165f2174f79f25fe07e782' => 
     array (
       0 => 'Views\\user_month.tpl',
-      1 => 1509805530,
+      1 => 1510863382,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
@@ -293,9 +293,9 @@ h</td>
     <table id="hidden_table" hidden="hidden">
     <tr id='form_row'>
     <form id='add_form'>
-        <td><?php echo smarty_function_html_select_time(array('display_seconds'=>false,'minute_interval'=>30,'field_separator'=>' : ','prefix'=>'begin_','hour_extra'=>'id="beginHourEdit"','minute_extra'=>'id="beginMinuteEdit"'),$_smarty_tpl);?>
+        <td><?php echo smarty_function_html_select_time(array('display_seconds'=>false,'minute_interval'=>15,'field_separator'=>' : ','prefix'=>'begin_','hour_extra'=>'id="beginHourEdit"','minute_extra'=>'id="beginMinuteEdit"'),$_smarty_tpl);?>
 </td>
-        <td><?php echo smarty_function_html_select_time(array('display_seconds'=>false,'minute_interval'=>30,'field_separator'=>' : ','prefix'=>'end_','hour_extra'=>'id="endHourEdit"','minute_extra'=>'id="endMinuteEdit"'),$_smarty_tpl);?>
+        <td><?php echo smarty_function_html_select_time(array('display_seconds'=>false,'minute_interval'=>15,'field_separator'=>' : ','prefix'=>'end_','hour_extra'=>'id="endHourEdit"','minute_extra'=>'id="endMinuteEdit"'),$_smarty_tpl);?>
 </td>
         <td></td>
         <td>
