@@ -24,6 +24,9 @@
             <td>
                 <a id='{$_user->id}' class='link_delete_user' href='#'>Usuń</a>
             </td>
+            <td>
+                <a id='{$_user->id}' title ="dodaj do archiwum {$_user->username}" class='add_to_archives' href='#'> <span class="glyphicon glyphicon-book"></span></a>
+            </td>
             
         </tr>
 {/foreach}
@@ -56,6 +59,9 @@
             <td>
                 <a id='{$_user->id}' class='link_delete_user' href='#'>Usuń</a>
             </td>
+            <td>
+                <a id='{$_user->id}' title ="dodaj do aktualnych pracowników {$_user->username}" class='add_to_active' href='#'><span class="glyphicon glyphicon-user"></span></a>
+            </td>
             
         </tr>
 {/foreach}
@@ -65,7 +71,51 @@
     
 {/block}
 {block name='body_end'}
+
 <script>
+
+$('.add_to_active').click( function(event){
+    event.preventDefault();
+
+   evtarget = $(event.target.parentElement.parentElement.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.childNodes).text();
+
+    evtarget = evtarget.trim();
+    var userId = event.target.parentElement.id;
+    if (!confirm('Czy na pewno przenieść ' + evtarget +' do aktywnych pracowników ?')) {
+            return;
+        } else {
+            $.post('{$SITE_URL}Users/addToArchive/' + userId + '/',{ 'status' : 0 })
+            .fail(function(v1, v2, text) {
+            alert(text);
+                })
+            .done(function(text){
+            document.location.reload();
+                });
+            };
+
+});
+
+$('.add_to_archives').click( function(event){
+    event.preventDefault();
+    evtarget = $(event.target.parentElement.parentElement.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.childNodes).text();
+
+    evtarget = evtarget.trim();
+    console.log(evtarget);
+    var userId = event.target.parentElement.id;
+    if (!confirm('Czy na pewno przenieść ' + evtarget +' do archiwum pracowników ?')) {
+            return;
+        } else {
+            $.post('{$SITE_URL}Users/addToArchive/' + userId + '/',{ 'status' : 1 })
+            .fail(function(v1, v2, text) {
+            alert(text);
+                })
+            .done(function(text){
+            document.location.reload();
+                });
+            };
+});
+
+
 $('.toggle-archives').click( function() {
     $('.archive').toggle();
 });

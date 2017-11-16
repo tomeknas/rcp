@@ -22,6 +22,7 @@ class User extends ActiveRecord
     protected $_leaves = 0;
     protected $_leaves2014 = 0;
     protected $_hoursDaily = 8;
+    protected $_archive;
     
     protected static $_tableFields = array(
         '_firstName' => 'imie',
@@ -32,6 +33,7 @@ class User extends ActiveRecord
         '_leaves' => 'leaves',
         '_leaves2014' => 'leaves2014',
         '_hoursDaily' => 'hours_daily',
+        '_archive' => 'archives',
        );
     
     public function getFullName() {

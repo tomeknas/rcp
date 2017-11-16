@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-15 21:22:31
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-16 20:55:34
          compiled from "Views\users_index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:276475a020c5ae32bc1-17471694%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b6a51b6bc647d900de0184a06fa64eba906ce282' => 
     array (
       0 => 'Views\\users_index.tpl',
-      1 => 1510777348,
+      1 => 1510862128,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
@@ -168,6 +168,11 @@ UserMonth/index/<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
                 <a id='<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
 ' class='link_delete_user' href='#'>Usuń</a>
             </td>
+            <td>
+                <a id='<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
+' title ="dodaj do archiwum <?php echo $_smarty_tpl->tpl_vars['_user']->value->username;?>
+" class='add_to_archives' href='#'> <span class="glyphicon glyphicon-book"></span></a>
+            </td>
             
         </tr>
 <?php } ?>
@@ -214,6 +219,11 @@ UserMonth/index/<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
                 <a id='<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
 ' class='link_delete_user' href='#'>Usuń</a>
             </td>
+            <td>
+                <a id='<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
+' title ="dodaj do aktualnych pracowników <?php echo $_smarty_tpl->tpl_vars['_user']->value->username;?>
+" class='add_to_active' href='#'><span class="glyphicon glyphicon-user"></span></a>
+            </td>
             
         </tr>
 <?php } ?>
@@ -252,8 +262,54 @@ Login/logout/")
         <?php echo '</script'; ?>
 >
     
+
 <?php echo '<script'; ?>
 >
+
+$('.add_to_active').click( function(event){
+    event.preventDefault();
+
+   evtarget = $(event.target.parentElement.parentElement.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.childNodes).text();
+
+    evtarget = evtarget.trim();
+    var userId = event.target.parentElement.id;
+    if (!confirm('Czy na pewno przenieść ' + evtarget +' do aktywnych pracowników ?')) {
+            return;
+        } else {
+            $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Users/addToArchive/' + userId + '/',{ 'status' : 0 })
+            .fail(function(v1, v2, text) {
+            alert(text);
+                })
+            .done(function(text){
+            document.location.reload();
+                });
+            };
+
+});
+
+$('.add_to_archives').click( function(event){
+    event.preventDefault();
+    evtarget = $(event.target.parentElement.parentElement.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.childNodes).text();
+
+    evtarget = evtarget.trim();
+    console.log(evtarget);
+    var userId = event.target.parentElement.id;
+    if (!confirm('Czy na pewno przenieść ' + evtarget +' do archiwum pracowników ?')) {
+            return;
+        } else {
+            $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Users/addToArchive/' + userId + '/',{ 'status' : 1 })
+            .fail(function(v1, v2, text) {
+            alert(text);
+                })
+            .done(function(text){
+            document.location.reload();
+                });
+            };
+});
+
+
 $('.toggle-archives').click( function() {
     $('.archive').toggle();
 });

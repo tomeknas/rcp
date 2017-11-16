@@ -81,6 +81,14 @@ class UsersController extends ControllerBase
         self::$view->display('Views/leaves.tpl');
     }
     
+    public function addToArchive()
+    {
+        $user = new User();
+        $user->loadById($this->args[0]);
+        $user->archive = $_POST['status'];
+        $user->update();
+    }
+
     public function updateLeaves2014()
     {
         $user = new User();
