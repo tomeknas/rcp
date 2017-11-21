@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-16 20:55:34
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-21 21:42:33
          compiled from "Views\users_index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:276475a020c5ae32bc1-17471694%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b6a51b6bc647d900de0184a06fa64eba906ce282' => 
     array (
       0 => 'Views\\users_index.tpl',
-      1 => 1510862128,
+      1 => 1511296943,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1510264380,
+      1 => 1511290279,
       2 => 'file',
     ),
   ),
@@ -166,13 +166,19 @@ UserMonth/index/<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
             </td>
             <td>
                 <a id='<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-' class='link_delete_user' href='#'>Usuń</a>
+' class='edit_user' href='#'>Edytuj</a>
             </td>
+            
             <td>
                 <a id='<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
 ' title ="dodaj do archiwum <?php echo $_smarty_tpl->tpl_vars['_user']->value->username;?>
-" class='add_to_archives' href='#'> <span class="glyphicon glyphicon-book"></span></a>
+" class='add_to_archives' href='#'><span>Archiwum</span></a>
             </td>
+            <td>
+                <a id='<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
+' class='link_delete_user' href='#'>Usuń</a>
+            </td>
+
             
         </tr>
 <?php } ?>
@@ -217,13 +223,19 @@ UserMonth/index/<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
             </td>
             <td>
                 <a id='<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
-' class='link_delete_user' href='#'>Usuń</a>
+' class='edit_user' href='#'>Edytuj</a>
             </td>
             <td>
                 <a id='<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
 ' title ="dodaj do aktualnych pracowników <?php echo $_smarty_tpl->tpl_vars['_user']->value->username;?>
-" class='add_to_active' href='#'><span class="glyphicon glyphicon-user"></span></a>
+" class='add_to_active' href='#'><span >Przywróć</span></a>
             </td>
+            <td>
+                <a id='<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
+' class='link_delete_user' href='#'>Usuń</a>
+            </td>
+            
+
             
         </tr>
 <?php } ?>
@@ -293,7 +305,6 @@ $('.add_to_archives').click( function(event){
     evtarget = $(event.target.parentElement.parentElement.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.childNodes).text();
 
     evtarget = evtarget.trim();
-    console.log(evtarget);
     var userId = event.target.parentElement.id;
     if (!confirm('Czy na pewno przenieść ' + evtarget +' do archiwum pracowników ?')) {
             return;
@@ -316,16 +327,17 @@ $('.toggle-archives').click( function() {
     
     
 
-$('.cell-name').dblclick( function(event) {
+$('.edit_user').click( function(event) {
     event.preventDefault();
     
-    evtarget = $(event.target.lastElementChild).html();
+    evtarget = $(event.target.parentElement.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.childNodes).text();
+
+    evtarget = evtarget.trim();
     tableName = evtarget.split(" ", 2);
-    console.log(tableName);
+    login = $(event.target.parentElement.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.lastElementChild.getAttribute("title")).selector;
     
     newLastName = prompt("Podaj nowe nazwisko:", tableName[0]);
     newName = prompt("Podaj nowe imię:", tableName[1]);
-    login = ($(event.target.lastElementChild.getAttribute("title")).selector);
     newLogin = prompt("Podaj nowy login:", login ); 
    
         if( newName == "" || newName == null){
@@ -395,8 +407,11 @@ Users/updateHoursDaily/' + userId + '/',
 Users/delete/' + event.target.id + '/')
             .fail(function(v1, v2, text) {
                 alert($.parseJSON(text));
+                console.log("poszło");
             })
             .done(function(text){
+                console.log(event.target.id);
+                console.log(text);
                 document.location.reload();
             });
     });

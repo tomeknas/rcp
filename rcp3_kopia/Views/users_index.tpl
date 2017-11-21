@@ -22,11 +22,16 @@
                 <a href="#" id="{$_user->id}" class="link-user-login">Zaloguj</a>
             </td>
             <td>
-                <a id='{$_user->id}' class='link_delete_user' href='#'>Usuń</a>
+                <a id='{$_user->id}' class='edit_user' href='#'>Edytuj</a>
+            </td>
+            
+            <td>
+                <a id='{$_user->id}' title ="dodaj do archiwum {$_user->username}" class='add_to_archives' href='#'><span>Archiwum</span></a>
             </td>
             <td>
-                <a id='{$_user->id}' title ="dodaj do archiwum {$_user->username}" class='add_to_archives' href='#'> <span class="glyphicon glyphicon-book"></span></a>
+                <a id='{$_user->id}' class='link_delete_user' href='#'>Usuń</a>
             </td>
+
             
         </tr>
 {/foreach}
@@ -57,11 +62,16 @@
                 <a href="#" id="{$_user->id}" class="link-user-login">Zaloguj</a>
             </td>
             <td>
-                <a id='{$_user->id}' class='link_delete_user' href='#'>Usuń</a>
+                <a id='{$_user->id}' class='edit_user' href='#'>Edytuj</a>
             </td>
             <td>
-                <a id='{$_user->id}' title ="dodaj do aktualnych pracowników {$_user->username}" class='add_to_active' href='#'><span class="glyphicon glyphicon-user"></span></a>
+                <a id='{$_user->id}' title ="dodaj do aktualnych pracowników {$_user->username}" class='add_to_active' href='#'><span >Przywróć</span></a>
             </td>
+            <td>
+                <a id='{$_user->id}' class='link_delete_user' href='#'>Usuń</a>
+            </td>
+            
+
             
         </tr>
 {/foreach}
@@ -100,7 +110,6 @@ $('.add_to_archives').click( function(event){
     evtarget = $(event.target.parentElement.parentElement.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.childNodes).text();
 
     evtarget = evtarget.trim();
-    console.log(evtarget);
     var userId = event.target.parentElement.id;
     if (!confirm('Czy na pewno przenieść ' + evtarget +' do archiwum pracowników ?')) {
             return;
@@ -122,16 +131,17 @@ $('.toggle-archives').click( function() {
     
     
 
-$('.cell-name').dblclick( function(event) {
+$('.edit_user').click( function(event) {
     event.preventDefault();
     
-    evtarget = $(event.target.lastElementChild).html();
+    evtarget = $(event.target.parentElement.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.childNodes).text();
+
+    evtarget = evtarget.trim();
     tableName = evtarget.split(" ", 2);
-    console.log(tableName);
+    login = $(event.target.parentElement.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.lastElementChild.getAttribute("title")).selector;
     
     newLastName = prompt("Podaj nowe nazwisko:", tableName[0]);
     newName = prompt("Podaj nowe imię:", tableName[1]);
-    login = ($(event.target.lastElementChild.getAttribute("title")).selector);
     newLogin = prompt("Podaj nowy login:", login ); 
    
         if( newName == "" || newName == null){
@@ -196,8 +206,11 @@ $('.cell-hours-daily').dblclick( function(event) {
         $.get('{$SITE_URL}Users/delete/' + event.target.id + '/')
             .fail(function(v1, v2, text) {
                 alert($.parseJSON(text));
+                console.log("poszło");
             })
             .done(function(text){
+                console.log(event.target.id);
+                console.log(text);
                 document.location.reload();
             });
     });
