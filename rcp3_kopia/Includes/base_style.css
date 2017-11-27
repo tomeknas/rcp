@@ -135,6 +135,10 @@ tbody.holiday2 td {
     background-color: green;
 }
 
+.badge.blue {
+    background-color: blue;
+}
+
 div#quarter {
     width: 50%;
     /*height: 50%;*/
@@ -159,4 +163,32 @@ div#half {
 
 .archive{
   display:none;
+}
+
+.progress{
+border: 2px solid grey;
+width: 50px;
+height: 25px;
+text-align: center;
+display: inline-block;
+position: absolute;
+right: 0px;
+opacity:0.3;
+
+
+}
+
+.progress_content{
+  border-radius: 5px;
+border: 2px solid grey;
+display: inline-block;
+position: absolute;
+right:50px;
+z-index:1;
+width: 250px;
+height: 300px;
+background-color: #FDF5E6;
+display: none;
+overflow: scroll;
+
 }

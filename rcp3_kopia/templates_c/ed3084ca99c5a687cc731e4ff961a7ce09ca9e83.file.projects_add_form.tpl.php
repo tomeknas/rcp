@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-08 08:50:13
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-22 23:35:59
          compiled from "Views\projects_add_form.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:135445a02b7353847c1-33618751%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1509805529,
+      1 => 1511304998,
       2 => 'file',
     ),
   ),
@@ -21,6 +21,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_5a02b737026a18_70917725',
   'variables' => 
   array (
     'SITE_URL' => 0,
@@ -30,18 +32,21 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'projectBadge2' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_5a02b737026a18_70917725',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a02b737026a18_70917725')) {function content_5a02b737026a18_70917725($_smarty_tpl) {?><!DOCTYPE html>
 <html>
     <head>
         
         <title>KPGeo - Rejestracja Czasu Pracy</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <?php echo '<script'; ?>
  src='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/jquery.js'><?php echo '</script'; ?>
 >
+        <?php echo '<script'; ?>
+ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
+>
+        
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
         <link rel='stylesheet' type='text/css' href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/base_style.css'>
@@ -125,6 +130,8 @@ Users/addUser/'>Dodaj użytkownika</a>
             
         </div>
         <div id='content_div' style="height: 100%;">
+            <button type="button" class="progress">Postęp</button>
+            <div class="progress_content">Tresc</div>
             
     <h2 align='center'>Nowy projekt</h2>
     <br><br>
@@ -246,6 +253,10 @@ Login/logout/")
                         document.location.replace("<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 ");
                     });
+            });
+
+            $(".progress").click(function(){
+                $(".progress_content").slideToggle();
             });
         <?php echo '</script'; ?>
 >

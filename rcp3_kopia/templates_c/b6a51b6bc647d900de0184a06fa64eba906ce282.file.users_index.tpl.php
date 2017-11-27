@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-21 21:42:33
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-21 23:22:29
          compiled from "Views\users_index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:276475a020c5ae32bc1-17471694%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b6a51b6bc647d900de0184a06fa64eba906ce282' => 
     array (
       0 => 'Views\\users_index.tpl',
-      1 => 1511296943,
+      1 => 1511301780,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1511290279,
+      1 => 1511302946,
       2 => 'file',
     ),
   ),
@@ -130,6 +130,8 @@ Users/addUser/'>Dodaj użytkownika</a>
             
         </div>
         <div id='content_div' style="height: 100%;">
+            <div class="progress">postep</div>
+            <div id="progress_content">Tresc</div>
             
 
     

@@ -28,13 +28,13 @@
                     <li>
                         <a href='{$SITE_URL}Projects/'>Projekty</a>
 {if $user->accessLevel > 1}
-                        <span class='badge'>{$projectBadge}</span>
+                        <span class='badge' title='{$projectsToSend}'>{$projectBadge}</span>
 {/if}
 {if $projectManagerBadges[$user->id]}
-    <span class='badge green'>{$projectManagerBadges[$user->id]}</span>
+                        <span class='badge blue' title="{$projectsForManager[$user->id]}">{$projectManagerBadges[$user->id]}</span>
 {/if}
 {if $projectBadge2 && $user->accessLevel > 1}
-    <span class='badge green'>{$projectBadge2}</span>
+                        <span class='badge green' title="{$projectsToAccept}">{$projectBadge2}</span>
 {/if}
                     </li>
                     {/if}
@@ -72,6 +72,8 @@
             {/block}
         </div>
         <div id='content_div' style="height: 100%;">
+            <button type="button" class="progress">Postęp</button>
+            <div class="progress_content">Tresc</div>
             {block name=content}{/block}
             <br><br><br><br><br><br>
             
@@ -96,6 +98,10 @@
                         alert('Wylogowano.');
                         document.location.replace("{$SITE_URL}");
                     });
+            });
+
+            $(".progress").click(function(){
+                $(".progress_content").slideToggle();
             });
         </script>
     {block name='body_end'}{/block}

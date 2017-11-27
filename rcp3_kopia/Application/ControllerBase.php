@@ -83,16 +83,48 @@ abstract class ControllerBase
         $adminProjectBadge2 = ActiveRecord::countQuery('projects', 'status = 1');
         $projectManagerBadges = array();
         foreach (ActiveRecord::countQuery('projects', 'status = 0 GROUP BY kierownik_id', true, 'kierownik_id,') as $row) {
-            $projectManagerBadges[$row['kierownik_id']] = $row['COUNT(*)'];
+            $projectManagerBadges[$row['kierownik_id']] = $row['COUNT(*)'];   
         }
-//        $projectObject = new Project;
-//        $projectsToSend = $projectObject->getWhere('active = TRUE AND sent > 0');
-//        $projectsToAccept = $projectObject->getWhere('status = 1');
-//        $projectsForManagers = array();
-//        
+       
+        $projectObject = new Project;
+        
+
+       foreach ($projectObject->getWhere('active = TRUE AND sent > 0') as $row) {
+            $toSend[] = $row['name'];
+       }
+       $projectsToSend = implode(", ", $toSend);
+    
+       
+        $p = $projectObject->getWhere("status = 0");
+        foreach ($p as $row) {       
+            if(isset($projectsForManager[$row['projectManagerId']])) {
+                $temp = ',  '.$row['name'];
+                $projectsForManager[$row['projectManagerId']] .= $temp;
+                   }else{
+                     $projectsForManager[$row['projectManagerId']] = $row['name']; 
+                }
+             }
+               
+    
+
+        foreach (($projectObject->getWhere('status = 1')) as $row) {
+           $toAccept[] = $row['name'];
+       }
+    
+       $projectsToAccept = implode(", ", $toAccept);
+          
+        
+        
+
+
+        self::$view->assign('projectsToSend', $projectsToSend ? $projectsToSend : '');
+        self::$view->assign('projectsForManager', $projectsForManager ? $projectsForManager : ''); 
+        self::$view->assign('projectsToAccept', $projectsToAccept ? $projectsToAccept : ''); 
+       
         self::$view->assign('projectBadge', $adminProjectBadge ? $adminProjectBadge : '');
-        self::$view->assign('projectBadge2', $adminProjectBadge2 ? $adminProjectBadge2 : '');
         self::$view->assign('projectManagerBadges', $projectManagerBadges);
+        self::$view->assign('projectBadge2', $adminProjectBadge2 ? $adminProjectBadge2 : '');
+        
     }
     
     abstract public function index();

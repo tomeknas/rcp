@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-09 12:01:06
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-23 18:07:50
          compiled from "Views\work_card.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:219115a043572b7ccb9-08469895%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1509805529,
+      1 => 1511304998,
       2 => 'file',
     ),
   ),
@@ -21,6 +21,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_5a04357317a8b6_91153275',
   'variables' => 
   array (
     'SITE_URL' => 0,
@@ -30,8 +32,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'projectBadge2' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_5a04357317a8b6_91153275',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a04357317a8b6_91153275')) {function content_5a04357317a8b6_91153275($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'C:\\xampp\\htdocs\\rcp\\rcp3_kopia\\Application\\Smarty\\plugins\\modifier.date_format.php';
 if (!is_callable('smarty_function_html_select_date')) include 'C:\\xampp\\htdocs\\rcp\\rcp3_kopia\\Application\\Smarty\\plugins\\function.html_select_date.php';
@@ -40,10 +40,15 @@ if (!is_callable('smarty_function_html_select_date')) include 'C:\\xampp\\htdocs
     <head>
         
         <title>KPGeo - Rejestracja Czasu Pracy</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <?php echo '<script'; ?>
  src='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/jquery.js'><?php echo '</script'; ?>
 >
+        <?php echo '<script'; ?>
+ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
+>
+        
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
         <link rel='stylesheet' type='text/css' href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/base_style.css'>
@@ -153,6 +158,8 @@ Users/addUser/'>Dodaj użytkownika</a>
             
         </div>
         <div id='content_div' style="height: 100%;">
+            <button type="button" class="progress">Postęp</button>
+            <div class="progress_content">Tresc</div>
             
         <h2 align='center'>Karta pracy</h2>
         <h2 align='center'>
@@ -306,6 +313,10 @@ Login/logout/")
                         document.location.replace("<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 ");
                     });
+            });
+
+            $(".progress").click(function(){
+                $(".progress_content").slideToggle();
             });
         <?php echo '</script'; ?>
 >
