@@ -28,13 +28,13 @@
                     <li>
                         <a href='{$SITE_URL}Projects/'>Projekty</a>
 {if $user->accessLevel > 1}
-                        <span class='badge' title='{$projectsToSend}'>{$projectBadge}</span>
+                        <span class='badge' title='Do wysłania: {$projectsToSend}'>{$projectBadge}</span>
 {/if}
 {if $projectManagerBadges[$user->id]}
                         <span class='badge blue' title="{$projectsForManager[$user->id]}">{$projectManagerBadges[$user->id]}</span>
 {/if}
 {if $projectBadge2 && $user->accessLevel > 1}
-                        <span class='badge green' title="{$projectsToAccept}">{$projectBadge2}</span>
+                        <span class='badge green' title="Do zaakceptowania: {$projectsToAccept}">{$projectBadge2}</span>
 {/if}
                     </li>
                     {/if}
