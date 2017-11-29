@@ -122,8 +122,8 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
 
 		$saveDebugLog = PHPExcel_Calculation::getInstance($this->_phpExcel)->getDebugLog()->getWriteDebugLog();
 		PHPExcel_Calculation::getInstance($this->_phpExcel)->getDebugLog()->setWriteDebugLog(FALSE);
-		$saveDateReturnType = PHPExcel_Calculation_Functions::getReturnDateType();
-		PHPExcel_Calculation_Functions::setReturnDateType(PHPExcel_Calculation_Functions::RETURNDATE_EXCEL);
+		// $saveDateReturnType = PHPExcel_Calculation_Functions::getReturnDateType();
+		// PHPExcel_Calculation_Functions::setReturnDateType(PHPExcel_Calculation_Functions::RETURNDATE_EXCEL);
 
 		// initialize colors array
 		$this->_colors          = array();
@@ -225,7 +225,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
 		// save the OLE file
 		$res = $root->save($pFilename);
 
-		PHPExcel_Calculation_Functions::setReturnDateType($saveDateReturnType);
+		// PHPExcel_Calculation_Functions::setReturnDateType($saveDateReturnType);
 		PHPExcel_Calculation::getInstance($this->_phpExcel)->getDebugLog()->setWriteDebugLog($saveDebugLog);
 	}
 
