@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ALL ^ E_NOTICE);
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -180,11 +180,13 @@ class WorkCard2 extends ActiveRecord {
                 if (!$i) {
                     $this->leftHorizontalTotals[$j] = 0;
                 }
+                
                 $val = $this->data[$this->users[$i]['id']][$this->projects[$j]['id']];
+
                 $this->verticalTotals[$i] += $val;
                 $this->leftHorizontalTotals[$j] += $val;
                 $this->leftTableContent[$i][$j] = $val;
-                    
+                  
             }
             
             $this->rightTableContent[$i] = array();
@@ -194,6 +196,7 @@ class WorkCard2 extends ActiveRecord {
                     $this->rightHorizontalTotals[$j] = 0;
                 }
                 $val = $this->project3Data[$this->users[$i]['id']][$this->project3Tasks[$j]['id']];
+
                 $this->verticalTotals[$i] += $val;
                 $this->rightHorizontalTotals[$j] += $val;
                 $this->rightTableContent[$i][$j] = $val;
