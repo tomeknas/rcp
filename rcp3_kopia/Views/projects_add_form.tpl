@@ -50,12 +50,26 @@
                 </td>
             </tr>
             <tr>
+                <th>Koordynator projektu</th>
+                <td>
+                    <select name='project_coordinator'>
+{foreach $userList as $user}
+                        <option value='{$user->id}'>{$user->getFullName()}</option>
+{/foreach}
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <th>Budżet (dni robocze)</th>
                 <td><input name='budget' type='number' min='0'></td>
             </tr>
             <tr>
                 <th>Budżet (zł)</th>
                 <td><input name='budgetPLN' type='number' min='0'></td>
+            </tr>
+            <tr>
+                <th>Budżet PM</th>
+                <td><input name='budgetPM' type='number' min='0'></td>
             </tr>
             <tr>
                 <th>Szablon</th>

@@ -24,7 +24,7 @@
                     <li>
                         <a href='{$SITE_URL}UserMonth/'>Kalendarz użytkownika</a>
                     </li>
-                    {if $user->isProjectManager() or $user->accessLevel > 1}
+                    {if $user->isProjectManager() or $user->isCoordinator() or $user->accessLevel > 1}
                     <li>
                         <a href='{$SITE_URL}Projects/'>Projekty</a>
 {if $user->accessLevel > 1}

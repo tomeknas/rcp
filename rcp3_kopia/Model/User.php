@@ -46,6 +46,12 @@ class User extends ActiveRecord
         $rows = $projectObject->getWhere("kierownik_id = {$this->_id} LIMIT 1");
         return \count($rows) > 0;
     }
+    public function isCoordinator()
+    {
+        $projectObject = new Project;
+        $rows = $projectObject->getWhere("koordynator = {$this->_id} LIMIT 1");
+        return \count($rows) > 0;
+    }
     
     public function getPermissions()
     {

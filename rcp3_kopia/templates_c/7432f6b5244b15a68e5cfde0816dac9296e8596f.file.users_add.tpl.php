@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-21 22:44:38
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-29 12:20:06
          compiled from "Views\users_add.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:327635a0435e4cb94b7-27148455%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1511290279,
+      1 => 1511815471,
       2 => 'file',
     ),
   ),
@@ -27,9 +27,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'SITE_URL' => 0,
     'user' => 0,
+    'projectsToSend' => 0,
     'projectBadge' => 0,
     'projectManagerBadges' => 0,
+    'projectsForManager' => 0,
     'projectBadge2' => 0,
+    'projectsToAccept' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -77,15 +80,18 @@ UserMonth/'>Kalendarz użytkownika</a>
                         <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Projects/'>Projekty</a>
 <?php if ($_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
-                        <span class='badge'><?php echo $_smarty_tpl->tpl_vars['projectBadge']->value;?>
+                        <span class='badge' title='Do wysłania: <?php echo $_smarty_tpl->tpl_vars['projectsToSend']->value;?>
+'><?php echo $_smarty_tpl->tpl_vars['projectBadge']->value;?>
 </span>
 <?php }?>
 <?php if ($_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id]) {?>
-    <span class='badge green'><?php echo $_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
+                        <span class='badge blue' title="<?php echo $_smarty_tpl->tpl_vars['projectsForManager']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
+"><?php echo $_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 </span>
 <?php }?>
 <?php if ($_smarty_tpl->tpl_vars['projectBadge2']->value&&$_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
-    <span class='badge green'><?php echo $_smarty_tpl->tpl_vars['projectBadge2']->value;?>
+                        <span class='badge green' title="Do zaakceptowania: <?php echo $_smarty_tpl->tpl_vars['projectsToAccept']->value;?>
+"><?php echo $_smarty_tpl->tpl_vars['projectBadge2']->value;?>
 </span>
 <?php }?>
                     </li>
@@ -132,6 +138,8 @@ Users/addUser/'>Dodaj użytkownika</a>
             
         </div>
         <div id='content_div' style="height: 100%;">
+            <button type="button" class="progress">Postęp</button>
+            <div class="progress_content">Tresc</div>
             
     <h2 align='center'>Nowy użytkownik</h2>
     <br><br>
@@ -193,6 +201,10 @@ Login/logout/")
                         document.location.replace("<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 ");
                     });
+            });
+
+            $(".progress").click(function(){
+                $(".progress_content").slideToggle();
             });
         <?php echo '</script'; ?>
 >

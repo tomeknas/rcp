@@ -21,8 +21,10 @@ class Project extends ActiveRecord
     protected $_begin;
     protected $_end;
     protected $_projectManagerId;
+    protected $_projectCoordinator;
     protected $_budget;
     protected $_budgetPLN;
+    protected $_budgetPM;
     protected $_progress;
     protected $_groupId;
     protected $_sent;
@@ -42,8 +44,10 @@ class Project extends ActiveRecord
         '_begin' => 'data_roz',
         '_end' => 'data_zak',
         '_projectManagerId' => 'kierownik_id',
+        '_projectCoordinator' => 'koordynator',
         '_budget' => 'budget',
         '_budgetPLN' => 'budgetPLN',
+        '_budgetPM' => 'budgetPM',
         '_progress' => 'progress',
         '_groupId' => 'group_id',
         '_sent' => 'sent',
