@@ -32,6 +32,7 @@ class UsersController extends ControllerBase
         self::$view->assign('userList', $userList);
         self::$view->assign('userArchives', $userArchives);
         self::$view->display('Views/users_index.tpl');
+        // self::$view->display('Views/projects_index2.tpl');
     }
     
     public function report()

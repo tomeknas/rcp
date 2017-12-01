@@ -9,11 +9,32 @@
         {
             background-color: #efefef;
         }
+        .quality_control{
+            width: 300px;
+            height: 100px;
+            position: absolute;
+            left:400px;
+            border: 2px solid grey;
+            z-index: 1;
+            background-color: white;
+            display:none;
+        }
     </style>
 {/block}
 
 {block name='content'}
-    
+
+    <div class="quality_control">
+        <form>
+            <label>Wybierz kontrolera jakości:</label>
+            <select id="QC">{foreach $userList as $_user}
+                <option value="{$_user->id}" id="">{$_user->lastName} {$_user->firstName}</option>
+                {/foreach} 
+            </select>
+            <button type="button" class="btn btn-warning btn-sm" id="confirm_QC">Zatwierdź</button>
+        </form>
+    </div>
+   
     <h2 align="center">Projekty</h2>
     
 <table class="gridtable centre">
@@ -202,25 +223,60 @@
             });
         
     });
+
+ 
     
+   // $("#confirm_QC").click(function(event){ 
+   //          $(".quality_control").hide();
+   //          var qcId = $("#QC option:selected").val();
+
+
+   //  $.post('{$SITE_URL}ProjectAction/setQualityControl/' + event.target.id + '/', {literal}{ "quality_control_id" : qcId }{/literal})
+   //          .fail(function(v1, v2, text) {
+   //              alert(text);
+   //          })
+   //          .done(function(text){
+   //              document.location.reload();
+   //          });
+   //      });
+  
+  
     $(".project_send_link").click( function(event) {
         event.preventDefault();
-        
         var today = new Date;
         var todayString = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDay();
         var projectSentDate = prompt("Podaj datę wysyłki (RRRR-MM-DD)", todayString);
-        if (null === projectSentDate) {
-            return;
-        }
-        
+        var eventTargetId = event.target.id;
+
+        $(".quality_control").show();
         $.post('{$SITE_URL}ProjectAction/send/' + event.target.id + '/', {literal}{ "project_sent_date" : projectSentDate }{/literal})
             .fail(function(v1, v2, text) {
+                alert(text); 
+                     
+            })
+            .done(function(text){
+                // document.location.reload();
+               
+            });
+        $("#confirm_QC").click(function(){ 
+            
+            $(".quality_control").hide();
+            var qcId = $("#QC option:selected").val();
+          
+
+
+    $.post('{$SITE_URL}ProjectAction/setQualityControl/' + eventTargetId + '/', {literal}{ "quality_control_id" : qcId }{/literal})
+            .fail(function(v1, v2, text) {
                 alert(text);
+                
             })
             .done(function(text){
                 document.location.reload();
+                
             });
+        });
     });
+
     
     $(".project_close_link").click( function(event) {
         event.preventDefault();

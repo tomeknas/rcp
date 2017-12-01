@@ -30,6 +30,11 @@ class ProjectsController extends ControllerBase {
         $user = self::$auth->getUser();
         self::$view->assign('user', $user);
         
+
+        
+        $userList = $user->getWhere('archives="0" ORDER BY nazwisko ASC');
+        self::$view->assign('userList', $userList);
+        // self::$view->display('Views/projects_index2.tpl');
         /*
         $projectObject = new Project;
         

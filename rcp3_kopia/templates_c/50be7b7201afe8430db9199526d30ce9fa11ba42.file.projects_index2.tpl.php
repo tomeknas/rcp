@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-30 09:15:25
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-01 15:34:03
          compiled from "Views\projects_index2.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:95225a1705aa7492e7-99877986%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '50be7b7201afe8430db9199526d30ce9fa11ba42' => 
     array (
       0 => 'Views\\projects_index2.tpl',
-      1 => 1512029038,
+      1 => 1512138830,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
@@ -67,6 +67,16 @@ Includes/hint.css'>
         table tbody.c1:nth-child(even) td
         {
             background-color: #efefef;
+        }
+        .quality_control{
+            width: 300px;
+            height: 100px;
+            position: absolute;
+            left:400px;
+            border: 2px solid grey;
+            z-index: 1;
+            background-color: white;
+            display:none;
         }
     </style>
 
@@ -153,7 +163,25 @@ Users/addUser/'>Dodaj użytkownika</a>
             <button type="button" class="progress">Postęp</button>
             <div class="progress_content">Tresc</div>
             
-    
+
+    <div class="quality_control">
+        <form>
+            <label>Wybierz kontrolera jakości:</label>
+            <select id="QC"><?php  $_smarty_tpl->tpl_vars['_user'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['_user']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['userList']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['_user']->key => $_smarty_tpl->tpl_vars['_user']->value) {
+$_smarty_tpl->tpl_vars['_user']->_loop = true;
+?>
+                <option value="<?php echo $_smarty_tpl->tpl_vars['_user']->value->id;?>
+" id=""><?php echo $_smarty_tpl->tpl_vars['_user']->value->lastName;?>
+ <?php echo $_smarty_tpl->tpl_vars['_user']->value->firstName;?>
+</option>
+                <?php } ?> 
+            </select>
+            <button type="button" class="btn btn-warning btn-sm" id="confirm_QC">Zatwierdź</button>
+        </form>
+    </div>
+   
     <h2 align="center">Projekty</h2>
     
 <table class="gridtable centre">
@@ -421,26 +449,63 @@ ProjectAction/updateProgress/' + event.target.id + '/', { "new_progress" : newPr
             });
         
     });
+
+ 
     
+   // $("#confirm_QC").click(function(event){ 
+   //          $(".quality_control").hide();
+   //          var qcId = $("#QC option:selected").val();
+
+
+   //  $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+ProjectAction/setQualityControl/' + event.target.id + '/', { "quality_control_id" : qcId })
+   //          .fail(function(v1, v2, text) {
+   //              alert(text);
+   //          })
+   //          .done(function(text){
+   //              document.location.reload();
+   //          });
+   //      });
+  
+  
     $(".project_send_link").click( function(event) {
         event.preventDefault();
-        
         var today = new Date;
         var todayString = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDay();
         var projectSentDate = prompt("Podaj datę wysyłki (RRRR-MM-DD)", todayString);
-        if (null === projectSentDate) {
-            return;
-        }
-        
+        var eventTargetId = event.target.id;
+
+        $(".quality_control").show();
         $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 ProjectAction/send/' + event.target.id + '/', { "project_sent_date" : projectSentDate })
             .fail(function(v1, v2, text) {
+                alert(text); 
+                console.log("send nie pykło");      
+            })
+            .done(function(text){
+                // document.location.reload();
+                console.log("send pykło");
+            });
+        $("#confirm_QC").click(function(){ 
+            
+            $(".quality_control").hide();
+            var qcId = $("#QC option:selected").val();
+            console.log(eventTargetId);
+
+
+    $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+ProjectAction/setQualityControl/' + eventTargetId + '/', { "quality_control_id" : qcId })
+            .fail(function(v1, v2, text) {
                 alert(text);
+                console.log("setQC nie pykło");
             })
             .done(function(text){
                 document.location.reload();
+                console.log("setQC pykło");
             });
+        });
     });
+
     
     $(".project_close_link").click( function(event) {
         event.preventDefault();

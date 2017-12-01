@@ -132,6 +132,26 @@ class ProjectActionController extends ControllerBase
         }
     }
     
+    public function setQualityControl()
+    {
+        try {
+            $project = new Project;       
+            $project->loadById($this->args[0]);
+            
+           
+            $projectEvent = new ProjectEvent();
+            $projectEvent->time = time();
+            $projectEvent->userId = self::$auth->getUser()->id;
+            $projectEvent->projectId = $project->id;
+            $projectEvent->event = "Kontrola jakości";
+            $projectEvent->acceptedBy = $_POST['quality_control_id'];
+            $projectEvent->store();
+            
+        } catch (\Exception $e) {
+            \header('HTTP/1.1 400 ' . $e->getMessage());
+        }
+    }
+
     public function send()
     {
         try {
