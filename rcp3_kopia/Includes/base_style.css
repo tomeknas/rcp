@@ -165,30 +165,25 @@ div#half {
   display:none;
 }
 
-.progress{
-border: 2px solid grey;
-width: 50px;
-height: 25px;
-text-align: center;
-display: inline-block;
-position: absolute;
-right: 0px;
-opacity:0.3;
 
+.quality_control{
+ width: 300px;
+/* height: 100px;*/
+ position: fixed;
+ left:600px;
+ top:30px;
+ border: 3px solid grey;
+ border-radius: 10px;
+ box-shadow: 5px 10px grey;
+ z-index: 1;
+ background-color: white;
+   display:none;
+ text-align: center;
+ }
 
-}
-
-.progress_content{
-  border-radius: 5px;
-border: 2px solid grey;
-display: inline-block;
-position: absolute;
-right:50px;
-z-index:1;
-width: 250px;
-height: 300px;
-background-color: #FDF5E6;
-display: none;
-overflow: scroll;
-
-}
+ .quality_control label{
+ margin: 10px;
+ } 
+ #confirm_QC{
+  margin: 20px;
+ }

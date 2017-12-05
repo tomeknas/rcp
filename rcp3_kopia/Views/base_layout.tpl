@@ -28,7 +28,7 @@
                     <li>
                         <a href='{$SITE_URL}Projects/'>Projekty</a>
 {if $user->accessLevel > 1}
-                        <span class='badge' title='Do wysłania: {$projectsToSend}'>{$projectBadge}</span>
+                        <span class='badge' title='Do zamknięcia: {$projectsToSend}'>{$projectBadge}</span>
 {/if}
 {if $projectManagerBadges[$user->id]}
                         <span class='badge blue' title="{$projectsForManager[$user->id]}">{$projectManagerBadges[$user->id]}</span>
@@ -72,8 +72,6 @@
             {/block}
         </div>
         <div id='content_div' style="height: 100%;">
-            <button type="button" class="progress">Postęp</button>
-            <div class="progress_content">Tresc</div>
             {block name=content}{/block}
             <br><br><br><br><br><br>
             

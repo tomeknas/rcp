@@ -9,16 +9,7 @@
         {
             background-color: #efefef;
         }
-        .quality_control{
-            width: 300px;
-            height: 100px;
-            position: absolute;
-            left:400px;
-            border: 2px solid grey;
-            z-index: 1;
-            background-color: white;
-            display:none;
-        }
+        
     </style>
 {/block}
 
@@ -31,6 +22,7 @@
                 <option value="{$_user->id}" id="">{$_user->lastName} {$_user->firstName}</option>
                 {/foreach} 
             </select>
+        </br>
             <button type="button" class="btn btn-warning btn-sm" id="confirm_QC">Zatwierdź</button>
         </form>
     </div>
@@ -243,23 +235,15 @@
   
     $(".project_send_link").click( function(event) {
         event.preventDefault();
+      
         var today = new Date;
         var todayString = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDay();
-        var projectSentDate = prompt("Podaj datę wysyłki (RRRR-MM-DD)", todayString);
         var eventTargetId = event.target.id;
+        
+        $(".quality_control").show(1000);
 
-        $(".quality_control").show();
-        $.post('{$SITE_URL}ProjectAction/send/' + event.target.id + '/', {literal}{ "project_sent_date" : projectSentDate }{/literal})
-            .fail(function(v1, v2, text) {
-                alert(text); 
-                     
-            })
-            .done(function(text){
-                // document.location.reload();
-               
-            });
-        $("#confirm_QC").click(function(){ 
-            
+
+        $("#confirm_QC").click(function(){  
             $(".quality_control").hide();
             var qcId = $("#QC option:selected").val();
           
@@ -271,10 +255,25 @@
                 
             })
             .done(function(text){
+                var projectSentDate = prompt("Podaj datę wysyłki (RRRR-MM-DD)", todayString);
+                $.post('{$SITE_URL}ProjectAction/send/' + eventTargetId + '/', {literal}{ "project_sent_date" : projectSentDate }{/literal})
+                    .fail(function(v1, v2, text) {
+                        alert(text); 
+                            })
+                    .done(function(text){
+                        console.log("poszło");
                 document.location.reload();
+                                });
+
                 
             });
         });
+
+
+
+
+        
+        
     });
 
     

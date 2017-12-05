@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-01 15:34:03
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-05 16:26:14
          compiled from "Views\projects_index2.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:95225a1705aa7492e7-99877986%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '50be7b7201afe8430db9199526d30ce9fa11ba42' => 
     array (
       0 => 'Views\\projects_index2.tpl',
-      1 => 1512138830,
+      1 => 1512485907,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1512029394,
+      1 => 1512487566,
       2 => 'file',
     ),
   ),
@@ -68,16 +68,7 @@ Includes/hint.css'>
         {
             background-color: #efefef;
         }
-        .quality_control{
-            width: 300px;
-            height: 100px;
-            position: absolute;
-            left:400px;
-            border: 2px solid grey;
-            z-index: 1;
-            background-color: white;
-            display:none;
-        }
+        
     </style>
 
     </head>
@@ -102,7 +93,7 @@ UserMonth/'>Kalendarz użytkownika</a>
                         <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Projects/'>Projekty</a>
 <?php if ($_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
-                        <span class='badge' title='Do wysłania: <?php echo $_smarty_tpl->tpl_vars['projectsToSend']->value;?>
+                        <span class='badge' title='Do zamknięcia: <?php echo $_smarty_tpl->tpl_vars['projectsToSend']->value;?>
 '><?php echo $_smarty_tpl->tpl_vars['projectBadge']->value;?>
 </span>
 <?php }?>
@@ -160,8 +151,6 @@ Users/addUser/'>Dodaj użytkownika</a>
             
         </div>
         <div id='content_div' style="height: 100%;">
-            <button type="button" class="progress">Postęp</button>
-            <div class="progress_content">Tresc</div>
             
 
     <div class="quality_control">
@@ -178,6 +167,7 @@ $_smarty_tpl->tpl_vars['_user']->_loop = true;
 </option>
                 <?php } ?> 
             </select>
+        </br>
             <button type="button" class="btn btn-warning btn-sm" id="confirm_QC">Zatwierdź</button>
         </form>
     </div>
@@ -470,40 +460,47 @@ ProjectAction/setQualityControl/' + event.target.id + '/', { "quality_control_id
   
     $(".project_send_link").click( function(event) {
         event.preventDefault();
+      
         var today = new Date;
         var todayString = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDay();
-        var projectSentDate = prompt("Podaj datę wysyłki (RRRR-MM-DD)", todayString);
         var eventTargetId = event.target.id;
+        
+        $(".quality_control").show(1000);
 
-        $(".quality_control").show();
-        $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-ProjectAction/send/' + event.target.id + '/', { "project_sent_date" : projectSentDate })
-            .fail(function(v1, v2, text) {
-                alert(text); 
-                console.log("send nie pykło");      
-            })
-            .done(function(text){
-                // document.location.reload();
-                console.log("send pykło");
-            });
-        $("#confirm_QC").click(function(){ 
-            
+
+        $("#confirm_QC").click(function(){  
             $(".quality_control").hide();
             var qcId = $("#QC option:selected").val();
-            console.log(eventTargetId);
+          
 
 
     $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 ProjectAction/setQualityControl/' + eventTargetId + '/', { "quality_control_id" : qcId })
             .fail(function(v1, v2, text) {
                 alert(text);
-                console.log("setQC nie pykło");
+                
             })
             .done(function(text){
+                var projectSentDate = prompt("Podaj datę wysyłki (RRRR-MM-DD)", todayString);
+                $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+ProjectAction/send/' + eventTargetId + '/', { "project_sent_date" : projectSentDate })
+                    .fail(function(v1, v2, text) {
+                        alert(text); 
+                            })
+                    .done(function(text){
+                        console.log("poszło");
                 document.location.reload();
-                console.log("setQC pykło");
+                                });
+
+                
             });
         });
+
+
+
+
+        
+        
     });
 
     
