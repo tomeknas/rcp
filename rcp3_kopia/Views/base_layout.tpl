@@ -26,12 +26,15 @@
                     </li>
                     {if $user->isProjectManager() or $user->isCoordinator() or $user->accessLevel > 1}
                     <li>
-                        <a href='{$SITE_URL}Projects/'>Projekty</a>
+                        <a href='{$SITE_URL}Projects/'>Projekty </a>
 {if $user->accessLevel > 1}
                         <span class='badge' title='Do zamknięcia: {$projectsToSend}'>{$projectBadge}</span>
 {/if}
-{if $projectManagerBadges[$user->id]}
-                        <span class='badge blue' title="{$projectsForManager[$user->id]}">{$projectManagerBadges[$user->id]}</span>
+{if !empty($projectManagerBadges[$user->id])}
+                        <span class='badge blue manager' title="{$projectsForManager[$user->id]}">{$projectManagerBadges[$user->id]}</span>
+{/if}
+{if !empty($projectCoordinator[$user->id])}
+                        <span class='badge blue coord' title="{$projectsForCoordinator[$user->id]}">{$projectCoordinator[$user->id]}</span>
 {/if}
 {if $projectBadge2 && $user->accessLevel > 1}
                         <span class='badge green' title="Do zaakceptowania: {$projectsToAccept}">{$projectBadge2}</span>

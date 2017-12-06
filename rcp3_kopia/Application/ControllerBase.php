@@ -78,14 +78,26 @@ abstract class ControllerBase
     }
     
     public function __construct($args = array()) {
+        //  count
         $this->args = $args;
         $adminProjectBadge = ActiveRecord::countQuery('projects', 'active = TRUE AND sent > 0');
         $adminProjectBadge2 = ActiveRecord::countQuery('projects', 'status = 1');
         $projectManagerBadges = array();
         foreach (ActiveRecord::countQuery('projects', 'status = 0 GROUP BY kierownik_id', true, 'kierownik_id,') as $row) {
-            $projectManagerBadges[$row['kierownik_id']] = $row['COUNT(*)'];   
+            if($row['kierownik_id']){
+            $projectManagerBadges[$row['kierownik_id']] = $row['COUNT(*)'];  
+            }
         }
-       
+        $projectCoordinator = array();
+        foreach (ActiveRecord::countQuery('projects', 'status = 0 GROUP BY koordynator', true, 'koordynator,') as $row) {
+            if($row['koordynator']){
+            $projectCoordinator[$row['koordynator']] = $row['COUNT(*)'];   
+            }
+        }
+
+       // count
+
+        // array of project name
         $projectObject = new Project;
         
 
@@ -104,8 +116,18 @@ abstract class ControllerBase
                      $projectsForManager[$row['projectManagerId']] = $row['name']; 
                 }
              }
+
+        $d = $projectObject->getWhere("status = 0");
+        foreach ($d as $row) {       
+            if(isset($projectsForCoordinator[$row['projectCoordinator']])) {
+                $temp = ',  '.$row['name'];
+                $projectsForCoordinator[$row['projectCoordinator']] .= $temp;
+                   }else{
+                     $projectsForCoordinator[$row['projectCoordinator']] = $row['name']; 
+                }
+             }
                
-    
+   
 
         foreach (($projectObject->getWhere('status = 1')) as $row) {
            $toAccept[] = $row['name'];
@@ -113,16 +135,18 @@ abstract class ControllerBase
     
        $projectsToAccept = implode(", ", $toAccept);
           
-        
+        // array of project name
         
 
 
         self::$view->assign('projectsToSend', $projectsToSend ? $projectsToSend : '');
-        self::$view->assign('projectsForManager', $projectsForManager ? $projectsForManager : ''); 
+        self::$view->assign('projectsForManager', $projectsForManager ? $projectsForManager : '');
+        self::$view->assign('projectsForCoordinator', $projectsForCoordinator ? $projectsForCoordinator : ''); 
         self::$view->assign('projectsToAccept', $projectsToAccept ? $projectsToAccept : ''); 
        
         self::$view->assign('projectBadge', $adminProjectBadge ? $adminProjectBadge : '');
-        self::$view->assign('projectManagerBadges', $projectManagerBadges);
+        self::$view->assign('projectManagerBadges', $projectManagerBadges ? $projectManagerBadges: '');
+        self::$view->assign('projectCoordinator', $projectCoordinator ? $projectCoordinator: '');
         self::$view->assign('projectBadge2', $adminProjectBadge2 ? $adminProjectBadge2 : '');
         
     }
