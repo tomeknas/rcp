@@ -105,7 +105,7 @@ class ProjectActionController extends ControllerBase
         $project->begin = $_POST['begin'];
         $project->end = $_POST['end'];
         $project->projectManagerId = $_POST['project_manager']; 
-        $project->projectManagerId = $_POST['project_coordinator'];
+        $project->projectCoordinator = $_POST['project_coordinator'];
         $project->budget = $_POST['budget'];
         $project->budgetPLN = $_POST['budgetPLN'];
         $project->budgetPLN = $_POST['budgetPM'];
