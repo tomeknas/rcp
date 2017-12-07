@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-27 21:47:41
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-05 16:35:21
          compiled from "Views\work_card.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:219115a043572b7ccb9-08469895%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1511815471,
+      1 => 1512488089,
       2 => 'file',
     ),
   ),
@@ -101,12 +101,12 @@ UserSettings/">Ustawienia</a>
                         <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 UserMonth/'>Kalendarz użytkownika</a>
                     </li>
-                    <?php if ($_smarty_tpl->tpl_vars['user']->value->isProjectManager()||$_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
+                    <?php if ($_smarty_tpl->tpl_vars['user']->value->isProjectManager()||$_smarty_tpl->tpl_vars['user']->value->isCoordinator()||$_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
                     <li>
                         <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Projects/'>Projekty</a>
 <?php if ($_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
-                        <span class='badge' title='Do wysłania: <?php echo $_smarty_tpl->tpl_vars['projectsToSend']->value;?>
+                        <span class='badge' title='Do zamknięcia: <?php echo $_smarty_tpl->tpl_vars['projectsToSend']->value;?>
 '><?php echo $_smarty_tpl->tpl_vars['projectBadge']->value;?>
 </span>
 <?php }?>
@@ -164,8 +164,6 @@ Users/addUser/'>Dodaj użytkownika</a>
             
         </div>
         <div id='content_div' style="height: 100%;">
-            <button type="button" class="progress">Postęp</button>
-            <div class="progress_content">Tresc</div>
             
         <h2 align='center'>Karta pracy</h2>
         <h2 align='center'>

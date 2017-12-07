@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-05 16:26:14
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-07 19:09:35
          compiled from "Views\projects_index2.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:95225a1705aa7492e7-99877986%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '50be7b7201afe8430db9199526d30ce9fa11ba42' => 
     array (
       0 => 'Views\\projects_index2.tpl',
-      1 => 1512485907,
+      1 => 1512670073,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1512487566,
+      1 => 1512665695,
       2 => 'file',
     ),
   ),
@@ -31,6 +31,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'projectBadge' => 0,
     'projectManagerBadges' => 0,
     'projectsForManager' => 0,
+    'projectCoordinator' => 0,
+    'projectsForCoordinator' => 0,
     'projectBadge2' => 0,
     'projectsToAccept' => 0,
   ),
@@ -91,15 +93,20 @@ UserMonth/'>Kalendarz użytkownika</a>
                     <?php if ($_smarty_tpl->tpl_vars['user']->value->isProjectManager()||$_smarty_tpl->tpl_vars['user']->value->isCoordinator()||$_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
                     <li>
                         <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Projects/'>Projekty</a>
+Projects/'>Projekty </a>
 <?php if ($_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
                         <span class='badge' title='Do zamknięcia: <?php echo $_smarty_tpl->tpl_vars['projectsToSend']->value;?>
 '><?php echo $_smarty_tpl->tpl_vars['projectBadge']->value;?>
 </span>
 <?php }?>
-<?php if ($_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id]) {?>
-                        <span class='badge blue' title="<?php echo $_smarty_tpl->tpl_vars['projectsForManager']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
+<?php if (!empty($_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id])) {?>
+                        <span class='badge blue manager' title="<?php echo $_smarty_tpl->tpl_vars['projectsForManager']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 "><?php echo $_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
+</span>
+<?php }?>
+<?php if (!empty($_smarty_tpl->tpl_vars['projectCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id])) {?>
+                        <span class='badge blue coord' title="<?php echo $_smarty_tpl->tpl_vars['projectsForCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
+"><?php echo $_smarty_tpl->tpl_vars['projectCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 </span>
 <?php }?>
 <?php if ($_smarty_tpl->tpl_vars['projectBadge2']->value&&$_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
@@ -188,6 +195,7 @@ $_smarty_tpl->tpl_vars['_user']->_loop = true;
             <th>Data wysyłki</th>
         </tr>
     </thead>
+   
 <?php $_smarty_tpl->tpl_vars['doZamkniecia'] = new Smarty_variable(array(), null, 0);?>
 <?php $_smarty_tpl->tpl_vars['doZaakceptowania'] = new Smarty_variable(array(), null, 0);?>
 <?php $_smarty_tpl->tpl_vars['doKierownika'] = new Smarty_variable(array(), null, 0);?>
@@ -196,6 +204,7 @@ $_smarty_tpl->tpl_vars['_user']->_loop = true;
 foreach ($_from as $_smarty_tpl->tpl_vars['group']->key => $_smarty_tpl->tpl_vars['group']->value) {
 $_smarty_tpl->tpl_vars['group']->_loop = true;
 ?>
+
     <tbody class='holiday1'>
         <tr>
             <td colspan="5" style='border: none; height: 30px; vertical-align: bottom'><?php echo $_smarty_tpl->tpl_vars['group']->value['name'];?>
@@ -218,7 +227,11 @@ $_smarty_tpl->tpl_vars['doZaakceptowania']->value[] = $_smarty_tpl->tpl_vars['pr
     <?php if ($_smarty_tpl->tpl_vars['project']->value['project']->status==0&&$_smarty_tpl->tpl_vars['project']->value['project']->projectManagerId==$_smarty_tpl->tpl_vars['user']->value->id) {?>
         <?php $_smarty_tpl->createLocalArrayVariable('doKierownika', null, 0);
 $_smarty_tpl->tpl_vars['doKierownika']->value[] = $_smarty_tpl->tpl_vars['project']->value['project'];?>
+ 
     <?php }?>
+    
+    
+
     <tbody class="c1">
         <tr>
             <td style="font-weight: bold">

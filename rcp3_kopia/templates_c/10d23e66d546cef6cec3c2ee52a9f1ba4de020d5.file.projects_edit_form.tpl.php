@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-05 15:31:22
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-05 21:57:42
          compiled from "Views\projects_edit_form.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:185315a1fbf9983b981-09988983%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1512484276,
+      1 => 1512488089,
       2 => 'file',
     ),
   ),
@@ -137,8 +137,6 @@ Users/addUser/'>Dodaj użytkownika</a>
             
         </div>
         <div id='content_div' style="height: 100%;">
-            <button type="button" class="progress">Postęp</button>
-            <div class="progress_content">Tresc</div>
             
     <h2 align='center'>Edycja projektu</h2>
     <br><br>

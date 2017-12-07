@@ -1,28 +1,26 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-07 18:07:17
-         compiled from "Views\projects_add_form.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:135445a02b7353847c1-33618751%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-06 15:20:39
+         compiled from "Views\user_settings.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:24215a27fcb77f1717-82390810%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'ed3084ca99c5a687cc731e4ff961a7ce09ca9e83' => 
+    '80fad0ced773d884d54b2ca38acb826473566ede' => 
     array (
-      0 => 'Views\\projects_add_form.tpl',
-      1 => 1511955570,
+      0 => 'Views\\user_settings.tpl',
+      1 => 1509805532,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1512665695,
+      1 => 1512570030,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '135445a02b7353847c1-33618751',
+  'nocache_hash' => '24215a27fcb77f1717-82390810',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_5a02b737026a18_70917725',
   'variables' => 
   array (
     'SITE_URL' => 0,
@@ -37,8 +35,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'projectsToAccept' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_5a27fcb7a97677_19850644',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5a02b737026a18_70917725')) {function content_5a02b737026a18_70917725($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_5a27fcb7a97677_19850644')) {function content_5a27fcb7a97677_19850644($_smarty_tpl) {?><!DOCTYPE html>
 <html>
     <head>
         
@@ -58,6 +58,8 @@ Includes/base_style.css'>
         <link rel='stylesheet' type='text/css' href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/loading_indicator.css'>
         
+    
+
     </head>
     <body>
         <div id='menu_div'>
@@ -78,19 +80,19 @@ UserMonth/'>Kalendarz użytkownika</a>
                     <?php if ($_smarty_tpl->tpl_vars['user']->value->isProjectManager()||$_smarty_tpl->tpl_vars['user']->value->isCoordinator()||$_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
                     <li>
                         <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Projects/'>Projekty </a>
+Projects/'>Projekty</a>
 <?php if ($_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
                         <span class='badge' title='Do zamknięcia: <?php echo $_smarty_tpl->tpl_vars['projectsToSend']->value;?>
 '><?php echo $_smarty_tpl->tpl_vars['projectBadge']->value;?>
 </span>
 <?php }?>
-<?php if (!empty($_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id])) {?>
-                        <span class='badge blue manager' title="<?php echo $_smarty_tpl->tpl_vars['projectsForManager']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
+<?php if ($_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id]) {?>
+                        <span class='badge blue' title="<?php echo $_smarty_tpl->tpl_vars['projectsForManager']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 "><?php echo $_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 </span>
 <?php }?>
-<?php if (!empty($_smarty_tpl->tpl_vars['projectCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id])) {?>
-                        <span class='badge blue coord' title="<?php echo $_smarty_tpl->tpl_vars['projectsForCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
+<?php if ($_smarty_tpl->tpl_vars['projectCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id]) {?>
+                        <span class='badge blue' title="<?php echo $_smarty_tpl->tpl_vars['projectsForCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 "><?php echo $_smarty_tpl->tpl_vars['projectCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 </span>
 <?php }?>
@@ -144,119 +146,10 @@ Users/addUser/'>Dodaj użytkownika</a>
         </div>
         <div id='content_div' style="height: 100%;">
             
-    <h2 align='center'>Nowy projekt</h2>
-    <br><br>
-    
-    <form id='project_add_form' align='center'>
-        <table class='gridtable centre'>
-            <tr>
-                <th>Nazwa projektu</th>
-                <td><input name='name' required></td>
-            </tr>
-            <tr>
-                <th>Opis</th>
-                <td><input name='description'></td>
-            </tr>
-            <tr>
-                <th>Grupa</th>
-                <td>
-                    <select name='group'>
-<?php  $_smarty_tpl->tpl_vars['group'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['group']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['groupList']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['group']->key => $_smarty_tpl->tpl_vars['group']->value) {
-$_smarty_tpl->tpl_vars['group']->_loop = true;
-?>
-                        <option value='<?php echo $_smarty_tpl->tpl_vars['group']->value->id;?>
-'><?php echo $_smarty_tpl->tpl_vars['group']->value->name;?>
-</option>
-<?php } ?>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>Numer zlecenia</th>
-                <td><input name='order_number'></td>
-            </tr>
-            <tr>
-                <th>Klient</th>
-                <td><input name='client'></td>
-            </tr>
-            <tr>
-                <th>Data rozpoczęcia</th>
-                <td><input name='begin' type='date'></td>
-            </tr>
-            <tr>
-                <th>Data zakończenia</th>
-                <td><input name='end' type='date'></td>
-            </tr>
-            <tr>
-                <th>Kierownik projektu</th>
-                <td>
-                    <select name='project_manager'>
-<?php  $_smarty_tpl->tpl_vars['user'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['user']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['userList']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['user']->key => $_smarty_tpl->tpl_vars['user']->value) {
-$_smarty_tpl->tpl_vars['user']->_loop = true;
-?>
-                        <option value='<?php echo $_smarty_tpl->tpl_vars['user']->value->id;?>
-'><?php echo $_smarty_tpl->tpl_vars['user']->value->getFullName();?>
-</option>
-<?php } ?>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>Koordynator projektu</th>
-                <td>
-                    <select name='project_coordinator'>
-<?php  $_smarty_tpl->tpl_vars['user'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['user']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['userList']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['user']->key => $_smarty_tpl->tpl_vars['user']->value) {
-$_smarty_tpl->tpl_vars['user']->_loop = true;
-?>
-                        <option value='<?php echo $_smarty_tpl->tpl_vars['user']->value->id;?>
-'><?php echo $_smarty_tpl->tpl_vars['user']->value->getFullName();?>
-</option>
-<?php } ?>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>Budżet (dni robocze)</th>
-                <td><input name='budget' type='number' min='0'></td>
-            </tr>
-            <tr>
-                <th>Budżet (zł)</th>
-                <td><input name='budgetPLN' type='number' min='0'></td>
-            </tr>
-            <tr>
-                <th>Budżet PM</th>
-                <td><input name='budgetPM' type='number' min='0'></td>
-            </tr>
-            <tr>
-                <th>Szablon</th>
-                <td>
-                    <select name='project_template'>
-<?php  $_smarty_tpl->tpl_vars['template'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['template']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['templates']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['template']->key => $_smarty_tpl->tpl_vars['template']->value) {
-$_smarty_tpl->tpl_vars['template']->_loop = true;
-?>
-                        <option value='<?php echo $_smarty_tpl->tpl_vars['template']->value->id;?>
-'><?php echo $_smarty_tpl->tpl_vars['template']->value->name;?>
-</option>
-<?php } ?>
-                    </select>
-                </td>
-            </tr>        
-            <tr>
-                <td style='border: none'>&nbsp;</td>
-                <td><input type='submit' value='Dodaj projekt'></td>
-            </tr>
-        </table>
-        
-    </form>
-    
+<div style="padding: 50px">
+    <h2>Ustawienia użytkownika</h2>
+    <button id="password-change-button">Zmiana hasła</button>
+</div>
 
             <br><br><br><br><br><br>
             
@@ -295,22 +188,50 @@ Login/logout/")
 <?php echo '<script'; ?>
 >
     
-    $( "#project_add_form" ).submit( function( event ){
-        event.preventDefault();
+    function generatePassword() {
+        var vov = "aeiouy";
+        var con = "rwtpsdfghjklzcbnm";
+        var result = "";
+        for (var i = 0; i < 3; ++i) {
+            result += con[Math.floor((Math.random() * 17))];
+            result += vov[Math.floor((Math.random() * 6))];
+        }
+        result += con[Math.floor((Math.random() * 17))];
+        return result;
+    }
+    
+    $("#password-change-button").click(function() {
+        var newPassword, newPasswordOk = false, newPasswordAgain;
         
-        $.post( "<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-ProjectAction/add/", $("#project_add_form").serialize() )
+        do {
+            newPassword = prompt("Podaj nowe hasło", generatePassword());
+            if (newPassword === null) {
+                return;
+            }
+            if (newPassword.length < 5) {
+                alert("Haslo jest za krótkie");
+                continue;
+            }
+            newPasswordOk = true;
+        } while (!newPasswordOk);
+        newPasswordAgain = prompt("Powtórz nowe hasło");
+        if (newPasswordAgain === null) {
+            return;
+        }
+        if (newPassword !== newPasswordAgain) {
+            alert("Podane hasła różnią się od siebie. Spróbuj ponownie.");
+            return;
+        }
+        $.post('<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+UserSettings/passwordChange/', { "new_password" : newPassword })
             .fail(function(v1, v2, text) {
                 alert(text);
             })
-            .done(function(text){
-                alert(text);
-                document.location.replace("<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Projects");
-            })
-            ;
+            .done(function(text) {
+                alert("Hasło zostało zmienione. Zaloguj się ponownie.");
+                $(".link_logout").click();
+            });
     });
-    
 <?php echo '</script'; ?>
 >
 

@@ -16,15 +16,18 @@ class ProjectTotals2 extends ActiveRecord {
     public $inactive = array();
     
     public function __construct(User $user) {
-        
         $query = "SELECT * FROM v_project_totals";
-        if ($user->accessLevel < 2) {
-            $query .= " WHERE manager_id = {$user->id}";
-        }
+        if ($user->isCoordinator()) {
+            $query .=" WHERE coordinator_id = {$user->id}";
+        } else if ($user->accessLevel < 2){
+            $query .=" WHERE manager_id = {$user->id}";
+        } 
+
+
         $res = self::$_mysqli->query($query);
-        
-        while($row = $res->fetch_row()) {
-            if ($row[6] == 0) {
+       
+             while($row = $res->fetch_row()) {
+            if ($row[7] == 0) {
                 $projectObject = new Project;
                 $projectObject->loadById($row[2]);
                 $project = array(
@@ -52,6 +55,7 @@ class ProjectTotals2 extends ActiveRecord {
             );
             $this->totals[$row[0]]['projects'][] = $project;
             ++$this->totals[$row[0]]['count'];
+          
         }
     }
 }
