@@ -31,10 +31,10 @@
                         <span class='badge' title='Do zamknięcia: {$projectsToSend}'>{$projectBadge}</span>
 {/if}
 {if !empty($projectManagerBadges[$user->id])}
-                        <span class='badge blue manager' title="{$projectsForManager[$user->id]}">{$projectManagerBadges[$user->id]}</span>
+                        <span class='badge blue' title="{$projectsForManager[$user->id]}">{$projectManagerBadges[$user->id]}</span>
 {/if}
-{if !empty($projectCoordinator[$user->id])}
-                        <span class='badge blue coord' title="{$projectsForCoordinator[$user->id]}">{$projectCoordinator[$user->id]}</span>
+{if !empty($projectCoordinator[$user->id]) && $user->accessLevel < 2}
+                        <span class='badge orange' title="{$projectsForCoordinator[$user->id]}">{$projectCoordinator[$user->id]}</span>
 {/if}
 {if $projectBadge2 && $user->accessLevel > 1}
                         <span class='badge green' title="Do zaakceptowania: {$projectsToAccept}">{$projectBadge2}</span>

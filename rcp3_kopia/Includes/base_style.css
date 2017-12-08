@@ -139,6 +139,10 @@ tbody.holiday2 td {
     background-color: blue;
 }
 
+.badge.orange{
+  background-color: orange;
+}
+
 div#quarter {
     width: 50%;
     /*height: 50%;*/
