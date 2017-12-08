@@ -44,7 +44,7 @@ class ProjectActionController extends ControllerBase
         $project->projectCoordinator = $_POST['project_coordinator'];
         $project->budget = $_POST['budget'];
         $project->budgetPLN = $_POST['budgetPLN'];
-        $project->budgetPLN = $_POST['budgetPM'];
+        $project->budgetPM = $_POST['budgetPM'];
         $project->groupId = $_POST['group'];
         
         
@@ -108,7 +108,7 @@ class ProjectActionController extends ControllerBase
         $project->projectCoordinator = $_POST['project_coordinator'];
         $project->budget = $_POST['budget'];
         $project->budgetPLN = $_POST['budgetPLN'];
-        $project->budgetPLN = $_POST['budgetPM'];
+        $project->budgetPM = $_POST['budgetPM'];
         $project->groupId = $_POST['group'];
         
         try {

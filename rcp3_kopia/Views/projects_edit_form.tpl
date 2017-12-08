@@ -52,12 +52,26 @@
                 </td>
             </tr>
             <tr>
+                <th>Koordynator projektu</th>
+                <td>
+                    <select name='project_coordinator'>
+{foreach $userList as $userObject}
+                    <option value='{$userObject->id}'{if $userObject->id == $project->projectCoordinator} selected='selected'{/if}>{$userObject->getFullName()}</option>
+{/foreach}
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <th>Budżet (dni robocze)</th>
                 <td><input name='budget' type='number' value='{$project->budget}' min='0'></td>
             </tr>
             <tr>
                 <th>Budżet (zł)</th>
                 <td><input name='budgetPLN' type='number' value='{$project->budgetPLN}' min='0'></td>
+            </tr>
+            <tr>
+                <th>Budżet (PM)</th>
+                <td><input name='budgetPM' type='number' value='{$project->budgetPM}' min='0'></td>
             </tr>
             <tr>
                 <td style='border: none'>&nbsp;</td>
