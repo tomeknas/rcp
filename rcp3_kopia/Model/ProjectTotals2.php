@@ -19,14 +19,11 @@ class ProjectTotals2 extends ActiveRecord {
         $query = "SELECT * FROM v_project_totals";
         if ($user->accessLevel < 2 && $user->isCoordinator() && !$user->isProjectManager()) {
             $query .=" WHERE coordinator_id = {$user->id}";
-            print_r('1');
         } else if ($user->accessLevel < 2 && $user->isProjectManager() && !$user->isCoordinator()){
             $query .=" WHERE manager_id = {$user->id}";
-            print_r('2');
         }
         else if ($user->accessLevel < 2 && $user->isCoordinator() && $user->isProjectManager()){
             $query .=" WHERE manager_id = {$user->id} OR coordinator_id = {$user->id}";
-            print_r('3');
         }
 
 

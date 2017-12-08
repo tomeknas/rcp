@@ -105,7 +105,6 @@ class Project extends ActiveRecord
         $this->setComputed('endTimeStamp', \strtotime($this->_end));
         $projectManager = new User;
         $projectManager->loadById($this->_projectManagerId);
-           // print_r($projectManager->getfullName());
         $this->setComputed('projectManager', $projectManager);
         $projectCoordinat = new User;
         $projectCoordinat->loadById($this->_projectCoordinator);
