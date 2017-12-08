@@ -48,12 +48,24 @@
             <td>{$project->projectManager->getFullName()}</td>
         </tr>
         <tr>
+            <th>Koordynator projektu</th>
+            <td>
+             
+                {$project->projectCoordinat->getFullName()}
+                 
+             </td>
+        </tr>
+        <tr>
             <th>Budżet (dni)</th>
             <td>{$project->budget}</td>
         </tr>
         <tr>
             <th>Budżet (zł)</th>
             <td>{$project->budgetPLN}</td>
+        </tr>
+        <tr>
+            <th>Budżet (PM)</th>
+            <td>{$project->budgetPM}</td>
         </tr>
         <tr>
             <th>Postęp prac</th>

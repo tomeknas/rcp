@@ -35,6 +35,7 @@ class Project extends ActiveRecord
     protected $_beginTimeStamp_C;
     protected $_endTimeStamp_C;
     protected $_projectManager_C;
+    protected $_projectCoordinat_C;
     
     protected static $_tableFields = array(
         '_name' => 'nazwa',
@@ -104,7 +105,12 @@ class Project extends ActiveRecord
         $this->setComputed('endTimeStamp', \strtotime($this->_end));
         $projectManager = new User;
         $projectManager->loadById($this->_projectManagerId);
+           // print_r($projectManager->getfullName());
         $this->setComputed('projectManager', $projectManager);
+        $projectCoordinat = new User;
+        $projectCoordinat->loadById($this->_projectCoordinator);
+        $this->setComputed('projectCoordinat', $projectCoordinat);
+    
     }
     
     public function getTasks()

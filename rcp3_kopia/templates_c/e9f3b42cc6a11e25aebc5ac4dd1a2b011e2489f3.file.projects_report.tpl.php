@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-07 17:40:33
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-08 16:25:19
          compiled from "Views\projects_report.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:221775a1fc22463a695-91859017%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e9f3b42cc6a11e25aebc5ac4dd1a2b011e2489f3' => 
     array (
       0 => 'Views\\projects_report.tpl',
-      1 => 1509805533,
+      1 => 1512746717,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1512575944,
+      1 => 1512665695,
       2 => 'file',
     ),
   ),
@@ -204,6 +204,15 @@ Users/addUser/'>Dodaj użytkownika</a>
 </td>
         </tr>
         <tr>
+            <th>Koordynator projektu</th>
+            <td>
+             
+                <?php echo $_smarty_tpl->tpl_vars['project']->value->projectCoordinat->getFullName();?>
+
+                 
+             </td>
+        </tr>
+        <tr>
             <th>Budżet (dni)</th>
             <td><?php echo $_smarty_tpl->tpl_vars['project']->value->budget;?>
 </td>
@@ -211,6 +220,11 @@ Users/addUser/'>Dodaj użytkownika</a>
         <tr>
             <th>Budżet (zł)</th>
             <td><?php echo $_smarty_tpl->tpl_vars['project']->value->budgetPLN;?>
+</td>
+        </tr>
+        <tr>
+            <th>Budżet (PM)</th>
+            <td><?php echo $_smarty_tpl->tpl_vars['project']->value->budgetPM;?>
 </td>
         </tr>
         <tr>
