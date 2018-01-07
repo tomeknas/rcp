@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-08 18:29:57
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-10 22:44:12
          compiled from "Views\users_index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:276475a020c5ae32bc1-17471694%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1512754097,
+      1 => 1512942248,
       2 => 'file',
     ),
   ),
@@ -43,20 +43,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <head>
         
         <title>KPGeo - Rejestracja Czasu Pracy</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Includes/bootstrap.min.css">
         <?php echo '<script'; ?>
  src='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/jquery.js'><?php echo '</script'; ?>
 >
         <?php echo '<script'; ?>
- src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Includes/bootstrap.min.js"><?php echo '</script'; ?>
 >
-        
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
         <link rel='stylesheet' type='text/css' href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/base_style.css'>
         <link rel='stylesheet' type='text/css' href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/loading_indicator.css'>
+
         
     </head>
     <body>

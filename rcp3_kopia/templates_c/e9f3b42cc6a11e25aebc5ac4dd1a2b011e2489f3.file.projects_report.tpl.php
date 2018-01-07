@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-08 18:36:38
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-13 18:51:46
          compiled from "Views\projects_report.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:221775a1fc22463a695-91859017%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e9f3b42cc6a11e25aebc5ac4dd1a2b011e2489f3' => 
     array (
       0 => 'Views\\projects_report.tpl',
-      1 => 1512746717,
+      1 => 1513184203,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1512754097,
+      1 => 1513187500,
       2 => 'file',
     ),
   ),
@@ -45,20 +45,22 @@ if (!is_callable('smarty_function_html_select_date')) include 'C:\\xampp\\htdocs
     <head>
         
         <title>KPGeo - Rejestracja Czasu Pracy</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Includes/bootstrap.min.css">
         <?php echo '<script'; ?>
  src='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/jquery.js'><?php echo '</script'; ?>
 >
         <?php echo '<script'; ?>
- src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Includes/bootstrap.min.js"><?php echo '</script'; ?>
 >
-        
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
         <link rel='stylesheet' type='text/css' href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/base_style.css'>
         <link rel='stylesheet' type='text/css' href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/loading_indicator.css'>
+
         
     <link rel='stylesheet' type='text/css' href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Application/gantt/jquery.ganttView.css'>
@@ -91,22 +93,22 @@ UserMonth/'>Kalendarz użytkownika</a>
                         <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Projects/'>Projekty </a>
 <?php if ($_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
-                        <span class='badge' title='Do zamknięcia: <?php echo $_smarty_tpl->tpl_vars['projectsToSend']->value;?>
+                        <span class='badge' title='Projekt wysłany do klienta- do zamknięcia: <?php echo $_smarty_tpl->tpl_vars['projectsToSend']->value;?>
 '><?php echo $_smarty_tpl->tpl_vars['projectBadge']->value;?>
 </span>
 <?php }?>
 <?php if (!empty($_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id])) {?>
-                        <span class='badge blue' title="<?php echo $_smarty_tpl->tpl_vars['projectsForManager']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
+                        <span class='badge blue' title="Nowy projekt- opracować harmonogram:<?php echo $_smarty_tpl->tpl_vars['projectsForManager']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 "><?php echo $_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 </span>
 <?php }?>
 <?php if (!empty($_smarty_tpl->tpl_vars['projectCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id])&&$_smarty_tpl->tpl_vars['user']->value->accessLevel<2) {?>
-                        <span class='badge orange' title="<?php echo $_smarty_tpl->tpl_vars['projectsForCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
+                        <span class='badge orange' title="Nowy projekt- opracować harmonogram:<?php echo $_smarty_tpl->tpl_vars['projectsForCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 "><?php echo $_smarty_tpl->tpl_vars['projectCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 </span>
 <?php }?>
 <?php if ($_smarty_tpl->tpl_vars['projectBadge2']->value&&$_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
-                        <span class='badge green' title="Do zaakceptowania: <?php echo $_smarty_tpl->tpl_vars['projectsToAccept']->value;?>
+                        <span class='badge green' title="Harmonogram projektu do akceptacji: <?php echo $_smarty_tpl->tpl_vars['projectsToAccept']->value;?>
 "><?php echo $_smarty_tpl->tpl_vars['projectBadge2']->value;?>
 </span>
 <?php }?>
@@ -277,6 +279,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['event']->key => $_smarty_tpl->tpl_var
 $_smarty_tpl->tpl_vars['event']->_loop = true;
 ?>
             <tr>
+                
                 <td><?php echo $_smarty_tpl->tpl_vars['event']->value->getUser()->getFullName();?>
 </td>
                 <td><?php echo $_smarty_tpl->tpl_vars['event']->value->event;?>

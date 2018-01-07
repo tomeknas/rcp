@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-08 18:36:16
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-01-07 18:55:44
          compiled from "Views\projects_index2.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:95225a1705aa7492e7-99877986%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '50be7b7201afe8430db9199526d30ce9fa11ba42' => 
     array (
       0 => 'Views\\projects_index2.tpl',
-      1 => 1512670403,
+      1 => 1515347737,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1512754097,
+      1 => 1513187500,
       2 => 'file',
     ),
   ),
@@ -44,20 +44,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <head>
         
         <title>KPGeo - Rejestracja Czasu Pracy</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Includes/bootstrap.min.css">
         <?php echo '<script'; ?>
  src='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/jquery.js'><?php echo '</script'; ?>
 >
         <?php echo '<script'; ?>
- src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"><?php echo '</script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Includes/bootstrap.min.js"><?php echo '</script'; ?>
 >
-        
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
         <link rel='stylesheet' type='text/css' href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/base_style.css'>
         <link rel='stylesheet' type='text/css' href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/loading_indicator.css'>
+
         
     <link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Includes/ml-loading-bars.css">
@@ -95,22 +97,22 @@ UserMonth/'>Kalendarz użytkownika</a>
                         <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Projects/'>Projekty </a>
 <?php if ($_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
-                        <span class='badge' title='Do zamknięcia: <?php echo $_smarty_tpl->tpl_vars['projectsToSend']->value;?>
+                        <span class='badge' title='Projekt wysłany do klienta- do zamknięcia: <?php echo $_smarty_tpl->tpl_vars['projectsToSend']->value;?>
 '><?php echo $_smarty_tpl->tpl_vars['projectBadge']->value;?>
 </span>
 <?php }?>
 <?php if (!empty($_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id])) {?>
-                        <span class='badge blue' title="<?php echo $_smarty_tpl->tpl_vars['projectsForManager']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
+                        <span class='badge blue' title="Nowy projekt- opracować harmonogram:<?php echo $_smarty_tpl->tpl_vars['projectsForManager']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 "><?php echo $_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 </span>
 <?php }?>
 <?php if (!empty($_smarty_tpl->tpl_vars['projectCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id])&&$_smarty_tpl->tpl_vars['user']->value->accessLevel<2) {?>
-                        <span class='badge orange' title="<?php echo $_smarty_tpl->tpl_vars['projectsForCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
+                        <span class='badge orange' title="Nowy projekt- opracować harmonogram:<?php echo $_smarty_tpl->tpl_vars['projectsForCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 "><?php echo $_smarty_tpl->tpl_vars['projectCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 </span>
 <?php }?>
 <?php if ($_smarty_tpl->tpl_vars['projectBadge2']->value&&$_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
-                        <span class='badge green' title="Do zaakceptowania: <?php echo $_smarty_tpl->tpl_vars['projectsToAccept']->value;?>
+                        <span class='badge green' title="Harmonogram projektu do akceptacji: <?php echo $_smarty_tpl->tpl_vars['projectsToAccept']->value;?>
 "><?php echo $_smarty_tpl->tpl_vars['projectBadge2']->value;?>
 </span>
 <?php }?>
@@ -181,18 +183,21 @@ $_smarty_tpl->tpl_vars['_user']->_loop = true;
    
     <h2 align="center">Projekty</h2>
     
-<table class="gridtable centre">
+<table class="gridtable centre" id='myTable'>
     <thead>
-        <tr><td style='border: none' colspan="3">&nbsp;</td><th colspan="2">Budżet (dni)</th></tr>
         <tr>
-            <th>Nazwa</th>
-            <th>Numer zlecenia</th>
-            <th>Klient</th>
-            <th>Wykorzystany</th>
-            <th>Zakładany</th>
-            <th>Postęp prac</th>
-            <th>Czas</th>
-            <th>Data wysyłki</th>
+            <td style='border: none' colspan="3">&nbsp;</td>
+            <th colspan="2">Budżet (dni)</th>
+        </tr>
+        <tr class="sort-header">
+            <th id="js-name-header" data-project="data-project-name">Nazwa</th>
+            <th data-project="data-project-number">Numer zlecenia</a></th>
+            <th data-project="data-project-client">Klient</a></th>
+            <th data-project="data-project-budgettotal">Wykorzystany</a></th>
+            <th data-project="data-project-budget">Zakładany</a></th>
+            <th data-project="data-project-progress">Postęp prac</a></th>
+            <th data-project="data-project-time">Czas</a></th>
+            <th data-project="data-project-date">Data wysyłki</a></th>
         </tr>
     </thead>
 <?php $_smarty_tpl->tpl_vars['doZamkniecia'] = new Smarty_variable(array(), null, 0);?>
@@ -214,6 +219,7 @@ $_smarty_tpl->tpl_vars['group']->_loop = true;
 foreach ($_from as $_smarty_tpl->tpl_vars['project']->key => $_smarty_tpl->tpl_vars['project']->value) {
 $_smarty_tpl->tpl_vars['project']->_loop = true;
 ?>
+
     <?php if ($_smarty_tpl->tpl_vars['project']->value['project']->sent) {?>
         <?php $_smarty_tpl->createLocalArrayVariable('doZamkniecia', null, 0);
 $_smarty_tpl->tpl_vars['doZamkniecia']->value[] = $_smarty_tpl->tpl_vars['project']->value['project'];?>
@@ -227,31 +233,40 @@ $_smarty_tpl->tpl_vars['doZaakceptowania']->value[] = $_smarty_tpl->tpl_vars['pr
 $_smarty_tpl->tpl_vars['doKierownika']->value[] = $_smarty_tpl->tpl_vars['project']->value['project'];?>
     <?php }?>
     <tbody class="c1">
-        <tr>
-            <td style="font-weight: bold">
+        <tr >
+            <td data-project-name='<?php echo $_smarty_tpl->tpl_vars['project']->value['name'];?>
+' style="font-weight: bold">
                 <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Projects/report/<?php echo $_smarty_tpl->tpl_vars['project']->value['id'];?>
 /'><?php echo $_smarty_tpl->tpl_vars['project']->value['name'];?>
 </a><br>
             </td>
-            <td><?php echo $_smarty_tpl->tpl_vars['project']->value['project']->orderNumber;?>
+            <td data-project-number='<?php echo $_smarty_tpl->tpl_vars['project']->value['project']->orderNumber;?>
+'><?php echo $_smarty_tpl->tpl_vars['project']->value['project']->orderNumber;?>
 </td>
-            <td><?php echo $_smarty_tpl->tpl_vars['project']->value['project']->client;?>
+            <td data-project-client='<?php echo $_smarty_tpl->tpl_vars['project']->value['project']->client;?>
+'><?php echo $_smarty_tpl->tpl_vars['project']->value['project']->client;?>
 </td>
-            <td><?php echo sprintf("%.1f",$_smarty_tpl->tpl_vars['project']->value['total']);?>
+            <td data-project-budgettotal='<?php echo sprintf("%.1f",$_smarty_tpl->tpl_vars['project']->value['total']);?>
+'><?php echo sprintf("%.1f",$_smarty_tpl->tpl_vars['project']->value['total']);?>
 </td>
-            <td><?php echo $_smarty_tpl->tpl_vars['project']->value['project']->budget;?>
+            <td data-project-budget='<?php echo $_smarty_tpl->tpl_vars['project']->value['project']->budget;?>
+'><?php echo $_smarty_tpl->tpl_vars['project']->value['project']->budget;?>
 </td>
-            <td>
+            <td data-project-progress='<?php echo $_smarty_tpl->tpl_vars['project']->value['project']->progress;?>
+' >
                 <a class='link_update_progress' id='<?php echo $_smarty_tpl->tpl_vars['project']->value['id'];?>
 ' href='#'><?php echo $_smarty_tpl->tpl_vars['project']->value['project']->progress;?>
 %</a>
             </td>
             <?php $_smarty_tpl->tpl_vars['timeProgress'] = new Smarty_variable($_smarty_tpl->tpl_vars['project']->value['project']->timeProgress(), null, 0);?>
-            <td><?php if (null!=$_smarty_tpl->tpl_vars['timeProgress']->value) {
+            <td data-project-time='<?php echo sprintf("%.1f",$_smarty_tpl->tpl_vars['timeProgress']->value);?>
+' ><?php if (null!=$_smarty_tpl->tpl_vars['timeProgress']->value) {
 echo sprintf("%.1f",$_smarty_tpl->tpl_vars['timeProgress']->value);?>
 %<?php }?></td>
-            <td><?php if ($_smarty_tpl->tpl_vars['project']->value['project']->sent) {
+            <td data-project-date='<?php if ($_smarty_tpl->tpl_vars['project']->value['project']->sent) {
+echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['project']->value['project']->sent,'%Y-%m-%d');
+}?>' ><?php if ($_smarty_tpl->tpl_vars['project']->value['project']->sent) {
 echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['project']->value['project']->sent,'%Y-%m-%d');
 }?></td>
             <td rowspan="2">
@@ -495,7 +510,6 @@ ProjectAction/send/' + eventTargetId + '/', { "project_sent_date" : projectSentD
                         alert(text); 
                             })
                     .done(function(text){
-                        console.log("poszło");
                 document.location.reload();
                                 });
 
@@ -545,6 +559,123 @@ ProjectAction/delete/' + event.target.id + '/')
                 document.location.reload();
             });
     });
+
+
+
+var order = "DSC";
+        $(".sort-header th").on('click', function(event){
+            var column = event.target.getAttribute("data-project");
+            var dataValue = column.substring(5);
+            dataValue = dataValue.replace("-","");
+            var upper = dataValue.charAt(7).toUpperCase();
+            dataValue = dataValue.substring(0,7) + upper + dataValue.substring(8);
+          
+
+            var projectNames = [];
+
+            function checkDot(prev, next){
+                reg = /\.0/;
+                if(reg.test(prev) || reg.test(next)){
+                    return true;
+                }else{
+                    return false;
+                }};
+
+            function checkSlash(prev, next){
+                        var reg = '\/';
+                        reg = new RegExp("/");
+                        if (reg.test(prev) && reg.test(next)){
+                            return true;
+                        }else{
+                            return false;
+                        }};
+
+            $("td["+ column +"]").each(function(_, projectNameTableData){
+                projectNames.push($(projectNameTableData).data(dataValue));
+            });
+
+            
+      
+            if (order === "ASC"){
+                projectNames.sort(function (prev, next) {
+
+                    if (typeof prev ==="string" && typeof next ==="string" && checkSlash(prev, next) === false && checkDot(prev, next) === false){  
+                    return prev.toLowerCase().localeCompare(next.toLowerCase());
+                    }else if (typeof prev ==="number" && typeof next ==="number" ){
+                    return prev - next;
+                    }else if( typeof prev ==="string"  && typeof next ==="string" && checkSlash(prev, next) === true){
+                        prev = prev.replace("/","");
+                        next = next.replace("/","");
+                        return prev.toLowerCase().localeCompare(next.toLowerCase());
+                     } 
+                     else if (typeof prev === "number" && typeof next === "string" && checkDot(prev, next) === true){
+                        next = Number(next);
+                        return prev - next;
+                     } else if (typeof prev === "string" && typeof next === "number" && checkDot(prev, next) === true){
+                        prev = Number(prev);
+                        return prev - next;
+                     } else if (typeof prev === "string" && typeof next === "string" && checkDot(prev, next) === true){
+                        prev = Number(prev);
+                        next = Number(next);
+                        return prev - next;
+                       
+                     }
+                   
+                })
+
+                    order = "DSC";
+                    $(".sort-header th").removeClass("name-header-dsc")
+                    $(this).addClass("name-header-asc");
+            } else if( order === "DSC"){
+                projectNames.sort(function (prev, next) {
+                   
+                    if (typeof prev ==="string" && typeof next ==="string" && checkSlash(prev, next) === false && checkDot(prev, next) === false){
+                       
+                    return next.toLowerCase().localeCompare(prev.toLowerCase());
+                    }else if (typeof prev ==="number" && typeof next ==="number" ){  
+                    return next - prev;
+                    }else if( typeof prev ==="string"  && typeof next ==="string" && checkSlash(prev, next) === true){ 
+                        prev = prev.replace("/","");
+                        next = next.replace("/","");
+                        return next.toLowerCase().localeCompare(prev.toLowerCase());
+                     } else if (typeof prev === "number" && typeof next === "string" && checkDot(prev, next) === true){
+                        next = Number(next);
+                        return next - prev;
+                     } else if (typeof prev === "string" && typeof next === "number" && checkDot(prev, next) === true){
+                        prev = Number(prev); 
+                        return next - prev;
+                     } else if (typeof prev === "string" && typeof next === "string" && checkDot(prev, next) === true){
+                        prev = Number(prev);
+                        next = Number(next);
+                        return next - prev; 
+                     }
+                    
+                })
+                    order = "ASC";
+                    $(".sort-header th").removeClass("name-header-asc");
+                    $(this).addClass("name-header-dsc");
+            }
+console.log(projectNames);
+         var uniqueNames = [];
+         
+         $.each(projectNames, function(i, el){
+            if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+            });
+            var uniqueProjects = [];
+            for (var i = 0; i < uniqueNames.length; i++) {
+                var currentProjects = $('td[' + column + '="' + uniqueNames[i] + '"]').closest("tbody").toArray();
+                for (var j = 0; j < currentProjects.length; j ++) {
+                    uniqueProjects.push(currentProjects[j]);
+                }
+            }
+            
+            for (var i = 1; i < uniqueProjects.length; i++) {
+                $(uniqueProjects[i]).insertAfter($(uniqueProjects[i-1]));
+            }
+        })
+
+
+
 
 <?php echo '</script'; ?>
 >
