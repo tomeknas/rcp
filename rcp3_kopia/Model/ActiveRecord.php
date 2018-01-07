@@ -293,7 +293,7 @@ abstract class ActiveRecord implements \ArrayAccess
         $query = \substr($query, 0, -2);
         $query .= " WHERE id = {$this->_id} LIMIT 1";
         
-        //var_dump($query);
+      
         self::$_mysqli->query($query);
         
         if (self::$_mysqli->errno || self::$_mysqli->affected_rows < 1) {

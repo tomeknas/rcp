@@ -29,18 +29,21 @@
    
     <h2 align="center">Projekty</h2>
     
-<table class="gridtable centre">
+<table class="gridtable centre" id='myTable'>
     <thead>
-        <tr><td style='border: none' colspan="3">&nbsp;</td><th colspan="2">Budżet (dni)</th></tr>
         <tr>
-            <th>Nazwa</th>
-            <th>Numer zlecenia</th>
-            <th>Klient</th>
-            <th>Wykorzystany</th>
-            <th>Zakładany</th>
-            <th>Postęp prac</th>
-            <th>Czas</th>
-            <th>Data wysyłki</th>
+            <td style='border: none' colspan="3">&nbsp;</td>
+            <th colspan="2">Budżet (dni)</th>
+        </tr>
+        <tr class="sort-header">
+            <th id="js-name-header" data-project="data-project-name">Nazwa</th>
+            <th data-project="data-project-number">Numer zlecenia</a></th>
+            <th data-project="data-project-client">Klient</a></th>
+            <th data-project="data-project-budgettotal">Wykorzystany</a></th>
+            <th data-project="data-project-budget">Zakładany</a></th>
+            <th data-project="data-project-progress">Postęp prac</a></th>
+            <th data-project="data-project-time">Czas</a></th>
+            <th data-project="data-project-date">Data wysyłki</a></th>
         </tr>
     </thead>
 {$doZamkniecia = array()}
@@ -53,6 +56,7 @@
         </tr>
     </tbody>
 {foreach $group.projects as $project}
+
     {if $project.project->sent}
         {$doZamkniecia[] = $project.project}
     {/if}
@@ -63,20 +67,20 @@
         {$doKierownika[] = $project.project}
     {/if}
     <tbody class="c1">
-        <tr>
-            <td style="font-weight: bold">
+        <tr >
+            <td data-project-name='{$project.name}' style="font-weight: bold">
                 <a href='{$SITE_URL}Projects/report/{$project.id}/'>{$project.name}</a><br>
             </td>
-            <td>{$project.project->orderNumber}</td>
-            <td>{$project.project->client}</td>
-            <td>{$project.total|string_format:"%.1f"}</td>
-            <td>{$project.project->budget}</td>
-            <td>
+            <td data-project-number='{$project.project->orderNumber}'>{$project.project->orderNumber}</td>
+            <td data-project-client='{$project.project->client}'>{$project.project->client}</td>
+            <td data-project-budgettotal='{$project.total|string_format:"%.1f"}'>{$project.total|string_format:"%.1f"}</td>
+            <td data-project-budget='{$project.project->budget}'>{$project.project->budget}</td>
+            <td data-project-progress='{$project.project->progress}' >
                 <a class='link_update_progress' id='{$project.id}' href='#'>{$project.project->progress}%</a>
             </td>
             {$timeProgress = $project.project->timeProgress()}
-            <td>{if null != $timeProgress}{$timeProgress|string_format:"%.1f"}%{/if}</td>
-            <td>{if $project.project->sent}{$project.project->sent|date_format:'%Y-%m-%d'}{/if}</td>
+            <td data-project-time='{$timeProgress|string_format:"%.1f"}' >{if null != $timeProgress}{$timeProgress|string_format:"%.1f"}%{/if}</td>
+            <td data-project-date='{if $project.project->sent}{$project.project->sent|date_format:'%Y-%m-%d'}{/if}' >{if $project.project->sent}{$project.project->sent|date_format:'%Y-%m-%d'}{/if}</td>
             <td rowspan="2">
 {if $user->accessLevel > 3}
                 <a href='{$SITE_URL}Projects/docs/{$project.id}/'>Dokumentacja</a><br>
@@ -261,7 +265,6 @@
                         alert(text); 
                             })
                     .done(function(text){
-                        console.log("poszło");
                 document.location.reload();
                                 });
 
@@ -309,6 +312,123 @@
                 document.location.reload();
             });
     });
+
+
+
+var order = "DSC";
+        $(".sort-header th").on('click', function(event){
+            var column = event.target.getAttribute("data-project");
+            var dataValue = column.substring(5);
+            dataValue = dataValue.replace("-","");
+            var upper = dataValue.charAt(7).toUpperCase();
+            dataValue = dataValue.substring(0,7) + upper + dataValue.substring(8);
+          
+
+            var projectNames = [];
+
+            function checkDot(prev, next){
+                reg = /\.0/;
+                if(reg.test(prev) || reg.test(next)){
+                    return true;
+                }else{
+                    return false;
+                }};
+
+            function checkSlash(prev, next){
+                        var reg = '\/';
+                        reg = new RegExp("/");
+                        if (reg.test(prev) && reg.test(next)){
+                            return true;
+                        }else{
+                            return false;
+                        }};
+
+            $("td["+ column +"]").each(function(_, projectNameTableData){
+                projectNames.push($(projectNameTableData).data(dataValue));
+            });
+
+            
+      
+            if (order === "ASC"){
+                projectNames.sort(function (prev, next) {
+
+                    if (typeof prev ==="string" && typeof next ==="string" && checkSlash(prev, next) === false && checkDot(prev, next) === false){  
+                    return prev.toLowerCase().localeCompare(next.toLowerCase());
+                    }else if (typeof prev ==="number" && typeof next ==="number" ){
+                    return prev - next;
+                    }else if( typeof prev ==="string"  && typeof next ==="string" && checkSlash(prev, next) === true){
+                        prev = prev.replace("/","");
+                        next = next.replace("/","");
+                        return prev.toLowerCase().localeCompare(next.toLowerCase());
+                     } 
+                     else if (typeof prev === "number" && typeof next === "string" && checkDot(prev, next) === true){
+                        next = Number(next);
+                        return prev - next;
+                     } else if (typeof prev === "string" && typeof next === "number" && checkDot(prev, next) === true){
+                        prev = Number(prev);
+                        return prev - next;
+                     } else if (typeof prev === "string" && typeof next === "string" && checkDot(prev, next) === true){
+                        prev = Number(prev);
+                        next = Number(next);
+                        return prev - next;
+                       
+                     }
+                   
+                })
+
+                    order = "DSC";
+                    $(".sort-header th").removeClass("name-header-dsc")
+                    $(this).addClass("name-header-asc");
+            } else if( order === "DSC"){
+                projectNames.sort(function (prev, next) {
+                   
+                    if (typeof prev ==="string" && typeof next ==="string" && checkSlash(prev, next) === false && checkDot(prev, next) === false){
+                       
+                    return next.toLowerCase().localeCompare(prev.toLowerCase());
+                    }else if (typeof prev ==="number" && typeof next ==="number" ){  
+                    return next - prev;
+                    }else if( typeof prev ==="string"  && typeof next ==="string" && checkSlash(prev, next) === true){ 
+                        prev = prev.replace("/","");
+                        next = next.replace("/","");
+                        return next.toLowerCase().localeCompare(prev.toLowerCase());
+                     } else if (typeof prev === "number" && typeof next === "string" && checkDot(prev, next) === true){
+                        next = Number(next);
+                        return next - prev;
+                     } else if (typeof prev === "string" && typeof next === "number" && checkDot(prev, next) === true){
+                        prev = Number(prev); 
+                        return next - prev;
+                     } else if (typeof prev === "string" && typeof next === "string" && checkDot(prev, next) === true){
+                        prev = Number(prev);
+                        next = Number(next);
+                        return next - prev; 
+                     }
+                    
+                })
+                    order = "ASC";
+                    $(".sort-header th").removeClass("name-header-asc");
+                    $(this).addClass("name-header-dsc");
+            }
+
+         var uniqueNames = [];
+         
+         $.each(projectNames, function(i, el){
+            if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+            });
+            var uniqueProjects = [];
+            for (var i = 0; i < uniqueNames.length; i++) {
+                var currentProjects = $('td[' + column + '="' + uniqueNames[i] + '"]').closest("tbody").toArray();
+                for (var j = 0; j < currentProjects.length; j ++) {
+                    uniqueProjects.push(currentProjects[j]);
+                }
+            }
+            
+            for (var i = 1; i < uniqueProjects.length; i++) {
+                $(uniqueProjects[i]).insertAfter($(uniqueProjects[i-1]));
+            }
+        })
+
+
+
 
 </script>
     

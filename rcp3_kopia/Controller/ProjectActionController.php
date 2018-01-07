@@ -141,10 +141,10 @@ class ProjectActionController extends ControllerBase
            
             $projectEvent = new ProjectEvent();
             $projectEvent->time = time();
-            $projectEvent->userId = self::$auth->getUser()->id;
+            $projectEvent->userId = $_POST['quality_control_id'];
             $projectEvent->projectId = $project->id;
             $projectEvent->event = "Kontrola jakości";
-            $projectEvent->acceptedBy = $_POST['quality_control_id'];
+            $projectEvent->acceptedBy = self::$auth->getUser()->id;
             $projectEvent->store();
             
         } catch (\Exception $e) {

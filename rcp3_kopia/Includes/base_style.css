@@ -188,6 +188,21 @@ div#half {
  .quality_control label{
  margin: 10px;
  } 
+ 
  #confirm_QC{
   margin: 20px;
  }
+
+.sort-header th{
+  cursor: pointer;
+}
+.sort-header th:hover{
+color:white;
+}
+.name-header-dsc::after{
+content:"\25bc"; 
+}
+.name-header-asc::after{
+content:"\25b2";
+}
+
