@@ -3,13 +3,13 @@
     <head>
         {block name=defines}{/block}
         <title>{block name=title}KPGeo - Rejestracja Czasu Pracy{/block}</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{$SITE_URL}Includes/bootstrap.min.css">
         <script src='{$SITE_URL}Includes/jquery.js'></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
+        <script src="{$SITE_URL}Includes/bootstrap.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
         <link rel='stylesheet' type='text/css' href='{$SITE_URL}Includes/base_style.css'>
         <link rel='stylesheet' type='text/css' href='{$SITE_URL}Includes/loading_indicator.css'>
+
         {block name=head}{/block}
     </head>
     <body>
@@ -28,16 +28,16 @@
                     <li>
                         <a href='{$SITE_URL}Projects/'>Projekty </a>
 {if $user->accessLevel > 1}
-                        <span class='badge' title='Do zamknięcia: {$projectsToSend}'>{$projectBadge}</span>
+                        <span class='badge' title='Projekt wysłany do klienta- do zamknięcia: {$projectsToSend}'>{$projectBadge}</span>
 {/if}
 {if !empty($projectManagerBadges[$user->id])}
-                        <span class='badge blue' title="{$projectsForManager[$user->id]}">{$projectManagerBadges[$user->id]}</span>
+                        <span class='badge blue' title="Nowy projekt- opracować harmonogram:{$projectsForManager[$user->id]}">{$projectManagerBadges[$user->id]}</span>
 {/if}
 {if !empty($projectCoordinator[$user->id]) && $user->accessLevel < 2}
-                        <span class='badge orange' title="{$projectsForCoordinator[$user->id]}">{$projectCoordinator[$user->id]}</span>
+                        <span class='badge orange' title="Nowy projekt- opracować harmonogram:{$projectsForCoordinator[$user->id]}">{$projectCoordinator[$user->id]}</span>
 {/if}
 {if $projectBadge2 && $user->accessLevel > 1}
-                        <span class='badge green' title="Do zaakceptowania: {$projectsToAccept}">{$projectBadge2}</span>
+                        <span class='badge green' title="Harmonogram projektu do akceptacji: {$projectsToAccept}">{$projectBadge2}</span>
 {/if}
                     </li>
                     {/if}
