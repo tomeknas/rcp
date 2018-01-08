@@ -21,9 +21,65 @@ class ProjectsController extends ControllerBase {
         $this->requireUserAccess('addForm', 2);
         $this->requireUserAccess('editForm');
         $this->requireUserAccess('docs', 5);
+        $this->requireUserAccess('toSend');
+        $this->requireUserAccess('forManager');
+        $this->requireUserAccess('forCoordinator');
+        $this->requireUserAccess('toAcdept');
     }
     
     public function docs(){}
+
+     public function toSend(){
+        $user = self::$auth->getUser();
+        self::$view->assign('user', $user);
+
+        $projectTotals = new ProjectToSend(self::$auth->getUser());
+        
+        self::$view->assign('groups', $projectTotals->totals);
+        self::$view->assign('inactive', $projectTotals->inactive);
+        self::$view->display('Views/projects_index2.tpl');
+
+
+     }
+
+     public function forManager(){
+        $user = self::$auth->getUser();
+        self::$view->assign('user', $user);
+
+        $projectTotals = new ProjectForManager(self::$auth->getUser());
+        
+        self::$view->assign('groups', $projectTotals->totals);
+        self::$view->assign('inactive', $projectTotals->inactive);
+        self::$view->display('Views/projects_index2.tpl');
+
+
+     }
+
+     public function forCoordinator(){
+        $user = self::$auth->getUser();
+        self::$view->assign('user', $user);
+
+        $projectTotals = new ProjectForCoordinator(self::$auth->getUser());
+        
+        self::$view->assign('groups', $projectTotals->totals);
+        self::$view->assign('inactive', $projectTotals->inactive);
+        self::$view->display('Views/projects_index2.tpl');
+
+
+     }
+
+     public function toAccept(){
+        $user = self::$auth->getUser();
+        self::$view->assign('user', $user);
+
+        $projectTotals = new ProjectToAccept(self::$auth->getUser());
+        
+        self::$view->assign('groups', $projectTotals->totals);
+        self::$view->assign('inactive', $projectTotals->inactive);
+        self::$view->display('Views/projects_index2.tpl');
+
+
+     }
     
     public function index()
     {

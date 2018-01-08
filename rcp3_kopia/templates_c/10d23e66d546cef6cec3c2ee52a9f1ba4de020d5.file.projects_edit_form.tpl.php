@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-17 18:36:48
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-01-08 10:54:02
          compiled from "Views\projects_edit_form.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:185315a1fbf9983b981-09988983%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1513187500,
+      1 => 1515356578,
       2 => 'file',
     ),
   ),
@@ -83,24 +83,36 @@ UserMonth/'>Kalendarz użytkownika</a>
                         <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Projects/'>Projekty </a>
 <?php if ($_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
-                        <span class='badge' title='Projekt wysłany do klienta- do zamknięcia: <?php echo $_smarty_tpl->tpl_vars['projectsToSend']->value;?>
+                        <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Projects/toSend/'>
+                            <span class='badge' title='Projekt wysłany do klienta- do zamknięcia: <?php echo $_smarty_tpl->tpl_vars['projectsToSend']->value;?>
 '><?php echo $_smarty_tpl->tpl_vars['projectBadge']->value;?>
 </span>
+                        </a>
 <?php }?>
 <?php if (!empty($_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id])) {?>
-                        <span class='badge blue' title="Nowy projekt- opracować harmonogram:<?php echo $_smarty_tpl->tpl_vars['projectsForManager']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
+                        <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Projects/forManager/'>
+                            <span class='badge blue' title="Nowy projekt- opracować harmonogram:<?php echo $_smarty_tpl->tpl_vars['projectsForManager']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 "><?php echo $_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 </span>
+                        </a>
 <?php }?>
 <?php if (!empty($_smarty_tpl->tpl_vars['projectCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id])&&$_smarty_tpl->tpl_vars['user']->value->accessLevel<2) {?>
-                        <span class='badge orange' title="Nowy projekt- opracować harmonogram:<?php echo $_smarty_tpl->tpl_vars['projectsForCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
+                        <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Projects/forCoordinator/'>
+                            <span class='badge orange' title="Nowy projekt- opracować harmonogram:<?php echo $_smarty_tpl->tpl_vars['projectsForCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 "><?php echo $_smarty_tpl->tpl_vars['projectCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 </span>
+                        </a>
 <?php }?>
 <?php if ($_smarty_tpl->tpl_vars['projectBadge2']->value&&$_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
-                        <span class='badge green' title="Harmonogram projektu do akceptacji: <?php echo $_smarty_tpl->tpl_vars['projectsToAccept']->value;?>
+                        <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Projects/toAccept/'>
+                            <span class='badge green' title="Harmonogram projektu do akceptacji: <?php echo $_smarty_tpl->tpl_vars['projectsToAccept']->value;?>
 "><?php echo $_smarty_tpl->tpl_vars['projectBadge2']->value;?>
 </span>
+                        </a>
 <?php }?>
                     </li>
                     <?php }?>

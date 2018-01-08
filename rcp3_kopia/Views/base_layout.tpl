@@ -28,16 +28,24 @@
                     <li>
                         <a href='{$SITE_URL}Projects/'>Projekty </a>
 {if $user->accessLevel > 1}
-                        <span class='badge' title='Projekt wysłany do klienta- do zamknięcia: {$projectsToSend}'>{$projectBadge}</span>
+                        <a href='{$SITE_URL}Projects/toSend/'>
+                            <span class='badge' title='Projeky wysłane do klienta- do zamknięcia: {$projectsToSend}'>{$projectBadge}</span>
+                        </a>
 {/if}
 {if !empty($projectManagerBadges[$user->id])}
-                        <span class='badge blue' title="Nowy projekt- opracować harmonogram:{$projectsForManager[$user->id]}">{$projectManagerBadges[$user->id]}</span>
+                        <a href='{$SITE_URL}Projects/forManager/'>
+                            <span class='badge blue' title="Nowe projekty- opracować harmonogram:{$projectsForManager[$user->id]}">{$projectManagerBadges[$user->id]}</span>
+                        </a>
 {/if}
 {if !empty($projectCoordinator[$user->id]) && $user->accessLevel < 2}
-                        <span class='badge orange' title="Nowy projekt- opracować harmonogram:{$projectsForCoordinator[$user->id]}">{$projectCoordinator[$user->id]}</span>
+                        <a href='{$SITE_URL}Projects/forCoordinator/'>
+                            <span class='badge orange' title="Nowe projekty- opracować harmonogram:{$projectsForCoordinator[$user->id]}">{$projectCoordinator[$user->id]}</span>
+                        </a>
 {/if}
 {if $projectBadge2 && $user->accessLevel > 1}
-                        <span class='badge green' title="Harmonogram projektu do akceptacji: {$projectsToAccept}">{$projectBadge2}</span>
+                        <a href='{$SITE_URL}Projects/toAccept/'>
+                            <span class='badge green' title="Harmonogram projektu do akceptacji: {$projectsToAccept}">{$projectBadge2}</span>
+                        </a>
 {/if}
                     </li>
                     {/if}

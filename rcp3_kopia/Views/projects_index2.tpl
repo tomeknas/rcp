@@ -27,7 +27,7 @@
         </form>
     </div>
    
-    <h2 align="center">Projekty</h2>
+    <h2 align="center" id="title_project">Projekty</h2>
     
 <table class="gridtable centre" id='myTable'>
     <thead>
@@ -195,7 +195,27 @@
 {/block}
 {block name='body_end'}
 <script>
-    
+
+    patternOne = new RegExp("toSend");
+    patternTwo = new RegExp("forManager");
+    patternThree = new RegExp("forCoordinator");
+    patternFour = new RegExp("toAccept");
+    loc = window.location.pathname;
+
+    if (patternOne.test(loc)){
+        $("#title_project").text("Projeky wysłane do klienta- do zamknięcia:");
+    }else if (patternTwo.test(loc)){
+        $("#title_project").text("Nowe projekty- opracować harmonogram:");
+    }else if (patternThree.test(loc)){
+        $("#title_project").text("Nowe projekty- opracować harmonogram:");
+    }else if (patternFour.test(loc)){
+        $("#title_project").text("Harmonogram projektu do akceptacji:");
+    }else{
+        $("#title_project").text("Projekty");
+    }
+
+
+
     $("#inactive-toggle").click( function(event) {
         event.preventDefault();
         $("#inactive-projects").show();

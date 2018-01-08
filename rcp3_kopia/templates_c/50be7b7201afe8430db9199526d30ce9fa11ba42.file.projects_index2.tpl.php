@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-01-07 18:55:44
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-01-08 11:55:55
          compiled from "Views\projects_index2.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:95225a1705aa7492e7-99877986%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '50be7b7201afe8430db9199526d30ce9fa11ba42' => 
     array (
       0 => 'Views\\projects_index2.tpl',
-      1 => 1515347737,
+      1 => 1515408952,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
     array (
       0 => 'Views\\base_layout.tpl',
-      1 => 1513187500,
+      1 => 1515408535,
       2 => 'file',
     ),
   ),
@@ -97,24 +97,36 @@ UserMonth/'>Kalendarz użytkownika</a>
                         <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
 Projects/'>Projekty </a>
 <?php if ($_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
-                        <span class='badge' title='Projekt wysłany do klienta- do zamknięcia: <?php echo $_smarty_tpl->tpl_vars['projectsToSend']->value;?>
+                        <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Projects/toSend/'>
+                            <span class='badge' title='Projeky wysłane do klienta- do zamknięcia: <?php echo $_smarty_tpl->tpl_vars['projectsToSend']->value;?>
 '><?php echo $_smarty_tpl->tpl_vars['projectBadge']->value;?>
 </span>
+                        </a>
 <?php }?>
 <?php if (!empty($_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id])) {?>
-                        <span class='badge blue' title="Nowy projekt- opracować harmonogram:<?php echo $_smarty_tpl->tpl_vars['projectsForManager']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
+                        <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Projects/forManager/'>
+                            <span class='badge blue' title="Nowe projekty- opracować harmonogram:<?php echo $_smarty_tpl->tpl_vars['projectsForManager']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 "><?php echo $_smarty_tpl->tpl_vars['projectManagerBadges']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 </span>
+                        </a>
 <?php }?>
 <?php if (!empty($_smarty_tpl->tpl_vars['projectCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id])&&$_smarty_tpl->tpl_vars['user']->value->accessLevel<2) {?>
-                        <span class='badge orange' title="Nowy projekt- opracować harmonogram:<?php echo $_smarty_tpl->tpl_vars['projectsForCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
+                        <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Projects/forCoordinator/'>
+                            <span class='badge orange' title="Nowe projekty- opracować harmonogram:<?php echo $_smarty_tpl->tpl_vars['projectsForCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 "><?php echo $_smarty_tpl->tpl_vars['projectCoordinator']->value[$_smarty_tpl->tpl_vars['user']->value->id];?>
 </span>
+                        </a>
 <?php }?>
 <?php if ($_smarty_tpl->tpl_vars['projectBadge2']->value&&$_smarty_tpl->tpl_vars['user']->value->accessLevel>1) {?>
-                        <span class='badge green' title="Harmonogram projektu do akceptacji: <?php echo $_smarty_tpl->tpl_vars['projectsToAccept']->value;?>
+                        <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Projects/toAccept/'>
+                            <span class='badge green' title="Harmonogram projektu do akceptacji: <?php echo $_smarty_tpl->tpl_vars['projectsToAccept']->value;?>
 "><?php echo $_smarty_tpl->tpl_vars['projectBadge2']->value;?>
 </span>
+                        </a>
 <?php }?>
                     </li>
                     <?php }?>
@@ -181,7 +193,7 @@ $_smarty_tpl->tpl_vars['_user']->_loop = true;
         </form>
     </div>
    
-    <h2 align="center">Projekty</h2>
+    <h2 align="center" id="title_project">Projekty</h2>
     
 <table class="gridtable centre" id='myTable'>
     <thead>
@@ -436,7 +448,27 @@ Login/logout/")
     
 <?php echo '<script'; ?>
 >
-    
+
+    patternOne = new RegExp("toSend");
+    patternTwo = new RegExp("forManager");
+    patternThree = new RegExp("forCoordinator");
+    patternFour = new RegExp("toAccept");
+    loc = window.location.pathname;
+
+    if (patternOne.test(loc)){
+        $("#title_project").text("Projeky wysłane do klienta- do zamknięcia:");
+    }else if (patternTwo.test(loc)){
+        $("#title_project").text("Nowe projekty- opracować harmonogram:");
+    }else if (patternThree.test(loc)){
+        $("#title_project").text("Nowe projekty- opracować harmonogram:");
+    }else if (patternFour.test(loc)){
+        $("#title_project").text("Harmonogram projektu do akceptacji:");
+    }else{
+        $("#title_project").text("Projekty");
+    }
+
+
+
     $("#inactive-toggle").click( function(event) {
         event.preventDefault();
         $("#inactive-projects").show();
@@ -655,7 +687,7 @@ var order = "DSC";
                     $(".sort-header th").removeClass("name-header-asc");
                     $(this).addClass("name-header-dsc");
             }
-console.log(projectNames);
+
          var uniqueNames = [];
          
          $.each(projectNames, function(i, el){

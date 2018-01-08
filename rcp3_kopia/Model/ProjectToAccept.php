@@ -7,29 +7,21 @@
  */
 
 /**
- * Description of ProjectTotals2
+ * Description of ProjectToAccept
  *
  * @author Tomek
  */
-class ProjectTotals2 extends ActiveRecord {
+class ProjectToAccept extends ActiveRecord {
     public $totals = array();
     public $inactive = array();
     
     public function __construct(User $user) {
 
-        $query = "SELECT * FROM v_project_totals";
-        if ($user->accessLevel < 2 && $user->isCoordinator() && !$user->isProjectManager()) {
-            $query .=" WHERE coordinator_id = {$user->id}";
-        } else if ($user->accessLevel < 2 && $user->isProjectManager() && !$user->isCoordinator()){
-            $query .=" WHERE manager_id = {$user->id}";
-        }
-        else if ($user->accessLevel < 2 && $user->isCoordinator() && $user->isProjectManager()){
-            $query .=" WHERE manager_id = {$user->id} OR coordinator_id = {$user->id}";
-        }
+        $query = "SELECT * FROM v_project_totals WHERE status = 1 ";
 
 
         $res = self::$_mysqli->query($query);
-      
+ 
              while($row = $res->fetch_row()) {
             if ($row[9] == 0) {
                 $projectObject = new Project;
