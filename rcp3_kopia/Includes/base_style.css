@@ -43,6 +43,10 @@ table.gridtable th {
         border-style: solid;
         border-color: #666666;
         background-color: #dedede;
+
+        
+
+
 }
 
 table.gridtable td {
@@ -51,6 +55,7 @@ table.gridtable td {
         border-style: solid;
         border-color: #666666;
         background-color: #ffffff;
+
 }
 
 a {
@@ -206,3 +211,53 @@ content:"\25bc";
 content:"\25b2";
 }
 
+
+
+.sticky >th{
+  padding:11px !important;
+
+}
+.sticky >td{
+  visibility: hidden;
+}
+
+.thead-col{
+  position: absolute;
+
+
+}
+.thead-row{
+  position: absolute;
+
+}
+.table-report tbody{
+  display: block;
+
+}
+
+.table-report th, .table-report td{
+    min-width:60px;
+  }
+
+.sticky{
+  position: fixed;
+  top:0;
+}
+.stickyLeft{
+  position: fixed;
+  left:0;
+
+}
+
+.period{
+  
+}
+
+/*tbody tr:nth-child(n+2) th:nth-child(1){
+  background-color: green !important;
+  position: fixed;
+  width:333px;
+  height:32px;
+  left:0;
+  top:0;
+}*/
