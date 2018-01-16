@@ -3,6 +3,7 @@
 {block name='content'}
     
 {$excelReportArgs = ''}
+<div class="work-card">
     <h2 align='center'>Raport zbiorczy</h2>
     <h3 align='center'>
 {if $report->allTime}
@@ -25,8 +26,8 @@
         </a>    
             -
     </h3>
-    
-    <div align='center' >
+ </div>  
+    <div align='center' class="select-period" >
 <h3>Wybierz okres:</h3>
 {if !$report->allTime}
 {$fromDateTime = $report->period.from.dateTime}
@@ -124,11 +125,11 @@ $(document).ready(function(){
     var scrolLeft = $(window).scrollLeft();
     var left = navleft + $(".thead-col").width() - scrolLeft -1;
     var posTop = NAvY + $(".thead-row").height() - scrolTop -1;
-    console.log(posTop, NAvY, $(".thead-row").height() );
+   
 
   
     if ( (scrolLeft > navleft) && (scrolTop > NAvY) ){
-        console.log(1);
+     
         $(".thead-col").addClass("stickyLeft");
         $(".stickyLeft").css("top",posTop);
          $(".thead-row").addClass("sticky");
@@ -140,6 +141,7 @@ $(document).ready(function(){
         $(".thead-row").addClass("sticky");
         $(".sticky").css("left",left);
         $(".thead-col").removeClass("stickyLeft");
+        $(".thead-col").css("top","202px");
 
     } else if( (scrolLeft > navleft) && (scrolTop < NAvY) ){
      
@@ -149,7 +151,7 @@ $(document).ready(function(){
         $(".thead-row").removeClass("sticky");
        
     } else {
-        console.log(4);
+       
         $(".thead-row").removeClass("sticky");
         $(".thead-col").removeClass("stickyLeft");
         $(".thead-row").css("left","379px");
