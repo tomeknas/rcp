@@ -249,9 +249,17 @@ content:"\25b2";
 
 }
 
-.period{
-  
+.work-card{
+  float:left;
+  margin-left: 10%;
 }
+
+.select-period{
+  float:right;
+  margin-right: 30%;
+}
+
+
 
 /*tbody tr:nth-child(n+2) th:nth-child(1){
   background-color: green !important;
