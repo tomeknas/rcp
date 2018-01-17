@@ -86,20 +86,7 @@
 </tbody>
 </table>
 <br><br>
-<!-- <div align='center'>
-<h3>Wybierz okres:</h3>
-{if !$report->allTime}
-{$fromDateTime = $report->period.from.dateTime}
-{$toDateTime = $report->period.to.dateTime}
-{else}
-{$fromDateTime = ''}
-{$toDateTime = ''}
-{/if}
-{html_select_date time={$fromDateTime} display_days=false month_format='%m' start_year='-5' end_year='+5' year_extra='id="fromYear"' month_extra='id="fromMonth"'} - 
-{html_select_date time={$toDateTime} display_days=false month_format='%m' start_year='-5' end_year='+5' year_extra='id="toYear"' month_extra='id="toMonth"'}
-<br><br>
-<button id='selectPeriodButton'>Pokaż</button>
-</div> -->
+
 {/block}
 
 {block name='body_end'}

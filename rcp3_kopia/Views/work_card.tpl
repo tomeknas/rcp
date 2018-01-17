@@ -39,7 +39,7 @@ th.rotate > div > span {
             {/if}
         </h2>
         <h4 align='center'>
-            <a href='{$SITE_URL}Excel/workCard/{$report->yearFrom}/{$report->monthFrom}/{$report->yearTo}/{$report->monthTo}/'>
+            <a href='{$SITE_URL}Excel/workCard/{$report->yearFrom}/{$report->monthFrom}/{$report->dayFrom}/{$report->yearTo}/{$report->monthTo}/{$report->dayTo}/'>
                 - raport do pliku .xls -
             </a>
         </h4>
@@ -121,8 +121,7 @@ $(document).ready(function(){
     
     function setLayout(){
     var marginLeftRow = $(".thead-col").width() -1;
-    // var marginTest = marginLeftRow - $(".table-report").css("margin-left");
-    //  console.log(marginLeftRow,  $(".table-report").css("margin-left") );
+   
     $(".thead-row").css("left",marginLeftRow);
     $(".table-report tbody").css("margin-left", marginLeftRow  );
     var positionCol = $(".thead-row").position().top + $(".thead-row").height() -1;
