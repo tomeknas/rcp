@@ -35,31 +35,40 @@ class WorkCard2 extends ActiveRecord {
     
     public $yearFrom;
     public $monthFrom;
+    public $dayFrom;
     public $yearTo;
     public $monthTo;
+    public $dayTo;
     
     /**
      * 
      * @param int $yearFrom
      * @param int $monthFrom
+     * @param int $dayFrom
      * @param int $yearTo
      * @param int $monthTo
+     * @param int $dayTo
      */
-    public function __construct($yearFrom = null, $monthFrom = null, $yearTo = null, $monthTo = null) {
+    public function __construct($yearFrom = null, $monthFrom = null, $dayFrom = null, $yearTo = null, $monthTo = null,  $dayTo = null) {
         
-        if (!($yearFrom && $monthFrom && $yearTo && $monthTo)) {
+        if (!($yearFrom && $monthFrom && $yearTo && $monthTo && $dayFrom && $dayTo)) {
             $yearFrom = $yearTo = \date('Y');
             $monthFrom = $monthTo = \date('n');
+            $dayFrom = $dayTo = \date('d');
         }
         
         $this->yearFrom = $yearFrom;
         $this->monthFrom = $monthFrom;
+        $this->dayFrom = $dayFrom;
         $this->yearTo = $yearTo;
         $this->monthTo = $monthTo;
+        $this->dayTo = $dayTo;
         
-        $this->fromDateTime = date(DATE_FORMAT_MYSQL, mktime(0, 0, 0, $monthFrom, 1, $yearFrom));
-        $this->toDateTime = date(DATE_FORMAT_MYSQL, mktime(23, 59, 59, $monthTo, cal_days_in_month(1, $monthTo, $yearTo), $yearTo));
-        
+        $this->fromDateTime = date(DATE_FORMAT_MYSQL, mktime(0, 0, 0,  $monthFrom, $dayFrom, $yearFrom));
+        $this->toDateTime = date(DATE_FORMAT_MYSQL, mktime(23, 59, 59, $monthTo,   $dayTo,   $yearTo));
+       
+
+
         $usersQuery =
             "SELECT
                 us.id as id,
@@ -204,6 +213,9 @@ class WorkCard2 extends ActiveRecord {
             }
             
             $this->totalsTotals += $this->verticalTotals[$i];
+
+
         }
+
     }
 }

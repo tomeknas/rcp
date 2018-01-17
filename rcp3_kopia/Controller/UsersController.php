@@ -41,10 +41,13 @@ class UsersController extends ControllerBase
         
         $report = null;
         $allTime = true;
-        if (count($this->args) < 4) {
+        if (count($this->args) < 6) {
             $report = new WorkCard2;
+           
         } else {
-            $report = new WorkCard2($this->args[0], $this->args[1], $this->args[2], $this->args[3]);
+            $report = new WorkCard2($this->args[0], $this->args[1], $this->args[2], $this->args[3], $this->args[4], $this->args[5]);
+           
+        
             $allTime = false;
         }
         self::$view->assign('user', $user);

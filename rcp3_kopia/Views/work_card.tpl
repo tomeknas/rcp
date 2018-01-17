@@ -31,23 +31,23 @@ th.rotate > div > span {
 {block name='content'}
 
     <div class="work-card">
-        <h2 align='center'>Karta pracy</h2>
-        <h2 align='center'>
-            {$report->monthFrom}/{$report->yearFrom}
-            {if $report->fromDateTime|date_format:'Y-m' != $report->toDateTime|date_format:'Y-m'}
-                - {$report->monthTo}/{$report->yearTo}
+        <h3 align='center'>Karta pracy</h3>
+        <h3 align='center'>
+            {$report->dayFrom}/{$report->monthFrom}/{$report->yearFrom}
+            {if $report->fromDateTime|date_format:'d-m-Y' != $report->toDateTime|date_format:'d-m-Y'}
+                - {$report->dayTo}/{$report->monthTo}/{$report->yearTo}
             {/if}
         </h2>
-        <h3 align='center'>
+        <h4 align='center'>
             <a href='{$SITE_URL}Excel/workCard/{$report->yearFrom}/{$report->monthFrom}/{$report->yearTo}/{$report->monthTo}/'>
                 - raport do pliku .xls -
             </a>
-        </h3>
+        </h4>
     </div>
     <div align='center' class="select-period">
                     <h3>Wybierz okres:</h3>
-{html_select_date time=$report->fromDateTime display_days=false start_year='-5' end_year='+5' month_format='%m' year_extra='id="fromYear"' month_extra='id="fromMonth"'} - 
-{html_select_date time=$report->toDateTime display_days=false start_year='-5' end_year='+5' month_format='%m' year_extra='id="toYear"' month_extra='id="toMonth"'}
+{html_select_date time=$report->fromDateTime field_order ='DMY' start_year='-5' end_year='+5' month_format='%m' year_extra='id="fromYear"' day_extra='id="fromDay"' month_extra='id="fromMonth"' } - 
+{html_select_date  time=$report->toDateTime field_order = 'DMY' start_year='-5' end_year='+5' month_format='%m' year_extra='id="toYear"' day_extra='id="toDay"' month_extra='id="toMonth"' }
 <br><br>
                     <button id='selectPeriodButton'>Pokaż</button>
     </div>
@@ -201,8 +201,10 @@ $(document).ready(function(){
             "{$SITE_URL}Users/report/"
             +$("#fromYear").val()+"/"
             +$("#fromMonth").val()+"/"
+            +$("#fromDay").val()+"/"
             +$("#toYear").val()+"/"
             +$("#toMonth").val()+"/"
+            +$("#toDay").val()+"/"
             );
     });
     
