@@ -44,7 +44,7 @@
 <br>
 
 
-<table class='gridtable centre table-report'>
+<table class='gridtable  table-report'>
 <thead class="thead-row">
     <tr class="head-row"> 
         
@@ -128,7 +128,7 @@ $(document).ready(function(){
         $(".thead-row").addClass("sticky");
         $(".sticky").css("left",left);
         $(".thead-col").removeClass("stickyLeft");
-        $(".thead-col").css("top","202px");
+        $(".thead-col").css("top","187px");
 
     } else if( (scrolLeft > navleft) && (scrolTop < NAvY) ){
      

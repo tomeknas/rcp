@@ -230,13 +230,17 @@ content:"\25b2";
   position: absolute;
 
 }
+
+.table-report{
+  clear:left;
+}
 .table-report tbody{
   display: block;
 
 }
 
 .table-report th, .table-report td{
-    min-width:60px;
+    min-width:70px;
   }
 
 .sticky{
