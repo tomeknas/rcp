@@ -242,6 +242,7 @@ content:"\25b2";
 .sticky{
   position: fixed;
   top:0;
+  background-color:white;
 }
 .stickyLeft{
   position: fixed;

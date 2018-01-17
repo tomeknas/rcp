@@ -53,7 +53,7 @@ th.rotate > div > span {
     </div>
 
 
-        <table class='gridtable centre table-report' style='margin-top: 240px'>
+        <table class='gridtable  table-report' style='margin-top: 240px'>
         <thead class="thead-row">
             <tr>
                <!--  <td style='border: none'>&nbsp;</td> -->
@@ -121,8 +121,10 @@ $(document).ready(function(){
     
     function setLayout(){
     var marginLeftRow = $(".thead-col").width() -1;
+    // var marginTest = marginLeftRow - $(".table-report").css("margin-left");
+    //  console.log(marginLeftRow,  $(".table-report").css("margin-left") );
     $(".thead-row").css("left",marginLeftRow);
-    $(".table-report tbody").css("margin-left", marginLeftRow);
+    $(".table-report tbody").css("margin-left", marginLeftRow  );
     var positionCol = $(".thead-row").position().top + $(".thead-row").height() -1;
     $(".thead-col").css("top",positionCol);
     var marginTopBody = $(".thead-row").height() -1;
@@ -151,6 +153,7 @@ $(document).ready(function(){
 
     } else if( (scrolLeft < navleft) && (scrolTop > NAvY) ){
         console.log(2);
+      
 
         $(".thead-row").addClass("sticky");
         $(".sticky").css("left",left);
