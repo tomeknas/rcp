@@ -1,9 +1,9 @@
 <?php 
 $args = $this->args;
-$this->filename = "karta-pracy-{$args[0]}-{$args[1]}" .
-            ( ($args[0] == $args[2] && $args[1] == $args[3]) ? '' : "-{$args[2]}-{$args[3]}" );
+$this->filename = "karta-pracy-{$args[0]}-{$args[1]}-{$args[2]}" .
+            ( ($args[0] == $args[3] && $args[1] == $args[4] && $args[2] == $args[5]) ? '' : "-{$args[3]}-{$args[4]}-{$args[5]}" );
 $sheet = $this->excel->getActiveSheet();
-$report = new WorkCard2($this->args[0], $this->args[1], $this->args[2], $this->args[3]);
+$report = new WorkCard2($this->args[0], $this->args[1], $this->args[2], $this->args[3], $this->args[4], $this->args[5]);
 $rowOneLastColumn = 0;
 $col = 0;
 $row = 1;
