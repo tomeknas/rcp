@@ -1,13 +1,13 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-01-17 16:16:40
-         compiled from "Views\work_card.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:219115a043572b7ccb9-08469895%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-01-15 20:20:46
+         compiled from "Views\projects_cons_report2.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:253245a04352d55c338-34066031%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'cbf5c18c732ac4bca78d60c7e1edeba7d6184fbc' => 
+    'a85c1fb101f1672532bd37fab2a14d1b4bed8d16' => 
     array (
-      0 => 'Views\\work_card.tpl',
-      1 => 1516202196,
+      0 => 'Views\\projects_cons_report2.tpl',
+      1 => 1516044042,
       2 => 'file',
     ),
     'cf5d031d7811abe143b2a675129cecdef724eadb' => 
@@ -17,12 +17,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '219115a043572b7ccb9-08469895',
+  'nocache_hash' => '253245a04352d55c338-34066031',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_5a04357317a8b6_91153275',
+  'unifunc' => 'content_5a04352e286340_22410687',
   'variables' => 
   array (
     'SITE_URL' => 0,
@@ -38,8 +38,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5a04357317a8b6_91153275')) {function content_5a04357317a8b6_91153275($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include 'C:\\xampp\\htdocs\\rcp\\rcp3_kopia\\Application\\Smarty\\plugins\\modifier.date_format.php';
-if (!is_callable('smarty_function_html_select_date')) include 'C:\\xampp\\htdocs\\rcp\\rcp3_kopia\\Application\\Smarty\\plugins\\function.html_select_date.php';
+<?php if ($_valid && !is_callable('content_5a04352e286340_22410687')) {function content_5a04352e286340_22410687($_smarty_tpl) {?><?php if (!is_callable('smarty_function_html_select_date')) include 'C:\\xampp\\htdocs\\rcp\\rcp3_kopia\\Application\\Smarty\\plugins\\function.html_select_date.php';
 ?><!DOCTYPE html>
 <html>
     <head>
@@ -62,32 +61,6 @@ Includes/base_style.css'>
 Includes/loading_indicator.css'>
 
         
-    
-    <style>
-        
-     th.rotate {
-  /* Something you can count on */
-  height: 140px;
-  white-space: nowrap;
-}
-
-th.rotate > div {
-  transform: 
-    /* Magic Numbers */
-    translate(25px, 51px)
-    /* 45 is really 360 - 45 */
-    rotate(315deg);
-  width: 30px;
-}
-th.rotate > div > span {
-  border-bottom: 1px solid #ccc;
-  padding: 5px 10px;
-}
-        
-        
-    </style>
-    
-
     </head>
     <body>
         <div id='menu_div'>
@@ -186,157 +159,133 @@ Users/addUser/'>Dodaj użytkownika</a>
         </div>
         <div id='content_div' style="height: 100%;">
             
+    
+<?php $_smarty_tpl->tpl_vars['excelReportArgs'] = new Smarty_variable('', null, 0);?>
+    <h2 align='center'>Raport zbiorczy</h2>
+    <h3 align='center'>
+<?php if ($_smarty_tpl->tpl_vars['report']->value->allTime) {?>
+        * cały czas *
+<?php } else { ?>
+<?php $_smarty_tpl->tpl_vars['excelReportArgs'] = new Smarty_variable(((((((($_smarty_tpl->tpl_vars['report']->value->period['from']['year']).('/')).($_smarty_tpl->tpl_vars['report']->value->period['from']['month'])).('/')).($_smarty_tpl->tpl_vars['report']->value->period['to']['year'])).('/')).($_smarty_tpl->tpl_vars['report']->value->period['to']['month'])).('/'), null, 0);?>
+        <?php echo $_smarty_tpl->tpl_vars['report']->value->period['from']['month'];?>
+/<?php echo $_smarty_tpl->tpl_vars['report']->value->period['from']['year'];?>
 
-    <div class="work-card">
-        <h3 align='center'>Karta pracy</h3>
-        <h3 align='center'>
-            <?php echo $_smarty_tpl->tpl_vars['report']->value->dayFrom;?>
-/<?php echo $_smarty_tpl->tpl_vars['report']->value->monthFrom;?>
-/<?php echo $_smarty_tpl->tpl_vars['report']->value->yearFrom;?>
+<?php if ($_smarty_tpl->tpl_vars['report']->value->period['to']!=$_smarty_tpl->tpl_vars['report']->value->period['from']) {?>
+        - <?php echo $_smarty_tpl->tpl_vars['report']->value->period['to']['month'];?>
+/<?php echo $_smarty_tpl->tpl_vars['report']->value->period['to']['year'];?>
 
-            <?php if (smarty_modifier_date_format($_smarty_tpl->tpl_vars['report']->value->fromDateTime,'d-m-Y')!=smarty_modifier_date_format($_smarty_tpl->tpl_vars['report']->value->toDateTime,'d-m-Y')) {?>
-                - <?php echo $_smarty_tpl->tpl_vars['report']->value->dayTo;?>
-/<?php echo $_smarty_tpl->tpl_vars['report']->value->monthTo;?>
-/<?php echo $_smarty_tpl->tpl_vars['report']->value->yearTo;?>
-
-            <?php }?>
-        </h2>
-        <h4 align='center'>
+<?php }?>
+<?php }?>
+    </h3>
+    <h3 align='center'> - raport do pliku:
+        <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Excel/consReport/<?php echo $_smarty_tpl->tpl_vars['excelReportArgs']->value;?>
+'>
+            .xls
+        </a>
+            |
+        <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Excel/consReportPdf/<?php echo $_smarty_tpl->tpl_vars['excelReportArgs']->value;?>
+'>
+            .pdf
+        </a>    
+            -
+    </h3>
+    
+<table class='gridtable centre table-report'>
+<thead class="thead-row">
+    <tr class="head-row"> 
+        
+<?php  $_smarty_tpl->tpl_vars['month'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['month']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['report']->value->months; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['month']->key => $_smarty_tpl->tpl_vars['month']->value) {
+$_smarty_tpl->tpl_vars['month']->_loop = true;
+?>
+<?php $_smarty_tpl->tpl_vars['monthArray'] = new Smarty_variable(explode('-',$_smarty_tpl->tpl_vars['month']->value), null, 0);?>
+        <th>
             <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Excel/workCard/<?php echo $_smarty_tpl->tpl_vars['report']->value->yearFrom;?>
-/<?php echo $_smarty_tpl->tpl_vars['report']->value->monthFrom;?>
-/<?php echo $_smarty_tpl->tpl_vars['report']->value->dayFrom;?>
-/<?php echo $_smarty_tpl->tpl_vars['report']->value->yearTo;?>
-/<?php echo $_smarty_tpl->tpl_vars['report']->value->monthTo;?>
-/<?php echo $_smarty_tpl->tpl_vars['report']->value->dayTo;?>
+Users/report/<?php echo $_smarty_tpl->tpl_vars['monthArray']->value[0];?>
+/<?php echo $_smarty_tpl->tpl_vars['monthArray']->value[1];?>
+/<?php echo $_smarty_tpl->tpl_vars['monthArray']->value[0];?>
+/<?php echo $_smarty_tpl->tpl_vars['monthArray']->value[1];?>
 /'>
-                - raport do pliku .xls -
-            </a>
-        </h4>
-    </div>
-    <div align='center' class="select-period">
-                    <h3>Wybierz okres:</h3>
-<?php echo smarty_function_html_select_date(array('time'=>$_smarty_tpl->tpl_vars['report']->value->fromDateTime,'field_order'=>'DMY','start_year'=>'-5','end_year'=>'+5','month_format'=>'%m','year_extra'=>'id="fromYear"','day_extra'=>'id="fromDay"','month_extra'=>'id="fromMonth"'),$_smarty_tpl);?>
- - 
-<?php echo smarty_function_html_select_date(array('time'=>$_smarty_tpl->tpl_vars['report']->value->toDateTime,'field_order'=>'DMY','start_year'=>'-5','end_year'=>'+5','month_format'=>'%m','year_extra'=>'id="toYear"','day_extra'=>'id="toDay"','month_extra'=>'id="toMonth"'),$_smarty_tpl);?>
+                <?php echo $_smarty_tpl->tpl_vars['month']->value;?>
 
-<br><br>
-                    <button id='selectPeriodButton'>Pokaż</button>
-    </div>
-
-
-        <table class='gridtable  table-report' style='margin-top: 240px'>
-        <thead class="thead-row">
-            <tr>
-               <!--  <td style='border: none'>&nbsp;</td> -->
+            </a> 
+        </th>
+<?php } ?>
+    </tr>
+</thead>
+<thead class="thead-col">
 <?php  $_smarty_tpl->tpl_vars['project'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['project']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['report']->value->projects; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['project']->key => $_smarty_tpl->tpl_vars['project']->value) {
 $_smarty_tpl->tpl_vars['project']->_loop = true;
 ?>
-                <th style='background: none; border: none' class="rotate"><div><span>
-                    <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Projects/report/<?php echo $_smarty_tpl->tpl_vars['project']->value['id'];?>
-/'>
-                        <?php echo $_smarty_tpl->tpl_vars['project']->value['name'];?>
+    <tr><th><a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
+Projects/report/<?php echo $_smarty_tpl->tpl_vars['project']->value->id;?>
+/<?php echo $_smarty_tpl->tpl_vars['excelReportArgs']->value;?>
+'>
+                <?php echo $_smarty_tpl->tpl_vars['project']->value->name;?>
 
-                    </a>
-                </span></div></th>
+            </a>
+        </th>
+    </tr>
 <?php } ?>
-<?php  $_smarty_tpl->tpl_vars['project3Task'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['project3Task']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['report']->value->project3Tasks; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['project3Task']->key => $_smarty_tpl->tpl_vars['project3Task']->value) {
-$_smarty_tpl->tpl_vars['project3Task']->_loop = true;
+</thead>  
+<tbody>  
+    <tr>
+        <?php  $_smarty_tpl->tpl_vars['project'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['project']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['report']->value->projects; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['project']->key => $_smarty_tpl->tpl_vars['project']->value) {
+$_smarty_tpl->tpl_vars['project']->_loop = true;
 ?>
-                <th style='background: none; border: none' class="rotate"><div><span>
-                    <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Projects/report/3/'>
-                        <?php echo $_smarty_tpl->tpl_vars['project3Task']->value['name'];?>
-
-                    </a>
-                </span></div></th> 
-<?php } ?>
-            </tr>
-        </thead>
-
-<thead class="thead-col">
-<?php  $_smarty_tpl->tpl_vars['user'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['user']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['report']->value->users; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
- $_smarty_tpl->tpl_vars['user']->index=-1;
-foreach ($_from as $_smarty_tpl->tpl_vars['user']->key => $_smarty_tpl->tpl_vars['user']->value) {
-$_smarty_tpl->tpl_vars['user']->_loop = true;
- $_smarty_tpl->tpl_vars['user']->index++;
+<?php  $_smarty_tpl->tpl_vars['month'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['month']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['report']->value->months; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['month']->key => $_smarty_tpl->tpl_vars['month']->value) {
+$_smarty_tpl->tpl_vars['month']->_loop = true;
 ?>
-            <tr>
-                <th>
-                    <a href='<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-UserMonth/index/<?php echo $_smarty_tpl->tpl_vars['user']->value['id'];?>
-/<?php echo $_smarty_tpl->tpl_vars['report']->value->yearTo;?>
-/<?php echo $_smarty_tpl->tpl_vars['report']->value->monthTo;?>
-/'>
-                        <?php echo $_smarty_tpl->tpl_vars['user']->value['name'];?>
-
-                    </a>
-                </th>
-            </tr>
+<?php $_smarty_tpl->tpl_vars['value'] = new Smarty_variable($_smarty_tpl->tpl_vars['report']->value->data[$_smarty_tpl->tpl_vars['project']->value->id][$_smarty_tpl->tpl_vars['month']->value], null, 0);?>
+        <td><?php if ($_smarty_tpl->tpl_vars['value']->value>0) {
+echo sprintf("%.1f",$_smarty_tpl->tpl_vars['value']->value);?>
+d<?php }?></td>
 <?php } ?>
-</thead>
-
-<tbody>
-<?php  $_smarty_tpl->tpl_vars['user'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['user']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['report']->value->users; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
- $_smarty_tpl->tpl_vars['user']->index=-1;
-foreach ($_from as $_smarty_tpl->tpl_vars['user']->key => $_smarty_tpl->tpl_vars['user']->value) {
-$_smarty_tpl->tpl_vars['user']->_loop = true;
- $_smarty_tpl->tpl_vars['user']->index++;
+        <th><?php echo sprintf("%.1f",$_smarty_tpl->tpl_vars['report']->value->totals['project'][$_smarty_tpl->tpl_vars['project']->value->id]);?>
+d</th>
+    </tr>
+<?php } ?>
+    <tr>
+      
+<?php  $_smarty_tpl->tpl_vars['month'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['month']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['report']->value->months; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['month']->key => $_smarty_tpl->tpl_vars['month']->value) {
+$_smarty_tpl->tpl_vars['month']->_loop = true;
 ?>
-<?php  $_smarty_tpl->tpl_vars['dur'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['dur']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['report']->value->leftTableContent[$_smarty_tpl->tpl_vars['user']->index]; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['dur']->key => $_smarty_tpl->tpl_vars['dur']->value) {
-$_smarty_tpl->tpl_vars['dur']->_loop = true;
-?>
-                <td><?php if ($_smarty_tpl->tpl_vars['dur']->value) {
-echo $_smarty_tpl->tpl_vars['dur']->value;?>
-h<?php } else { ?>&nbsp;<?php }?></td>
+        <th><?php echo sprintf("%.1f",$_smarty_tpl->tpl_vars['report']->value->totals['month'][$_smarty_tpl->tpl_vars['month']->value]);?>
+d</th>
 <?php } ?>
-<?php  $_smarty_tpl->tpl_vars['dur'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['dur']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['report']->value->rightTableContent[$_smarty_tpl->tpl_vars['user']->index]; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['dur']->key => $_smarty_tpl->tpl_vars['dur']->value) {
-$_smarty_tpl->tpl_vars['dur']->_loop = true;
-?>
-                <td><?php if ($_smarty_tpl->tpl_vars['dur']->value) {
-echo $_smarty_tpl->tpl_vars['dur']->value;?>
-h<?php } else { ?>&nbsp;<?php }?></td>
-<?php } ?>
-                <th><?php echo $_smarty_tpl->tpl_vars['report']->value->verticalTotals[$_smarty_tpl->tpl_vars['user']->index];?>
-h</th>
-            </tr>
-<?php } ?>
-            <tr>
-                
-<?php  $_smarty_tpl->tpl_vars['total'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['total']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['report']->value->leftHorizontalTotals; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['total']->key => $_smarty_tpl->tpl_vars['total']->value) {
-$_smarty_tpl->tpl_vars['total']->_loop = true;
-?>
-                <th><?php echo $_smarty_tpl->tpl_vars['total']->value;?>
-h</th>
-<?php } ?>
-<?php  $_smarty_tpl->tpl_vars['total'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['total']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['report']->value->rightHorizontalTotals; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['total']->key => $_smarty_tpl->tpl_vars['total']->value) {
-$_smarty_tpl->tpl_vars['total']->_loop = true;
-?>
-                <th><?php echo $_smarty_tpl->tpl_vars['total']->value;?>
-h</th>
-<?php } ?>
-                <th><?php echo $_smarty_tpl->tpl_vars['report']->value->totalsTotals;?>
-h</th>
-            </tr>
+    </tr>
 </tbody>
-        </table>
-            <br><br>
-                
+</table>
+<br><br>
+<div align='center'>
+<h3>Wybierz okres:</h3>
+<?php if (!$_smarty_tpl->tpl_vars['report']->value->allTime) {?>
+<?php $_smarty_tpl->tpl_vars['fromDateTime'] = new Smarty_variable($_smarty_tpl->tpl_vars['report']->value->period['from']['dateTime'], null, 0);?>
+<?php $_smarty_tpl->tpl_vars['toDateTime'] = new Smarty_variable($_smarty_tpl->tpl_vars['report']->value->period['to']['dateTime'], null, 0);?>
+<?php } else { ?>
+<?php $_smarty_tpl->tpl_vars['fromDateTime'] = new Smarty_variable('', null, 0);?>
+<?php $_smarty_tpl->tpl_vars['toDateTime'] = new Smarty_variable('', null, 0);?>
+<?php }?>
+<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['fromDateTime']->value;?>
+<?php $_tmp1=ob_get_clean();?><?php echo smarty_function_html_select_date(array('time'=>$_tmp1,'display_days'=>false,'month_format'=>'%m','start_year'=>'-5','end_year'=>'+5','year_extra'=>'id="fromYear"','month_extra'=>'id="fromMonth"'),$_smarty_tpl);?>
+ - 
+<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['toDateTime']->value;?>
+<?php $_tmp2=ob_get_clean();?><?php echo smarty_function_html_select_date(array('time'=>$_tmp2,'display_days'=>false,'month_format'=>'%m','start_year'=>'-5','end_year'=>'+5','year_extra'=>'id="toYear"','month_extra'=>'id="toMonth"'),$_smarty_tpl);?>
+
+<br><br>
+<button id='selectPeriodButton'>Pokaż</button>
+</div>
 
             <br><br><br><br><br><br>
             
@@ -375,20 +324,17 @@ Login/logout/")
     
 <?php echo '<script'; ?>
 >
-
 $(document).ready(function(){
-    
     function setLayout(){
     var marginLeftRow = $(".thead-col").width() -1;
-   
     $(".thead-row").css("left",marginLeftRow);
-    $(".table-report tbody").css("margin-left", marginLeftRow  );
+    $(".table-report tbody").css("margin-left", marginLeftRow);
     var positionCol = $(".thead-row").position().top + $(".thead-row").height() -1;
     $(".thead-col").css("top",positionCol);
     var marginTopBody = $(".thead-row").height() -1;
     $(".table-report tbody").css("margin-top",marginTopBody);
 
-    };
+};
     
     var NAvY = $(".thead-row").offset().top;
     var navleft = $(".thead-col").offset().left;
@@ -397,55 +343,69 @@ $(document).ready(function(){
     var scrolLeft = $(window).scrollLeft();
     var left = navleft + $(".thead-col").width() - scrolLeft -1;
     var posTop = NAvY + $(".thead-row").height() - scrolTop -1;
-    
+    console.log(posTop, NAvY, $(".thead-row").height() );
 
   
     if ( (scrolLeft > navleft) && (scrolTop > NAvY) ){
-     console.log(1);
+        console.log(1);
         $(".thead-col").addClass("stickyLeft");
         $(".stickyLeft").css("top",posTop);
          $(".thead-row").addClass("sticky");
          $(".sticky").css("left",left);
          $(".thead-col").addClass("stickyLeft");
-         $(".thead-col").css("left", "0px");
+         $(".stickyLeft").css("top",posTop).css("left", navleft);
 
     } else if( (scrolLeft < navleft) && (scrolTop > NAvY) ){
         console.log(2);
-      
-
         $(".thead-row").addClass("sticky");
         $(".sticky").css("left",left);
-        $(".thead-col").removeClass("stickyLeft");
-        $(".thead-col").css("top", "379px");
+         $(".thead-col").addClass("stickyLeft");
+         $(".stickyLeft").css("top",posTop).css("left", navleft);
+
+         $(".thead-col").removeClass("stickyLeft");
+         
 
     } else if( (scrolLeft > navleft) && (scrolTop < NAvY) ){
         console.log(3);
-     
+       
         $(".thead-col").addClass("stickyLeft");
         $(".stickyLeft").css("top",posTop);
-        $(".thead-row").css("left","158px");
-        $(".thead-row").removeClass("sticky");
-       
-    } else {
-       console.log(4);
+
         $(".thead-row").removeClass("sticky");
         $(".thead-col").removeClass("stickyLeft");
-        $(".thead-row").css("left","379px");
-        $(".thead-col").css("left", "0px");
 
+    } else {
+        console.log(4);
         setLayout();
     }
    
     
         
+        // if (scrolLeft > navleft){
+        //      $(".thead-col").addClass("stickyLeft");
+        //      $(".stickyLeft").css("top",posTop);
+        // } else {
+        //     $(".thead-col").removeClass("stickyLeft");
+        //     setLayout();   
+        // }
+        // if (scrolTop > NAvY) {
+        //     $(".thead-row").addClass("sticky");
+        //     $(".sticky").css("left",left);
+        //     $(".thead-col").addClass("stickyLeft");
+        //     $(".stickyLeft").css("top",posTop).css("left", navleft);
+        // } else {
+        //     $(".thead-row").removeClass("sticky");
+        //     $(".thead-row").css("left","379px");
+        //     $(".thead-col").css("left", "0px");
+
+
+        // }
     };
     stickyNav();
     $(window).scroll(function(){
         stickyNav();
     });
 });
-
-
     
     $("#fromMonth").change( function() {
         $("#toMonth").val( $(this).val() );
@@ -460,13 +420,11 @@ $(document).ready(function(){
         event.preventDefault();
         document.location.replace(
             "<?php echo $_smarty_tpl->tpl_vars['SITE_URL']->value;?>
-Users/report/"
+Projects/consReport/"
             +$("#fromYear").val()+"/"
             +$("#fromMonth").val()+"/"
-            +$("#fromDay").val()+"/"
             +$("#toYear").val()+"/"
             +$("#toMonth").val()+"/"
-            +$("#toDay").val()+"/"
             );
     });
     

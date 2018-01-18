@@ -32,7 +32,7 @@ class ConsReport2 extends ActiveRecord
         self::$interval = $interval;
     }
     
-    public function __construct($yearFrom = 0, $monthFrom = 0, $yearTo = 0, $monthTo = 0)
+    public function __construct($yearFrom = 0, $monthFrom = 0, $dayFrom = 0, $yearTo = 0, $monthTo = 0, $dayTo =0)
     {   
         switch(self::$interval) {
             case 'month':
@@ -42,33 +42,40 @@ class ConsReport2 extends ActiveRecord
                 $monthFrom = (int)(($monthFrom - 1) / 3) * 3 + 1;
                 $monthTo = (int)(($monthTo - 1) / 3) * 3 + 3;
                 $modeString = "CONCAT(YEAR(ut.start), ' : ', QUARTER(ut.start))";
+
                 break;
         }
+        
         
         $this->period = [
             'from' => [
                 'year' => $yearFrom,
                 'month' => $monthFrom,
-                'dateTime' => $yearFrom.'-'.$monthFrom.'-01'
+                'day' => $dayFrom,
+                'dateTime' => $yearFrom.'-'.$monthFrom.'-'.$dayFrom
             ],
             'to' => [
                 'year' => $yearTo,
                 'month' => $monthTo,
-                'dateTime' => $yearTo.'-'.$monthTo.'-01'
+                'day' => $dayTo,
+                'dateTime' => $yearTo.'-'.$monthTo.'-'.$dayTo
             ]
         ];
         
-        $this->allTime = !($yearFrom && $monthFrom && $yearTo && $monthTo);
+        
+        
+        $this->allTime = !($yearFrom && $monthFrom && $dayFrom && $yearTo && $monthTo && $dayTo);
         /* @var $mysqli mysqli */
         $mysqli = self::$_mysqli;
         
         if (!$this->allTime) {
-            $startTime = "{$yearFrom}-{$monthFrom}-1";
-            $stopTime = "{$yearTo}-{$monthTo}-" . cal_days_in_month(1, $monthTo, $yearTo) . ' 23:59:59';
+            $startTime = "{$yearFrom}-{$monthFrom}-{$dayFrom}";
+            $stopTime = "{$yearTo}-{$monthTo}-{$dayTo}". ' 23:59:59';
             $mysqli->query("SET @starttime = '{$startTime}'");
             $mysqli->query("SET @stoptime = '{$stopTime}'");
         }
-        
+       
+      
         $query = "
             SELECT
                 {$modeString}

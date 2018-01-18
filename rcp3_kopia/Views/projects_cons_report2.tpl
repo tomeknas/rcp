@@ -9,10 +9,10 @@
 {if $report->allTime}
         * cały czas *
 {else}
-{$excelReportArgs = $report->period.from.year|cat:'/'|cat:$report->period.from.month|cat:'/'|cat:$report->period.to.year|cat:'/'|cat:$report->period.to.month|cat:'/'}
-        {$report->period.from.month}/{$report->period.from.year}
+{$excelReportArgs = $report->period.from.year|cat:'/'|cat:$report->period.from.month|cat:'/'|cat:$report->period.from.day|cat:'/'|cat:$report->period.to.year|cat:'/'|cat:$report->period.to.month|cat:'/'|cat:$report->period.to.day|cat:'/'}
+        {$report->period.from.day}/{$report->period.from.month}/{$report->period.from.year}
 {if $report->period.to != $report->period.from}
-        - {$report->period.to.month}/{$report->period.to.year}
+        - {$report->period.to.day}/{$report->period.to.month}/{$report->period.to.year}
 {/if}
 {/if}
     </h3>
@@ -36,8 +36,8 @@
 {$fromDateTime = ''}
 {$toDateTime = ''}
 {/if}
-{html_select_date time={$fromDateTime} display_days=false month_format='%m' start_year='-5' end_year='+5' year_extra='id="fromYear"' month_extra='id="fromMonth"'} - 
-{html_select_date time={$toDateTime} display_days=false month_format='%m' start_year='-5' end_year='+5' year_extra='id="toYear"' month_extra='id="toMonth"'}
+{html_select_date time={$fromDateTime} field_order ='DMY' month_format='%m' start_year='-5' end_year='+5' year_extra='id="fromYear"' day_extra='id="fromDay"' month_extra='id="fromMonth"'} - 
+{html_select_date time={$toDateTime} field_order ='DMY' month_format='%m' start_year='-5' end_year='+5' year_extra='id="toYear"' day_extra='id="toDay"' month_extra='id="toMonth"'}
 <br><br>
 <button id='selectPeriodButton'>Pokaż</button>
 </div>
@@ -171,8 +171,10 @@ $(document).ready(function(){
             "{$SITE_URL}Projects/consReport/"
             +$("#fromYear").val()+"/"
             +$("#fromMonth").val()+"/"
+            +$("#fromDay").val()+"/"
             +$("#toYear").val()+"/"
             +$("#toMonth").val()+"/"
+            +$("#toDay").val()+"/"
             );
     });
     
